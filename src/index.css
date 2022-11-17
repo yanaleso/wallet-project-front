@@ -1,4 +1,5 @@
 @import-normalize; /* bring in normalize.css styles */
+@import 'react-toastify/dist/ReactToastify.css';
 
 body {
   margin: 0;
@@ -12,4 +13,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }

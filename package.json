@@ -1,8 +1,8 @@
 {
-  "name": "react-homework-template",
+  "name": "wallet-project-front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://goitacademy.github.io/react-homework-template/",
+  "homepage": "https://yanaleso.github.io/wallet-project-front/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "parcel build src/*.html --public-url /wallet-project-front/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:js": "eslint src/**/*.{js,jsx}"

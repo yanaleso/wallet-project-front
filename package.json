@@ -2,7 +2,7 @@
   "name": "wallet-project-front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yanaleso.github.io/wallet-project-front/",
+  "homepage": "https://yanaleso.github.io/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",

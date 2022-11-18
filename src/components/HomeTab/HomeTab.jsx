@@ -1,8 +1,29 @@
-const HomeTab = () => {
+import { HomeTabItem } from './HomeTabItem'
+import { StyledTable, StyledTableHeader,StyledList } from './HomeTab.styled'
+
+const HomeTab = ({ data }) => {
   return (
-    <div style={{ width: '500px', height: '200px', background: 'green' }}>
-      <h1>Home Tab</h1>
-    </div>
+    <StyledTable>
+      <StyledTableHeader> 
+          <p>Date</p>
+          <p>Type</p>
+          <p>Category</p>
+          <p>Comment</p>
+          <p>Sum</p>
+          <p>Balance</p>
+      </StyledTableHeader>
+
+      <StyledList>
+        {data.map(({ id, date, type, category, comment, sum, balance }) => (
+          <HomeTabItem
+            key={id}
+            transaction={{ id, date, type, category, comment, sum, balance }}
+          />
+        ))}
+      </StyledList>
+
+
+    </StyledTable>
   );
 };
 

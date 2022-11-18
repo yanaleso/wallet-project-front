@@ -74,7 +74,7 @@ export const VioletСircleText = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
-  line-height: 45px;
+  line-height: 1.5;
   transform: rotate(-36deg);
 
   color: ${p => p.theme.colors.black};

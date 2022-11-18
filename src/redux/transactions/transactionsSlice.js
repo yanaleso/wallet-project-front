@@ -1,11 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+const initialState = {
+  isModalAddOpen: false,
+  transactions: [],
+};
 
 const transactionsSlice = createSlice({
-  name: 'auth',
+  name: 'transactions',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleModalAdd: (state, action) => {
+      state.isModalAddOpen = action.payload;
+    },
+
+    addTransaction: (state, action) => {
+      state.transactions.push(action.payload);
+    },
+    
+  },
 });
+
+export const { toggleModalAdd, addTransaction } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;

@@ -9,12 +9,12 @@ export const Section = styled.section`
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     display: flex;
     padding: 60px 0px 0px;
-    background-color: ${p => p.theme.colors.bgLoginPage};
+    background-color: ${p => p.theme.colors.loginPageBg};
   }
   @media screen and (min-width: 1280px) {
     display: flex;
     padding: 0px;
-    background-color: ${p => p.theme.colors.bgLoginPage};
+    background-color: ${p => p.theme.colors.loginPageBg};
   }
 `;
 
@@ -48,8 +48,7 @@ export const RedСircleText = styled.p`
   font-size: 30px;
   line-height: 45px;
   transform: rotate(-22deg);
-
-  color: ${p => p.theme.colors.black};
+  color: ${p => p.theme.colors.primaryText};
 `;
 
 export const VioletСircle = styled.div`
@@ -76,8 +75,7 @@ export const VioletСircleText = styled.p`
   font-size: 30px;
   line-height: 1.5;
   transform: rotate(-36deg);
-
-  color: ${p => p.theme.colors.black};
+  color: ${p => p.theme.colors.primaryText};
 `;
 
 export const ImageContainer = styled.div`

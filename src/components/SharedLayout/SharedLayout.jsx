@@ -1,4 +1,5 @@
 import Currency from 'components/Currency';
+import { GlobalStyle } from 'components/GlobalStyle';
 import Header from 'components/Header';
 import Navigation from 'components/Navigation';
 
@@ -15,6 +16,7 @@ const SharedLayout = ({ children }) => {
 
         {children}
       </div>
+      <GlobalStyle />
     </div>
   );
 };

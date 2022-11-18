@@ -16,7 +16,7 @@ const transactionsSlice = createSlice({
     addTransaction: (state, action) => {
       state.transactions.push(action.payload);
     },
-
+    
   },
 });
 

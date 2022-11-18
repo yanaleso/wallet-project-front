@@ -14,12 +14,12 @@ const LoginForm = () => {
       <StyledForm>
         <input type="emuil" />
         <input type="password" />
-           
+
         <button type="submit">Login</button>
         <Link to="/register">Register</Link>
       </StyledForm>
     </div>
   );
 };
- 
+
 export default LoginForm;

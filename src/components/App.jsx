@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import ModalAddTransaction from './ModalAddTransaction';
 
 export const App = () => {
-const { isModalAddOpen } = useSelector(state => state.transactions);
+  const { isModalAddOpen } = useSelector(state => state.transactions);
 
   return (
     <>

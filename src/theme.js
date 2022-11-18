@@ -6,6 +6,7 @@ export const theme = {
     accent: '#4c4cff',
     primary: '#757575',
     border: 'rgba(33, 33, 33, 0.2)',
+    bgLoginPage: '#E7EAF2',
     hover: '#188ce8',
   },
   space: [0, 2, 6, 10, 20, 32, 64, 128, 256],
@@ -39,5 +40,5 @@ export const theme = {
     s: '358px',
     m: '380px',
     l: '760px',
-  }
+  },
 };

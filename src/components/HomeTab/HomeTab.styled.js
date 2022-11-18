@@ -5,8 +5,8 @@ display: flex;
 
     background-color: #FFFFFF;
     font-weight: 700;
-font-size: 18px;
-line-height: 1.5;
+    font-size: 18px;
+    line-height: 1.5;
 
     padding: 15px 20px;
     border-radius: 30px;

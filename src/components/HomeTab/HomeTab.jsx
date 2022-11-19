@@ -1,7 +1,10 @@
-import { HomeTabItem } from './HomeTabItem'
-import { StyledTable, StyledTableHeader,StyledList } from './HomeTab.styled'
+import { HomeTabItem, HomeTabMobItem } from './HomeTabItem'
+import { StyledTable, StyledTableHeader,StyledTableBody, StyledWrap } from './HomeTab.styled'
 
 const HomeTab = ({ data }) => {
+  const screenWidth = window.screen.width;
+
+  if(screenWidth >= 768){
   return (
     <StyledTable>
       <StyledTableHeader> 
@@ -13,18 +16,33 @@ const HomeTab = ({ data }) => {
           <p>Balance</p>
       </StyledTableHeader>
 
-      <StyledList>
+      <StyledTableBody>
         {data.map(({ id, date, type, category, comment, sum, balance }) => (
           <HomeTabItem
             key={id}
             transaction={{ id, date, type, category, comment, sum, balance }}
           />
         ))}
-      </StyledList>
+      </StyledTableBody>
 
 
     </StyledTable>
   );
+}
+else {
+  return (
+      <StyledWrap>
+    {data.map(({ id, date, type, category, comment, sum, balance }) => (
+          <HomeTabMobItem
+            key={id}
+            transaction={{ id, date, type, category, comment, sum, balance }}
+          />
+        ))}
+  </StyledWrap>
+  );
+}
 };
 
 export default HomeTab;
+
+

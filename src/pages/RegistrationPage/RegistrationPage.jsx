@@ -1,9 +1,12 @@
 import RegistrationForm from 'components/RegistrationForm';
+import SharedLayout from 'components/SharedLayout';
 
 const RegistrationPage = () => {
 
   return (
-    <RegistrationForm/>
+    <SharedLayout>
+      <RegistrationForm />
+    </SharedLayout>
   );
 };
 

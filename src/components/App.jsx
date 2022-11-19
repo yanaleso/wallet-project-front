@@ -23,8 +23,6 @@ export const App = () => {
           element={
             <PublicRoute restricted navigateTo="/home">
               <LoginPage />
-              <HomeTab data={[{ id: 1, date: '04.01.2022', type: '+', category: 'Other', comment: 'Gift for you', sum: '300.00', balance: '6900.00' }, { id: 2, date: '07.01.2022', type: '-', category: 'Car', comment: 'Repair', sum: '700.00', balance: '6200.00' }, { id: 3, date: '02.01.2022', type: '+', category: 'Wages', comment: 'Wages', sum: '3000.00', balance: '9200.00' }, { id: 4, date: '08.11.2022', type: '-', category: 'Other', comment: 'Sashas Birthday', sum: '1000.00', balance: '8200.00' }, { id: 5, date: '01.01.2022', type: '-', category: 'Shopping', comment: 'Silpo', sum: '250.00', balance: "7950.00" }]} />
-
             </PublicRoute>
           }
         />
@@ -42,7 +40,7 @@ export const App = () => {
           element={
             <PrivateRoute>
               <DashboardPage>
-                <HomeTab />
+                  <HomeTab data={[{ id: 1, date: '04.01.2022', type: '+', category: 'Other', comment: 'Gift for you', sum: '300.00', balance: '6900.00' }, { id: 2, date: '07.01.2022', type: '-', category: 'Car', comment: 'Repair', sum: '700.00', balance: '6200.00' }, { id: 3, date: '02.01.2022', type: '+', category: 'Wages', comment: 'Wages', sum: '3000.00', balance: '9200.00' }, { id: 4, date: '08.11.2022', type: '-', category: 'Other', comment: 'Sashas Birthday', sum: '1000.00', balance: '8200.00' }, { id: 5, date: '01.01.2022', type: '-', category: 'Shopping', comment: 'Silpo', sum: '250.00', balance: "7950.00" }]} />
                 <ButtonAddTransactions />
               </DashboardPage>
             </PrivateRoute>

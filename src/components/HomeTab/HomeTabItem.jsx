@@ -1,3 +1,5 @@
+import { StyledList } from './HomeTab.styled'
+
 
 const HomeTabItem = ({ transaction }) => {
     const { date, type, category, comment, sum, balance } = transaction;
@@ -11,4 +13,16 @@ const HomeTabItem = ({ transaction }) => {
     </li>
 }
 
-export { HomeTabItem };
+const HomeTabMobItem = ({ transaction }) => {
+    const { date, type, category, comment, sum, balance } = transaction;
+    return <StyledList style={{ 'border-left': type==="+" ? '5px solid #24CCA7' : '5px solid#FF6596' }}>
+        <li>Date <span>{date}</span></li>
+        <li>Type <span>{type}</span></li>
+        <li>Category <span>{category}</span></li>
+        <li>Comment <span>{comment}</span></li>
+        <li>Sum <span style={{ color: type==="+" ? '#24CCA7' : '#FF6596' }}>{sum}</span></li>
+        <li>Balance <span>{balance}</span></li>
+    </StyledList>
+}
+
+export { HomeTabItem, HomeTabMobItem };

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
+import {theme} from '../../theme';
 
 export const StyledTableHeader = styled.div`
-display: flex;
-
     background-color: #FFFFFF;
     font-weight: 700;
     font-size: 18px;
@@ -10,78 +9,126 @@ display: flex;
 
     padding: 15px 20px;
     border-radius: 30px;
+    @media (min-width: 768px) {
+      display: flex;
+    }
     p{
-      margin: 0;
+      @media (min-width: 768px) {
+        margin: 0;
       &:nth-child(1){
-        width: 115px;
+        width: 15%;
       }
       &:nth-child(2){
-        width: 60px;
+        width: 15%;
+        display: flex;
+      justify-content: center;
     }
     &:nth-child(3){
-      width: 150px;
+      width: 20%;
     }
     &:nth-child(4){
-      width: 155px;
+      width: 25%;
     }
     &:nth-child(5){
-      width: 120px;
+      width: 10%;
       display: flex;
       justify-content: flex-end;
     }
     &:nth-child(6){
-      width: 130px;
+      width: 15%;
       display: flex;
       justify-content: flex-end;
     }
+  }
     }
 
 `;
 
 export const StyledTable = styled.div`
+@media (max-width: 1279px) {
+width: 704px;
+}
+@media (min-width: 1280px) {
 width: 715px;
-
+}
 `;
 
-export const StyledList = styled.ul`
+export const StyledTableBody = styled.ul`
 margin: 0;
 padding: 0 20px;
-font-weight: 400;
-font-size: 16px;
+font-size: ${theme.fontSizes.m};
 line-height: 1.5;
 li{
-  display: flex;
   align-items: center;
   height: 52px;
   &:not(:last-child){
     border-bottom: 1px solid #DCDCDF;
   }
+  @media (min-width: 768px) {
+      display: flex;
+    }
 }
 li>p{
   margin: 0;
+  @media (min-width: 768px) {
     &:nth-child(1){
-        width: 120px;
+        width: 15%;
       }
     &:nth-child(2){
-        width: 54px;
+        width: 15%;
+        display: flex;
+      justify-content: center;
     }
     &:nth-child(3){
-      width: 150px;
+      width: 20%;
     }
     &:nth-child(4){
-      width: 155px;
+      width: 25%;
     }
     &:nth-child(5){
-      width: 120px;
-      font-weight: 700;
+      width: 10%;
+      font-weight: ${theme.fontWeights.bold};
       display: flex;
       justify-content: flex-end;
     }
     &:nth-child(6){
-      width: 130px;
+      width: 15%;
       display: flex;
       justify-content: flex-end;
     }
+  }
 }
+`
 
+export const StyledList = styled.ul`
+margin: 0;
+border-radius: 10px;
+li{
+  font-weight: 700;
+    font-size: 18px;
+    line-height: 1.5;
+  padding: 12px 20px;
+  &:not(:last-child){
+    border-bottom: 1px solid #DCDCDF;
+  }
+  display: flex;
+  justify-content: space-between;
+}
+li>span{
+  font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+}
+`
+
+export const StyledWrap = styled.div`
+max-width: 280px;
+margin: auto;
+border-left: 5px;
+
+ul{
+  &:not(:last-child){
+   margin-bottom: 8px;
+  }
+}
 `

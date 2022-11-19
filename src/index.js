@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './theme';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
+import {FontStyles} from 'components/FontStyles';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter basename="wallet-project-front">
+            <FontStyles/>
             <App />
           </BrowserRouter>
         </PersistGate>

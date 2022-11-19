@@ -13,10 +13,7 @@ export const Overlay = styled.div`
 `;
 
 export const Modal = styled.div`
-  /* width: auto;
-    height: 100%; */
-  width: 600px;
-  height: 500px;
-
-  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

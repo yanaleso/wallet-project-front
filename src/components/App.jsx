@@ -9,6 +9,7 @@ import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import { useSelector } from 'react-redux';
 import ModalAddTransaction from './ModalAddTransaction';
+import FormTransaction from './FormTransaction/FormTransaction';
 
 export const App = () => {
   const { isModalAddOpen } = useSelector(state => state.transactions);
@@ -58,7 +59,7 @@ export const App = () => {
 
       {isModalAddOpen && (
         <ModalAddTransaction>
-          <h1>Modal</h1>
+          <FormTransaction />
         </ModalAddTransaction>
       )}
     </>

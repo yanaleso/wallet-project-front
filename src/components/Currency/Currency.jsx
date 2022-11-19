@@ -7,15 +7,6 @@ import {
 } from './Currency.styled';
 import grafSvg from '../../images/currencyVektor.svg';
 
-// import axios from 'axios';
-
-// const getCurrencyRates = async () => {
-//   return axios
-//     .get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
-//     .then(response => response)
-//     .catch(error => console.log(error));
-// };
-
 const kurs = [
   { ccy: 'USD', base_ccy: 'UAH', buy: '39.50000', sale: '40.00000' },
   { ccy: 'EUR', base_ccy: 'UAH', buy: '39.70000', sale: '40.70000' },

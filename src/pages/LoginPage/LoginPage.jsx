@@ -3,12 +3,11 @@ import {
   Section,
   Container,
   Frame,
-  RedСircle,
-  RedСircleText,
-  VioletСircle,
   ImageContainer,
   FormContainer,
-  VioletСircleText,
+  Wrapper,
+  Blur,
+  Text,
 } from './LoginPage.styled';
 import frame from '../../images/frame.png';
 import frameBig from '../../images/frameBig.png';
@@ -31,32 +30,39 @@ const LoginPage = () => {
             <Fragment>
               {matches.small && (
                 <Container>
-                  <LoginForm />
+                  <Wrapper>
+                    <LoginForm />
+                  </Wrapper>
                 </Container>
               )}
               {matches.medium && (
                 <Container>
-                  <Frame src={frame} alt="customer orders goods" />
-                  <LoginForm />
-                  <RedСircle>
-                    <RedСircleText>Finance App</RedСircleText>
-                  </RedСircle>
-                  <VioletСircle></VioletСircle>
+                  <Wrapper>
+                    <ImageContainer>
+                      <Frame src={frame} alt="customer orders goods" />
+                      <Text>Finance App</Text>
+                    </ImageContainer>
+                    <FormContainer>
+                      <LoginForm />
+                    </FormContainer>
+                  </Wrapper>
                 </Container>
               )}
               {matches.large && (
-                <>
-                  <ImageContainer>
-                    <Frame src={frameBig} alt="customer orders goods" />
-                    <VioletСircle>
-                      <VioletСircleText>Finance App</VioletСircleText>
-                    </VioletСircle>
-                  </ImageContainer>
-                  <FormContainer>
-                    <LoginForm />
-                    <RedСircle></RedСircle>
-                  </FormContainer>
-                </>
+                <Blur>
+                  <Container>
+                    <Wrapper>
+                      <ImageContainer>
+                        <Frame src={frameBig} alt="customer orders goods" />
+                        <Text>Finance App</Text>
+                      </ImageContainer>
+
+                      <FormContainer>
+                        <LoginForm />
+                      </FormContainer>
+                    </Wrapper>
+                  </Container>
+                </Blur>
               )}
             </Fragment>
           )}

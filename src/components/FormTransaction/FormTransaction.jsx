@@ -36,6 +36,7 @@ import {
   Title,
   TransactionForm,
 } from './FormTransaction.styled';
+import { selectStyles } from 'helpers/selectStyles';
 
 
 const FormTransaction = () => {
@@ -65,7 +66,7 @@ const FormTransaction = () => {
   };
 
   const onChangeSelect = e => {
-    setCategory(e.label);
+    setCategory(e?.label);
   };
 
   const onCancelClick = () => {
@@ -132,7 +133,9 @@ const FormTransaction = () => {
                 options={options}
                 isClearable
                 isSearchable
+                placeholder={<div>Select a category</div>}
                 onChange={onChangeSelect}
+                styles={selectStyles}
               />
             )}
 

@@ -9,7 +9,14 @@ const DashboardPage = () => {
   return (
     <SharedLayout>
       <Header />
-      <main style={{ display: 'flex', alignItems: "flex-end", justifyContent: 'space-evenly' }}>
+      <main
+        style={{
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'space-evenly',
+          background: '#E7EAF2',
+        }}
+      >
         <div>
           <Navigation />
           <h2>Balanse 24 000</h2>

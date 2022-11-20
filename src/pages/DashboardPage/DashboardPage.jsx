@@ -19,7 +19,7 @@ const DashboardPage = () => {
               medium: '(min-width: 768px) and (max-width: 1279px)',
               large: '(min-width: 1280px)',
             }}
-     
+     >
             {matches => (
               <Fragment>
                 {matches.small && (

@@ -1,74 +1,46 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+//import { options } from 'helpers/options';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const options = {
-  responsive: true,
-  legend: {
-    display: false,
-    position: 'top',
-  },
-  title: {
-    display: true,
-    fontSize: 20,
-    text: 'Calculated value',
-  },
-  animation: {
-    animateScale: true,
-    animateRotate: true,
-  },
-  plugins: {
-    doughnutlabel: {
-      labels: [
-        {
-          text: 'getTotal',
-          font: {
-            size: '60',
-            family: 'Arial, Helvetica, sans-serif',
-            style: 'italic',
-            weight: 'bold',
-          },
-          color: '#bc2c1a',
-        },
-      ],
-    },
-  },
-};
-
-export const data = {
-  labels: [
-    'Basic expenses',
-    'Products',
-    'Car',
-    'Self care',
-    'Child care',
-    'Education',
-  ],
-  datasets: [
-    {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      text: 'summ',
-      backgroundColor: [
-        '#FED057',
-        '#FFD8D0',
-        '#FD9498',
-        '#C5BAFF',
-        '#6E78E8',
-        '#81E1FF',
-      ],
-
-      borderWidth: 0,
-    },
-  ],
-};
-
 const myChart = () => {
+  // const categories = options.map(option => option.label);
+  // console.log(categories);
+  const data = {
+    labels: [
+      'Basic expenses',
+      'Products',
+      'Car',
+      'Self care',
+      'Child care',
+      'Education',
+    ],
+    datasets: [
+      {
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        text: 'summ',
+        backgroundColor: [
+          '#FED057',
+          '#FFD8D0',
+          '#FD9498',
+          '#C5BAFF',
+          '#6E78E8',
+          '#81E1FF',
+        ],
+
+        borderWidth: 0,
+      },
+    ],
+  };
+
   return (
-    <div style={{ width: '500px', height: '500px' }}>
+    <div>
       <h1>Statistics</h1>
       <Doughnut
+        width={288}
+        height={288}
         data={data}
         options={{
           cutoutPercentage: 55,

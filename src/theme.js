@@ -28,8 +28,10 @@ export const theme = {
   },
   space: [0, 8, 12, 16, 20, 28, 36, 40, 60],
   fonts: {
-    body: 'Circe, sans-serif',
-    heading: 'Poppins, sans-serif',
+    body: 'Circe-Regular, sans-serif',
+    bodyBold: 'Circe-Bold, sans-serif',
+    heading: 'Poppins-Regular, sans-serif',
+    headingBold: 'Poppins-Bold, sans-serif',
   },
   fontSizes: {
     xs: '12px',

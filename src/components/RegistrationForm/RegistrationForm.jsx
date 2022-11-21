@@ -1,7 +1,14 @@
-import { Link } from 'react-router-dom';
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
 import shema from 'helpers';
-import { StyledForm } from './RegistrationForm.styled';
+import {
+  FormWrap,
+  LogoWrap,
+  StyledForm,
+  Label,
+  Input,
+  SubmitBtn,
+  StyledNavLink,
+} from './RegistrationForm.styled';
 
 const initialValues = {
   email: '',
@@ -16,39 +23,39 @@ const RegisterForm = () => {
   };
 
   return (
-    <div>
-      <h1>LOGO</h1>
+    <FormWrap>
+      <LogoWrap>LOGO</LogoWrap>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={shema.register}
       >
-        <Form>
-          <label>
-            Em:
-            <Field type="email" name="email" placeholder="E-mail" />
-          </label>
-          <label>
-            Pas:
-            <Field type="password" name="password" placeholder="Password" />
-          </label>
-          <label>
-            CP:
-            <Field
+        <StyledForm>
+          <Label>
+            SVG
+            <Input type="email" name="email" placeholder="E-mail" />
+          </Label>
+          <Label>
+            SVG
+            <Input type="password" name="password" placeholder="Password" />
+          </Label>
+          <Label>
+            SVG
+            <Input
               type="password"
               name="confirmPassword"
               placeholder="Confirm password"
             />
-          </label>
-          <label>
-            Ne:
-            <Field type="text" name="name" placeholder="First name" />
-          </label>
-          <button type="submit">register</button>
-        </Form>
+          </Label>
+          <Label>
+            SVG
+            <Input type="text" name="name" placeholder="First name" />
+          </Label>
+          <SubmitBtn type="submit">register</SubmitBtn>
+        </StyledForm>
       </Formik>
-      <Link to="/login">log in</Link>
-    </div>
+      <StyledNavLink to="/login">log in</StyledNavLink>
+    </FormWrap>
   );
 };
 

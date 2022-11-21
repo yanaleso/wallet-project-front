@@ -53,3 +53,23 @@ export const userLogout = createAsyncThunk(
     }
   }
 );
+
+export const refreshUser = createAsyncThunk(
+  'user/refresh',
+  async (_, { getState, RejectWithValue }) => {
+    const state = getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      RejectWithValue();
+    }
+
+    token.set(persistedToken);
+    try {
+      const { data } = await axios('/users/refresh');
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);

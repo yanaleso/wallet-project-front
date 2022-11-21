@@ -22,7 +22,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = (values, { resetForm }) => {
     dispatch(userLogin(values));
-    resetForm();
+    // resetForm();
   };
 
   return (

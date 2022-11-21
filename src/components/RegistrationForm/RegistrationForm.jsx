@@ -27,7 +27,7 @@ const RegisterForm = () => {
     { resetForm }
   ) => {
     dispatch(userRegistration({ email, password, firstName }));
-    resetForm();
+    // resetForm();
   };
 
   return (

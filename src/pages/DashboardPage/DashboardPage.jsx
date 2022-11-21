@@ -4,6 +4,7 @@ import Header from 'components/Header';
 import Navigation from 'components/Navigation';
 import Balance from 'components/Balance';
 import Media from 'react-media';
+import ModalLogout from 'components/ModalLogout';
 import { Suspense, Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
 import {
@@ -15,13 +16,20 @@ import {
   DesktopWrapper,
   Vector,
 } from './Dashboard.styled';
+import { useState } from 'react';
 
 const DashboardPage = () => {
+  const [openExitModal, setIsOpenExitModal] = useState(false);
+
   return (
     <SharedLayout>
-      <Header />
+      <Header setIsOpenExitModal={() => setIsOpenExitModal(true)} />
       <main>
         <Section>
+          <ModalLogout
+            openExitModal={openExitModal}
+            setIsOpenExitModal={() => setIsOpenExitModal(false)}
+          />
           <Media
             queries={{
               small: '(max-width: 767px)',

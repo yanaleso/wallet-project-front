@@ -4,6 +4,7 @@ import Header from 'components/Header';
 import Navigation from 'components/Navigation';
 import Balance from 'components/Balance';
 import { useMedia } from 'react-use';
+import ModalLogout from 'components/ModalLogout';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import {
@@ -15,17 +16,24 @@ import {
   DesktopWrapper,
   Vector,
 } from './Dashboard.styled';
+import { useState } from 'react';
 
 const DashboardPage = () => {
   const isMobie = useMedia('(max-width: 767px)');
   const isTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
   const isDesktop = useMedia('(min-width: 1280px)');
 
+  const [openExitModal, setIsOpenExitModal] = useState(false);
+
   return (
     <SharedLayout>
-      <Header />
+      <Header setIsOpenExitModal={() => setIsOpenExitModal(true)} />
       <main>
         <Section>
+          <ModalLogout
+            openExitModal={openExitModal}
+            setIsOpenExitModal={() => setIsOpenExitModal(false)}
+          />
           {isMobie ? (
             <Container>
               <Wrapper>

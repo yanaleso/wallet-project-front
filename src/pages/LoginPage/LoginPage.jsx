@@ -1,4 +1,5 @@
 import LoginForm from 'components/LoginForm';
+import RegistrationForm from 'components/RegistrationForm';
 import {
   Section,
   Container,
@@ -13,12 +14,14 @@ import frame from '../../images/frame.png';
 import frameBig from '../../images/frameBig.png';
 
 import { useMedia } from 'react-use';
+import { useLocation } from 'react-router-dom';
 import SharedLayout from 'components/SharedLayout';
 
 const LoginPage = () => {
   const isWideMobie = useMedia('(max-width: 767px)');
   const isWideTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
   const isWideСomputer = useMedia('(min-width: 1280px)');
+  const location = useLocation();
 
   return (
     <SharedLayout>
@@ -26,7 +29,11 @@ const LoginPage = () => {
         {isWideMobie ? (
           <Container>
             <Wrapper>
-              <LoginForm />
+              {location.pathname === '/login' ? (
+                <LoginForm />
+              ) : (
+                <RegistrationForm />
+              )}
             </Wrapper>
           </Container>
         ) : null}
@@ -38,7 +45,11 @@ const LoginPage = () => {
                 <Text>Finance App</Text>
               </ImageContainer>
               <FormContainer>
-                <LoginForm />
+                {location.pathname === '/login' ? (
+                  <LoginForm />
+                ) : (
+                  <RegistrationForm />
+                )}
               </FormContainer>
             </Wrapper>
           </Container>
@@ -53,7 +64,11 @@ const LoginPage = () => {
                 </ImageContainer>
 
                 <FormContainer>
-                  <LoginForm />
+                  {location.pathname === '/login' ? (
+                    <LoginForm />
+                  ) : (
+                    <RegistrationForm />
+                  )}
                 </FormContainer>
               </Wrapper>
             </Container>

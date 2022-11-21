@@ -1,6 +1,8 @@
 import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { userRegistration } from 'redux/auth/authOperation';
+import { useState } from 'react';
+import { HiEyeOff, HiEye } from 'react-icons/hi';
 import shema from 'helpers';
 import Logo from 'components/Logo';
 import {
@@ -22,6 +24,9 @@ const initialValues = {
 };
 
 const RegisterForm = () => {
+  const [isHideFirstPass, setIsHideFirstPass] = useState(true);
+  const [isHideSecondPass, setIsHideSecondPass] = useState(true);
+
   const dispatch = useDispatch();
   const handleSubmit = (
     { email, password, name: firstName },
@@ -53,7 +58,16 @@ const RegisterForm = () => {
             </Label>
             <Label>
               SVG
-              <Input type="password" name="password" placeholder="Password" />
+              <Input
+                type={isHideFirstPass ? 'password' : 'text'}
+                name="password"
+                placeholder="Password"
+              />
+              {isHideFirstPass ? (
+                <HiEye onClick={() => setIsHideFirstPass(false)} />
+              ) : (
+                <HiEyeOff onClick={() => setIsHideFirstPass(true)} />
+              )}
               <ErrorMessage
                 name="password"
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}
@@ -62,10 +76,15 @@ const RegisterForm = () => {
             <Label>
               SVG
               <Input
-                type="password"
+                type={isHideSecondPass ? 'password' : 'text'}
                 name="confirmPassword"
                 placeholder="Confirm password"
               />
+              {isHideSecondPass ? (
+                <HiEye onClick={() => setIsHideSecondPass(false)} />
+              ) : (
+                <HiEyeOff onClick={() => setIsHideSecondPass(true)} />
+              )}
               <ErrorMessage
                 name="confirmPassword"
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}

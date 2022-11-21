@@ -1,18 +1,23 @@
 import styled from 'styled-components';
 import {theme} from '../../theme';
 
-export const StyledHeader = styled.header`
+export const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    margin: 0 auto;
 
-    @media (min-width: 768px) {
-        padding: 20px 32px;
+    @media screen and (max-width: 767px) {
+    max-width: 480px;
+    padding: 15px 20px;
     }
-    @media (min-width: 1280px) {
-        padding: 20px 16px;
+    @media screen and (min-width: 768px) {
+    width: 768px;
+    padding: 20px 32px;
     }
+    @media screen and (min-width: 1280px) {
+    width: 1280px;
+    padding: 20px 16px;
 `;
 
 export const UserBox = styled.div`
@@ -27,6 +32,7 @@ export const ButtonExit = styled.button`
     align-items: center;
     background-color: transparent;
     border-color: transparent;
+    cursor: pointer;
     
     color: ${theme.colors.secondaryText};
     font-family: inherit;

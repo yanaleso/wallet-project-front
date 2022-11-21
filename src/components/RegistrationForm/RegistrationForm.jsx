@@ -31,7 +31,7 @@ const RegisterForm = () => {
         onSubmit={handleSubmit}
         validationSchema={shema.register}
       >
-        {formik => (
+        {({ isValid, dirty }) => (
           <StyledForm autoComplete="off">
             <Label>
               SVG
@@ -69,10 +69,7 @@ const RegisterForm = () => {
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}
               />
             </Label>
-            <SubmitBtn
-              type="submit"
-              disabled={!(formik.isValid && formik.dirty)}
-            >
+            <SubmitBtn type="submit" disabled={!(isValid && dirty)}>
               register
             </SubmitBtn>
           </StyledForm>

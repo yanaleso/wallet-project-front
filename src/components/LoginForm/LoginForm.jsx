@@ -29,7 +29,7 @@ const LoginForm = () => {
         onSubmit={handleSubmit}
         validationSchema={shema.login}
       >
-        {formik => (
+        {({ isValid, dirty }) => (
           <StyledForm autoComplete="off">
             <Label>
               SVG
@@ -47,10 +47,7 @@ const LoginForm = () => {
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}
               />
             </Label>
-            <SubmitBtn
-              type="submit"
-              disabled={!(formik.isValid && formik.dirty)}
-            >
+            <SubmitBtn type="submit" disabled={!(isValid && dirty)}>
               log in
             </SubmitBtn>
           </StyledForm>

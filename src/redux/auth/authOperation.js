@@ -18,7 +18,6 @@ export const userRegistration = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/signup', userData);
       token.set(data.token);
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue('Registration has failed');
@@ -32,7 +31,6 @@ export const userLogin = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/signup', userData);
       token.set(data.token);
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue('login has failed');
@@ -46,10 +44,29 @@ export const userLogout = createAsyncThunk(
     try {
       const { data } = await axios.get('/users/signup');
       token.unset();
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue('logout has failed');
+    }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  'user/refresh',
+  async (_, { getState, RejectWithValue }) => {
+    const state = getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      RejectWithValue();
+    }
+
+    token.set(persistedToken);
+    try {
+      const { data } = await axios('/users/refresh');
+      return data;
+    } catch (error) {
+      RejectWithValue();
     }
   }
 );

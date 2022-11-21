@@ -1,3 +1,7 @@
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import DiagramTab from './DiagramTab';
 import Chart from './Chart';
 import DashboardPage from '../pages/DashboardPage';
@@ -5,15 +9,19 @@ import LoginPage from '../pages/LoginPage';
 import RegistrationPage from '../pages/RegistrationPage';
 import HomeTab from './HomeTab';
 import ButtonAddTransactions from './ButtonAddTransactions';
-import { Navigate, Route, Routes } from 'react-router-dom';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
-import { useSelector } from 'react-redux';
 import ModalAddTransaction from './ModalAddTransaction';
 import FormTransaction from './FormTransaction/FormTransaction';
+import { refreshUser } from 'redux/auth/authOperation';
 
 export const App = () => {
+  const dispatch = useDispatch();
   const { isModalAddOpen } = useSelector(state => state.transactions);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
     <>

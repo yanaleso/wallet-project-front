@@ -31,10 +31,10 @@ export const Input = styled(Field)`
   width: 240px;
   padding: 8px 20px;
   border: none;
-  font-family: 'Circe';
+  font-family: ${p => p.theme.fonts.body};
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
   line-height: 24px;
   color: ${p => p.theme.colors.primaryText};
 
@@ -43,10 +43,10 @@ export const Input = styled(Field)`
   }
 
   ::placeholder {
-    font-family: 'Circe';
+    font-family: ${p => p.theme.fonts.body};
     font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
+    font-weight: ${p => p.theme.fontWeights.normal};
+    font-size: ${p => p.theme.fontSizes.m};
     line-height: 1.5;
     color: ${p => p.theme.colors.secondaryText};
   }
@@ -75,11 +75,11 @@ export const ErrorMsg = styled.div`
   right: 0;
   bottom: -30px;
   padding: 4px 5px;
-  font-family: 'Circe';
+  font-family: ${p => p.theme.fonts.body};
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: 1.5;
   color: red;
   background-color: transparent;
 `;
@@ -96,10 +96,10 @@ export const SubmitBtn = styled.button`
   text-transform: uppercase;
   border: none;
   border-radius: 20px;
-  font-family: 'Circe';
+  font-family: ${p => p.theme.fonts.body};
   font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
   line-height: 1.5;
   letter-spacing: 0.1em;
   color: ${p => p.theme.colors.primaryBtn};
@@ -127,10 +127,10 @@ export const StyledNavLink = styled(Link)`
   text-transform: uppercase;
   border: 1px solid ${p => p.theme.colors.secondaryBtn};
   border-radius: 20px;
-  font-family: 'Circe';
+  font-family: ${p => p.theme.fonts.body};
   font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
   line-height: 1.5;
   letter-spacing: 0.1em;
   color: ${p => p.theme.colors.secondaryBtn};

@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { userLogin } from 'redux/auth/authOperation';
 import shema from 'helpers';
 import Logo from 'components/Logo';
+import { ReactComponent as EmailIcon } from 'images/email.svg';
+import { ReactComponent as PasswordIcon } from 'images/password.svg';
 import {
   FormWrap,
   LogoWrap,
@@ -39,7 +41,7 @@ const LoginForm = () => {
         {({ isValid, dirty }) => (
           <StyledForm autoComplete="off">
             <Label>
-              SVG
+              <EmailIcon />
               <Input type="email" name="email" placeholder="E-mail" />
               <ErrorMessage
                 name="email"
@@ -47,7 +49,7 @@ const LoginForm = () => {
               />
             </Label>
             <Label>
-              SVG
+              <PasswordIcon />
               <Input type="password" name="password" placeholder="Password" />
               <ErrorMessage
                 name="password"

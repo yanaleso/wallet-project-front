@@ -11,7 +11,7 @@ export const FormWrap = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 533px;
-    height: 616px;
+    height: 468px;
     padding: 40px 58px 66px 65px;
     border-radius: 20px;
   }

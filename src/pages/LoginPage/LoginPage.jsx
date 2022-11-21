@@ -11,62 +11,54 @@ import {
 } from './LoginPage.styled';
 import frame from '../../images/frame.png';
 import frameBig from '../../images/frameBig.png';
-import Media from 'react-media';
-import { Fragment } from 'react';
+
+import { useMedia } from 'react-use';
 import SharedLayout from 'components/SharedLayout';
 
 const LoginPage = () => {
+  const isWideMobie = useMedia('(max-width: 767px)');
+  const isWideTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
+  const isWideСomputer = useMedia('(min-width: 1280px)');
+
   return (
     <SharedLayout>
       <Section>
-        <Media
-          queries={{
-            small: '(max-width: 767px)',
-            medium: '(min-width: 768px) and (max-width: 1279px)',
-            large: '(min-width: 1280px)',
-          }}
-        >
-          {matches => (
-            <Fragment>
-              {matches.small && (
-                <Container>
-                  <Wrapper>
-                    <LoginForm />
-                  </Wrapper>
-                </Container>
-              )}
-              {matches.medium && (
-                <Container>
-                  <Wrapper>
-                    <ImageContainer>
-                      <Frame src={frame} alt="customer orders goods" />
-                      <Text>Finance App</Text>
-                    </ImageContainer>
-                    <FormContainer>
-                      <LoginForm />
-                    </FormContainer>
-                  </Wrapper>
-                </Container>
-              )}
-              {matches.large && (
-                <Blur>
-                  <Container>
-                    <Wrapper>
-                      <ImageContainer>
-                        <Frame src={frameBig} alt="customer orders goods" />
-                        <Text>Finance App</Text>
-                      </ImageContainer>
+        {isWideMobie ? (
+          <Container>
+            <Wrapper>
+              <LoginForm />
+            </Wrapper>
+          </Container>
+        ) : null}
+        {isWideTablet ? (
+          <Container>
+            <Wrapper>
+              <ImageContainer>
+                <Frame src={frame} alt="customer orders goods" />
+                <Text>Finance App</Text>
+              </ImageContainer>
+              <FormContainer>
+                <LoginForm />
+              </FormContainer>
+            </Wrapper>
+          </Container>
+        ) : null}
+        {isWideСomputer ? (
+          <Blur>
+            <Container>
+              <Wrapper>
+                <ImageContainer>
+                  <Frame src={frameBig} alt="customer orders goods" />
+                  <Text>Finance App</Text>
+                </ImageContainer>
 
-                      <FormContainer>
-                        <LoginForm />
-                      </FormContainer>
-                    </Wrapper>
-                  </Container>
-                </Blur>
-              )}
-            </Fragment>
-          )}
-        </Media>
+                <FormContainer>
+                  <LoginForm />
+                </FormContainer>
+              </Wrapper>
+            </Container>
+          </Blur>
+        ) : null}
       </Section>
     </SharedLayout>
   );

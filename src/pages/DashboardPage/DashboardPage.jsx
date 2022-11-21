@@ -3,9 +3,9 @@ import Currency from 'components/Currency';
 import Header from 'components/Header';
 import Navigation from 'components/Navigation';
 import Balance from 'components/Balance';
-import Media from 'react-media';
+import { useMedia } from 'react-use';
 import ModalLogout from 'components/ModalLogout';
-import { Suspense, Fragment } from 'react';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import {
   Section,
@@ -19,6 +19,10 @@ import {
 import { useState } from 'react';
 
 const DashboardPage = () => {
+  const isMobie = useMedia('(max-width: 767px)');
+  const isTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
+  const isDesktop = useMedia('(min-width: 1280px)');
+
   const [openExitModal, setIsOpenExitModal] = useState(false);
 
   return (
@@ -30,64 +34,52 @@ const DashboardPage = () => {
             openExitModal={openExitModal}
             setIsOpenExitModal={() => setIsOpenExitModal(false)}
           />
-          <Media
-            queries={{
-              small: '(max-width: 767px)',
-              medium: '(min-width: 768px) and (max-width: 1279px)',
-              large: '(min-width: 1280px)',
-            }}
-          >
-            {matches => (
-              <Fragment>
-                {matches.small && (
-                  <Container>
-                    <Wrapper>
+          {isMobie ? (
+            <Container>
+              <Wrapper>
+                <Navigation />
+                <Balance />
+                <Suspense fallback={null}>
+                  <Outlet />
+                </Suspense>
+              </Wrapper>
+            </Container>
+          ) : null}
+          {isTablet ? (
+            <Blur>
+              <Container>
+                <Wrapper>
+                  <TabletWrapper>
+                    <Navigation />
+                    <Balance />
+                  </TabletWrapper>
+                  <Currency />
+                </Wrapper>
+                <Suspense fallback={null}>
+                  <Outlet />
+                </Suspense>
+              </Container>
+            </Blur>
+          ) : null}
+          {isDesktop ? (
+            <Blur>
+              <Container>
+                <Wrapper>
+                  <DesktopWrapper>
+                    <div>
                       <Navigation />
                       <Balance />
-                      <Suspense fallback={null}>
-                        <Outlet />
-                      </Suspense>
-                    </Wrapper>
-                  </Container>
-                )}
-                {matches.medium && (
-                  <Blur>
-                    <Container>
-                      <Wrapper>
-                        <TabletWrapper>
-                          <Navigation />
-                          <Balance />
-                        </TabletWrapper>
-                        <Currency />
-                      </Wrapper>
-                      <Suspense fallback={null}>
-                        <Outlet />
-                      </Suspense>
-                    </Container>
-                  </Blur>
-                )}
-                {matches.large && (
-                  <Blur>
-                    <Container>
-                      <Wrapper>
-                        <DesktopWrapper>
-                          <div>
-                            <Navigation />
-                            <Balance />
-                            <Currency />
-                          </div>
-                          <Vector />
-                        </DesktopWrapper>
-                        <Suspense fallback={null}>
-                          <Outlet />
-                        </Suspense>
-                      </Wrapper>
-                    </Container>
-                  </Blur>
-                )}
-              </Fragment>
-            )}
-          </Media>
+                      <Currency />
+                    </div>
+                    <Vector />
+                  </DesktopWrapper>
+                  <Suspense fallback={null}>
+                    <Outlet />
+                  </Suspense>
+                </Wrapper>
+              </Container>
+            </Blur>
+          ) : null}
         </Section>
       </main>
     </SharedLayout>

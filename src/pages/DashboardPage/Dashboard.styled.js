@@ -10,7 +10,7 @@ export const Section = styled.section`
   }
   @media screen and (min-width: 768px) {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: ${theme.colors.loginPageBg};
     background-image: url(${EllipseViolet}), url(${EllipseRed});
     background-position: 0 100%, 100% 0;
@@ -36,7 +36,7 @@ export const Container = styled.div`
   }
   @media screen and (min-width: 1280px) {
     width: 1280px;
-    padding: 46px 32px;
+    padding: 46px 32px 0;
   }
 `;
 
@@ -68,7 +68,7 @@ export const DesktopWrapper = styled.div`
 export const Vector = styled.div`
   position: relative;
   top: -46px;
-  height: 110vh;
+  height: 100vh;
   margin: 0 69px;
   border: ${theme.borders.normal} #e7e5f2;
   box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),

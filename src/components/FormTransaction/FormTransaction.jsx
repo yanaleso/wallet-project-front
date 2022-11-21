@@ -1,19 +1,21 @@
-// import * as yup from 'yup';
 import moment from 'moment';
 import Select from 'react-select';
 import { Formik } from 'formik';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 
+import { useDispatch } from 'react-redux';
 import { ReactComponent as Plus } from '../../images/plus.svg';
 import { ReactComponent as Minus } from '../../images/minus.svg';
 import { ReactComponent as Calendar } from '../../images/calender.svg';
 
-import { options } from 'helpers/options';
-import { getYear } from 'helpers/getYear';
-import { getMonth } from 'helpers/getMonth';
-import { addTransaction, toggleModalAdd } from 'redux/transactions/transactionsSlice';
+import { options } from 'helpers/formAddTransaction/options';
+import { getYear } from 'helpers/formAddTransaction/getYear';
+import { getMonth } from 'helpers/formAddTransaction/getMonth';
+import {
+  addTransaction,
+  toggleModalAdd,
+} from 'redux/transactions/transactionsSlice';
 
 import {
   ButtonAdd,
@@ -21,7 +23,11 @@ import {
   CheckBox,
   CheckBoxLabel,
   CheckBoxWrapper,
+  CommentWrapper,
+  DatetimeInput,
   DateWrapper,
+  ErrorAmount,
+  ErrorComment,
   FormWrapper,
   IconWrapper,
   ImputsWrapper,
@@ -29,150 +35,163 @@ import {
   InputSum,
   LabelComment,
   LabelSum,
-  StyledDatetime,
   Switch,
   TextExpense,
   TextIncome,
   Title,
   TransactionForm,
 } from './FormTransaction.styled';
-import { selectStyles } from 'helpers/selectStyles';
-
+import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
+import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
+import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
 
 const FormTransaction = () => {
-  const currentDate = moment().format('YYYY-MM-DD');
-
   const dispatch = useDispatch();
 
-  const [typeOperation, setTypeOperation] = useState('expense');
-  const [category, setCategory] = useState('');
-  const [isChecked, setIsChecked] = useState(false);
-  const [date, setDate] = useState(currentDate);
-  const [month, setMonth] = useState(getMonth());
-  const [year, setYear] = useState(getYear());
-
-  const onFormAddSubmit = formData => {
-    const transaction = {
-      ...formData,
-      typeOperation,
-      category,
-      month,
-      year,
-      date,
-    };
-
-    dispatch(addTransaction(transaction));
-    dispatch(toggleModalAdd(false));
+  const initialValues = {
+    comment: '',
+    amount: '',
+    category: '',
+    typeOperation: false,
+    date: moment().format('YYYY-MM-DD'),
   };
 
-  const onChangeSelect = e => {
-    setCategory(e?.label);
-  };
+  const currentDate = moment().format('DD.MM.YYYY');
 
-  const onCancelClick = () => {
-    dispatch(toggleModalAdd(false));
-  };
-
-  const onChangeDate = e => {
-    const selectedDate = e.format('YYYY-MM-DD');
-
-    setDate(selectedDate);
-    setMonth(getMonth(selectedDate));
-    setYear(getYear(selectedDate));
-  };
-
-  const onChangeType = e => {
-    setIsChecked(e.target.checked);
-
-    switch (e.target.checked) {
+  const onChangeType = value => {
+    switch (value) {
       case true:
-        setTypeOperation('income');
-        break;
+        return 'income';
 
       case false:
-        setTypeOperation('expense');
-        break;
+        return 'expense';
 
       default:
         console.log('No such operation');
     }
   };
 
+  const onCancelClick = () => {
+    dispatch(toggleModalAdd(false));
+  };
+
   return (
     <FormWrapper>
       <Title>Add transaction</Title>
       <Formik
-        initialValues={{ comment: '', amount: '' }}
-        onSubmit={onFormAddSubmit}
+        initialValues={initialValues}
+        onSubmit={values => {
+          const typeOperation = onChangeType(values.typeOperation);
+
+          const month = getMonth(values.date);
+          const year = getYear(values.date);
+
+          const transaction = {
+            ...values,
+            typeOperation,
+            month,
+            year,
+          };
+
+          dispatch(addTransaction(transaction));
+          // console.log('onFormAddSubmit ~ transaction', transaction);
+          dispatch(toggleModalAdd(false));
+        }}
+        validationSchema={transactionShema}
       >
-        <TransactionForm>
-          <ImputsWrapper>
-            <CheckBoxWrapper>
-              <TextIncome isChecked={isChecked}>Income</TextIncome>
+        {({ handleSubmit, handleChange, setFieldValue, values }) => (
+          <TransactionForm onSubmit={handleSubmit}>
+            <ImputsWrapper>
+              <CheckBoxWrapper>
+                <TextIncome isChecked={values.typeOperation}>Income</TextIncome>
 
-              <CheckBoxLabel>
-                <CheckBox
-                  type="checkbox"
-                  name="typeOperation"
-                  role="switch"
-                  checked={isChecked}
-                  onChange={onChangeType}
+                <CheckBoxLabel>
+                  <CheckBox
+                    type="checkbox"
+                    name="typeOperation"
+                    role="switch"
+                    checked={values.typeOperation}
+                    onChange={handleChange}
+                  />
+
+                  <Switch isChecked={values.typeOperation}>
+                    {values.typeOperation ? <Plus /> : <Minus />}
+                  </Switch>
+                </CheckBoxLabel>
+
+                <TextExpense isChecked={values.typeOperation}>
+                  Expense
+                </TextExpense>
+              </CheckBoxWrapper>
+
+              {!values.typeOperation && (
+                <Select
+                  name="category"
+                  options={options}
+                  isClearable
+                  isSearchable
+                  placeholder="Select a category"
+                  onChange={data => setFieldValue('category', data?.label)}
+                  styles={selectStyles}
                 />
+              )}
 
-                <Switch isChecked={isChecked}>
-                  {isChecked ? <Plus /> : <Minus />}
-                </Switch>
-              </CheckBoxLabel>
+              <DateWrapper>
+                <LabelSum>
+                  <InputSum
+                    type="text"
+                    name="amount"
+                    placeholder="0.00"
+                    onChange={handleChange}
+                  />
+                </LabelSum>
+                <ErrorAmount component="div" name="amount" />
 
-              <TextExpense isChecked={isChecked}>Expense</TextExpense>
-            </CheckBoxWrapper>
+                <IconWrapper>
+                  <Datetime
+                    renderInput={props => <DatetimeInput {...props} />}
+                    name="date"
+                    closeOnSelect
+                    initialValue={currentDate}
+                    dateFormat="DD.MM.YYYY"
+                    timeFormat={false}
+                    onChange={e =>
+                      setFieldValue('date', e.format('YYYY-MM-DD'))
+                    }
+                    isValidDate={checksFutureDate}
+                    inputProps={{
+                      onKeyDown: e => {
+                        e.preventDefault();
+                      },
+                    }}
+                  />
 
-            {!isChecked && (
-              <Select
-                name="category"
-                options={options}
-                isClearable
-                isSearchable
-                placeholder={<div>Select a category</div>}
-                onChange={onChangeSelect}
-                styles={selectStyles}
-              />
-            )}
+                  <Calendar />
+                </IconWrapper>
+              </DateWrapper>
 
-            <DateWrapper>
-              <LabelSum>
-                <InputSum
-                  type="text"
-                  name="amount"
-                  placeholder="0.00"
-                  required
-                />
-              </LabelSum>
+              <CommentWrapper>
+                <LabelComment>
+                  <InputComment
+                    type="text"
+                    name="comment"
+                    placeholder="Comment"
+                    onChange={handleChange}
+                  />
+                </LabelComment>
+                <ErrorComment component="div" name="comment" />
+              </CommentWrapper>
+            </ImputsWrapper>
 
-              <IconWrapper>
-                <StyledDatetime
-                  onChange={onChangeDate}
-                  closeOnSelect
-                  initialValue={currentDate}
-                />
+            <div style={{ width: '300px', margin: '0 auto' }}>
+              <ButtonAdd type="submit">Add</ButtonAdd>
 
-                <Calendar />
-              </IconWrapper>
-            </DateWrapper>
-
-            <LabelComment>
-              <InputComment type="text" name="comment" placeholder="Comment" />
-            </LabelComment>
-          </ImputsWrapper>
-
-          <div style={{ width: '300px', margin: '0 auto' }}>
-            <ButtonAdd type="submit">Add</ButtonAdd>
-
-            <ButtonCancel type="button" onClick={onCancelClick}>
-              Cancel
-            </ButtonCancel>
-          </div>
-        </TransactionForm>
+              <ButtonCancel type="button" onClick={onCancelClick}>
+                Cancel
+              </ButtonCancel>
+            </div>
+          </TransactionForm>
+        )}
       </Formik>
     </FormWrapper>
   );

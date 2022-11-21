@@ -2,6 +2,7 @@ import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { userRegistration } from 'redux/auth/authOperation';
 import shema from 'helpers';
+import Logo from 'components/Logo';
 import {
   FormWrap,
   LogoWrap,
@@ -27,12 +28,14 @@ const RegisterForm = () => {
     { resetForm }
   ) => {
     dispatch(userRegistration({ email, password, firstName }));
-    // resetForm();
+    resetForm();
   };
 
   return (
     <FormWrap>
-      <LogoWrap>LOGO</LogoWrap>
+      <LogoWrap>
+        <Logo />
+      </LogoWrap>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}

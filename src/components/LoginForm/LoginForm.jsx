@@ -1,7 +1,8 @@
 import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
-import shema from 'helpers';
 import { userLogin } from 'redux/auth/authOperation';
+import shema from 'helpers';
+import Logo from 'components/Logo';
 import {
   FormWrap,
   LogoWrap,
@@ -22,12 +23,14 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = (values, { resetForm }) => {
     dispatch(userLogin(values));
-    // resetForm();
+    resetForm();
   };
 
   return (
     <FormWrap>
-      <LogoWrap>LOGO</LogoWrap>
+      <LogoWrap>
+        <Logo />
+      </LogoWrap>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}

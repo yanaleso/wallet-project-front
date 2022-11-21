@@ -18,9 +18,8 @@ export const FormWrap = styled.div`
 `;
 
 export const LogoWrap = styled.div`
-  width: 50px;
-  margin-right: auto;
-  margin-left: auto;
+  display: flex;
+  justify-content: center;
 `;
 
 export const StyledForm = styled(Form)`

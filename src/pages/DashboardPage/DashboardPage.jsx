@@ -2,10 +2,19 @@ import SharedLayout from 'components/SharedLayout';
 import Currency from 'components/Currency';
 import Header from 'components/Header';
 import Navigation from 'components/Navigation';
+import Balance from 'components/Balance';
 import Media from 'react-media';
 import { Suspense, Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Section, Blur, Container, Wrapper } from './Dashboard.styled';
+import {
+  Section,
+  Blur,
+  Container,
+  Wrapper,
+  TabletWrapper,
+  DesktopWrapper,
+  Vector,
+} from './Dashboard.styled';
 
 const DashboardPage = () => {
   return (
@@ -26,7 +35,7 @@ const DashboardPage = () => {
                   <Container>
                     <Wrapper>
                       <Navigation />
-                      <h2>Balanse 24 000</h2>
+                      <Balance />
                       <Suspense fallback={null}>
                         <Outlet />
                       </Suspense>
@@ -37,10 +46,10 @@ const DashboardPage = () => {
                   <Blur>
                     <Container>
                       <Wrapper>
-                        <div>
+                        <TabletWrapper>
                           <Navigation />
-                          <h2>Balanse 24 000</h2>
-                        </div>
+                          <Balance />
+                        </TabletWrapper>
                         <Currency />
                       </Wrapper>
                       <Suspense fallback={null}>
@@ -53,11 +62,14 @@ const DashboardPage = () => {
                   <Blur>
                     <Container>
                       <Wrapper>
-                        <div>
-                          <Navigation />
-                          <h2>Balanse 24 000</h2>
-                          <Currency />
-                        </div>
+                        <DesktopWrapper>
+                          <div>
+                            <Navigation />
+                            <Balance />
+                            <Currency />
+                          </div>
+                          <Vector />
+                        </DesktopWrapper>
                         <Suspense fallback={null}>
                           <Outlet />
                         </Suspense>

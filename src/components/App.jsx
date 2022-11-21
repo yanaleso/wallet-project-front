@@ -6,7 +6,6 @@ import DiagramTab from './DiagramTab';
 import Chart from './Chart';
 import DashboardPage from '../pages/DashboardPage';
 import LoginPage from '../pages/LoginPage';
-import RegistrationPage from '../pages/RegistrationPage';
 import HomeTab from './HomeTab';
 import ButtonAddTransactions from './ButtonAddTransactions';
 import PublicRoute from './PublicRoute';
@@ -40,7 +39,7 @@ export const App = () => {
           path="/register"
           element={
             <PublicRoute restricted navigateTo="/home">
-              <RegistrationPage />
+              <LoginPage />
             </PublicRoute>
           }
         />

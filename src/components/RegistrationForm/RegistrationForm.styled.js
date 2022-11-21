@@ -33,6 +33,9 @@ export const Label = styled.label`
   display: block;
   width: 100%;
   border-bottom: 1px solid ${p => p.theme.colors.secondaryLightText};
+  border-radius: ${p => {
+    console.log(p);
+  }};
 
   & + & {
     margin-top: 40px;
@@ -45,7 +48,7 @@ export const Input = styled(Field)`
   border: none;
 
   &:focus {
-    border: none;
+    outline: none;
   }
 `;
 

@@ -44,8 +44,8 @@ export const Input = styled(Field)`
   padding: 8px 20px;
   border: none;
 
-  &:hover {
-    background-color: red;
+  &:focus {
+    outline: none;
   }
 `;
 

@@ -29,25 +29,32 @@ const LoginForm = () => {
         onSubmit={handleSubmit}
         validationSchema={shema.login}
       >
-        <StyledForm>
-          <Label>
-            SVG
-            <Input type="email" name="email" placeholder="E-mail" />
-            <ErrorMessage
-              name="email"
-              render={msg => <ErrorMsg>{msg}</ErrorMsg>}
-            />
-          </Label>
-          <Label>
-            SVG
-            <Input type="password" name="password" placeholder="Password" />
-            <ErrorMessage
-              name="password"
-              render={msg => <ErrorMsg>{msg}</ErrorMsg>}
-            />
-          </Label>
-          <SubmitBtn type="submit">log in</SubmitBtn>
-        </StyledForm>
+        {formik => (
+          <StyledForm autoComplete="off">
+            <Label>
+              SVG
+              <Input type="email" name="email" placeholder="E-mail" />
+              <ErrorMessage
+                name="email"
+                render={msg => <ErrorMsg>{msg}</ErrorMsg>}
+              />
+            </Label>
+            <Label>
+              SVG
+              <Input type="password" name="password" placeholder="Password" />
+              <ErrorMessage
+                name="password"
+                render={msg => <ErrorMsg>{msg}</ErrorMsg>}
+              />
+            </Label>
+            <SubmitBtn
+              type="submit"
+              disabled={!(formik.isValid && formik.dirty)}
+            >
+              log in
+            </SubmitBtn>
+          </StyledForm>
+        )}
       </Formik>
       <StyledNavLink to="/register">register</StyledNavLink>
     </FormWrap>

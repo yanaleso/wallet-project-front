@@ -52,11 +52,10 @@ export const Input = styled(Field)`
 export const ErrorMsg = styled.div`
   position: absolute;
   right: 0;
-  bottom: -35px;
-  padding: 4px 10px;
+  bottom: -30px;
+  padding: 4px 5px;
+  color: red;
   background-color: transparent;
-  border: 1px solid red;
-  border-radius: 10px;
 `;
 
 export const SubmitBtn = styled.button`
@@ -66,6 +65,7 @@ export const SubmitBtn = styled.button`
   margin-right: auto;
   min-width: 280px;
   height: 50px;
+  cursor: pointer;
   text-align: center;
   text-transform: uppercase;
   border: none;
@@ -73,8 +73,8 @@ export const SubmitBtn = styled.button`
   color: ${p => p.theme.colors.primaryBtn};
   background-color: ${p => p.theme.colors.primaryBgBtn};
 
-  &:disabled {
-    background-color: red;
+  :disabled {
+    opacity: 0.5;
   }
 
   @media screen and (min-width: 768px) {

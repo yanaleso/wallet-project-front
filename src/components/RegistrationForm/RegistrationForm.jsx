@@ -31,45 +31,52 @@ const RegisterForm = () => {
         onSubmit={handleSubmit}
         validationSchema={shema.register}
       >
-        <StyledForm>
-          <Label>
-            SVG
-            <Input type="email" name="email" placeholder="E-mail" />
-            <ErrorMessage
-              name="email"
-              render={msg => <ErrorMsg>{msg}</ErrorMsg>}
-            />
-          </Label>
-          <Label>
-            SVG
-            <Input type="password" name="password" placeholder="Password" />
-            <ErrorMessage
-              name="password"
-              render={msg => <ErrorMsg>{msg}</ErrorMsg>}
-            />
-          </Label>
-          <Label>
-            SVG
-            <Input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm password"
-            />
-            <ErrorMessage
-              name="confirmPassword"
-              render={msg => <ErrorMsg>{msg}</ErrorMsg>}
-            />
-          </Label>
-          <Label>
-            SVG
-            <Input type="text" name="name" placeholder="First name" />
-            <ErrorMessage
-              name="name"
-              render={msg => <ErrorMsg>{msg}</ErrorMsg>}
-            />
-          </Label>
-          <SubmitBtn type="submit">register</SubmitBtn>
-        </StyledForm>
+        {formik => (
+          <StyledForm autoComplete="off">
+            <Label>
+              SVG
+              <Input type="email" name="email" placeholder="E-mail" />
+              <ErrorMessage
+                name="email"
+                render={msg => <ErrorMsg>{msg}</ErrorMsg>}
+              />
+            </Label>
+            <Label>
+              SVG
+              <Input type="password" name="password" placeholder="Password" />
+              <ErrorMessage
+                name="password"
+                render={msg => <ErrorMsg>{msg}</ErrorMsg>}
+              />
+            </Label>
+            <Label>
+              SVG
+              <Input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm password"
+              />
+              <ErrorMessage
+                name="confirmPassword"
+                render={msg => <ErrorMsg>{msg}</ErrorMsg>}
+              />
+            </Label>
+            <Label>
+              SVG
+              <Input type="text" name="name" placeholder="First name" />
+              <ErrorMessage
+                name="name"
+                render={msg => <ErrorMsg>{msg}</ErrorMsg>}
+              />
+            </Label>
+            <SubmitBtn
+              type="submit"
+              disabled={!(formik.isValid && formik.dirty)}
+            >
+              register
+            </SubmitBtn>
+          </StyledForm>
+        )}
       </Formik>
       <StyledNavLink to="/login">log in</StyledNavLink>
     </FormWrap>

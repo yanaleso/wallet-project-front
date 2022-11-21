@@ -10,8 +10,6 @@ import { ReactComponent as Minus } from '../../images/minus.svg';
 import { ReactComponent as Calendar } from '../../images/calender.svg';
 
 import { options } from 'helpers/formAddTransaction/options';
-import { getYear } from 'helpers/formAddTransaction/getYear';
-import { getMonth } from 'helpers/formAddTransaction/getMonth';
 import {
   addTransaction,
   toggleModalAdd,
@@ -53,7 +51,7 @@ const FormTransaction = () => {
     amount: '',
     category: '',
     typeOperation: false,
-    date: moment().format('YYYY-MM-DD'),
+    date: new Date().toString(),
   };
 
   const currentDate = moment().format('DD.MM.YYYY');
@@ -83,18 +81,14 @@ const FormTransaction = () => {
         onSubmit={values => {
           const typeOperation = onChangeType(values.typeOperation);
 
-          const month = getMonth(values.date);
-          const year = getYear(values.date);
-
           const transaction = {
             ...values,
+            amount: Number(values.amount),
             typeOperation,
-            month,
-            year,
           };
 
           dispatch(addTransaction(transaction));
-          // console.log('onFormAddSubmit ~ transaction', transaction);
+          console.log('onFormAddSubmit ~ transaction', transaction);
           dispatch(toggleModalAdd(false));
         }}
         validationSchema={transactionShema}
@@ -156,7 +150,7 @@ const FormTransaction = () => {
                     dateFormat="DD.MM.YYYY"
                     timeFormat={false}
                     onChange={e =>
-                      setFieldValue('date', e.format('YYYY-MM-DD'))
+                      setFieldValue('date', new Date(e).toString())
                     }
                     isValidDate={checksFutureDate}
                     inputProps={{

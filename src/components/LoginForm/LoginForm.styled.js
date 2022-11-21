@@ -29,6 +29,7 @@ export const StyledForm = styled(Form)`
 `;
 
 export const Label = styled.label`
+  position: relative;
   display: block;
   width: 100%;
   border-bottom: 1px solid ${p => p.theme.colors.secondaryLightText};
@@ -42,6 +43,20 @@ export const Input = styled(Field)`
   width: auto;
   padding: 8px 20px;
   border: none;
+
+  &:hover {
+    background-color: red;
+  }
+`;
+
+export const ErrorMsg = styled.div`
+  position: absolute;
+  right: 0;
+  bottom: -35px;
+  padding: 4px 10px;
+  background-color: transparent;
+  border: 1px solid red;
+  border-radius: 10px;
 `;
 
 export const SubmitBtn = styled.button`
@@ -57,6 +72,10 @@ export const SubmitBtn = styled.button`
   border-radius: 20px;
   color: ${p => p.theme.colors.primaryBtn};
   background-color: ${p => p.theme.colors.primaryBgBtn};
+
+  &:disabled {
+    background-color: red;
+  }
 
   @media screen and (min-width: 768px) {
     min-width: 300px;

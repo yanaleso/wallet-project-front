@@ -5,8 +5,8 @@ const schema = {
     email: yup.string().email('Invalid email').required(),
     password: yup
       .string()
-      .min(6, 'Password must be at least 6 characters')
-      .max(12, 'Password must be maximum 12 characters')
+      .min(6, 'Minimun 6 characters')
+      .max(12, 'Maximum 12 characters')
       .required('Required'),
     confirmPassword: yup
       .string()
@@ -14,8 +14,8 @@ const schema = {
       .required(),
     name: yup
       .string()
-      .min(1, 'Name must be at least 1 characters')
-      .max(12, 'Name must be maximum 12 characters')
+      .min(1, 'Minimun 1 characters')
+      .max(12, 'Maximum 12 characters')
       .required('Required'),
   }),
   login: yup.object().shape({

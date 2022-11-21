@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import shema from 'helpers';
 import {
   FormWrap,
@@ -6,6 +6,7 @@ import {
   StyledForm,
   Label,
   Input,
+  ErrorMsg,
   SubmitBtn,
   StyledNavLink,
 } from './LoginForm.styled';
@@ -32,10 +33,18 @@ const LoginForm = () => {
           <Label>
             SVG
             <Input type="email" name="email" placeholder="E-mail" />
+            <ErrorMessage
+              name="email"
+              render={msg => <ErrorMsg>{msg}</ErrorMsg>}
+            />
           </Label>
           <Label>
             SVG
             <Input type="password" name="password" placeholder="Password" />
+            <ErrorMessage
+              name="password"
+              render={msg => <ErrorMsg>{msg}</ErrorMsg>}
+            />
           </Label>
           <SubmitBtn type="submit">log in</SubmitBtn>
         </StyledForm>

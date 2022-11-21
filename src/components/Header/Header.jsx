@@ -2,7 +2,7 @@ import { IconContext } from 'react-icons';
 import { IoExitOutline } from 'react-icons/io5';
 import Logo from 'components/Logo';
 import {
-  StyledHeader,
+  Container,
   UserBox,
   ButtonExit,
   Text,
@@ -11,7 +11,8 @@ import {
 
 const Header = () => {
   return (
-    <StyledHeader>
+    <header>
+      <Container>
       <Logo />
       <UserBox>
         <TextName>Name</TextName>
@@ -21,8 +22,9 @@ const Header = () => {
             <Text>Exit</Text>
           </ButtonExit>
         </IconContext.Provider>
-      </UserBox>
-    </StyledHeader>
+        </UserBox>
+      </Container>
+      </header>
   );
 };
 

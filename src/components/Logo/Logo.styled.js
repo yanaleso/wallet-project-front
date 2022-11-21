@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {theme} from '../../theme';
 
 export const LogoBox = styled.div`
-    font-family: ${theme.fonts.heading};
+    font-family: ${theme.fonts.headingBold};
     font-size: ${theme.fontSizes.l};
     font-weight: ${theme.fontWeights.bold};
     display: flex;

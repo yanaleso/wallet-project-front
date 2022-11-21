@@ -1,5 +1,5 @@
-import logo from '../../images/logo.png'
-import logoBig from '../../images/logoBig.png'
+import logo from '../../images/logo.png';
+import logoBig from '../../images/logoBig.png';
 import { LogoBox, LogoWallet } from './Logo.styled';
 import Media from 'react-media';
 

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { userRegistration } from 'redux/auth/authOperation';
 import { useState } from 'react';
 import { HiEyeOff, HiEye } from 'react-icons/hi';
-import shema from 'helpers';
+import schema from 'helpers';
 import Logo from 'components/Logo';
 import {
   FormWrap,
@@ -14,6 +14,7 @@ import {
   ErrorMsg,
   SubmitBtn,
   StyledNavLink,
+  PasswordIndicator,
 } from './RegistrationForm.styled';
 
 const initialValues = {
@@ -44,9 +45,9 @@ const RegisterForm = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validationSchema={shema.register}
+        validationSchema={schema.register}
       >
-        {({ isValid, dirty }) => (
+        {({ isValid, dirty, values }) => (
           <StyledForm autoComplete="off">
             <Label>
               SVG
@@ -68,6 +69,7 @@ const RegisterForm = () => {
               ) : (
                 <HiEyeOff onClick={() => setIsHideFirstPass(true)} />
               )}
+              {values.password && <PasswordIndicator lenth={values.password} />}
               <ErrorMessage
                 name="password"
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}
@@ -84,6 +86,9 @@ const RegisterForm = () => {
                 <HiEye onClick={() => setIsHideSecondPass(false)} />
               ) : (
                 <HiEyeOff onClick={() => setIsHideSecondPass(true)} />
+              )}
+              {values.confirmPassword && (
+                <PasswordIndicator lenth={values.confirmPassword} />
               )}
               <ErrorMessage
                 name="confirmPassword"

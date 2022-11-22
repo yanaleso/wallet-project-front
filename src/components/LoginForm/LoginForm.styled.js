@@ -51,9 +51,9 @@ export const Input = styled(Field)`
 export const ErrorMsg = styled.div`
   position: absolute;
   right: 0;
-  bottom: -30px;
+  bottom: -35px;
   padding: 4px 5px;
-  color: red;
+  color: #f21407;
   background-color: transparent;
 `;
 

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { HiEyeOff, HiEye } from 'react-icons/hi';
 import { userLogin } from 'redux/auth/authOperation';
-import shema from 'helpers';
+import schema from 'helpers';
 import Logo from 'components/Logo';
 import {
   FormWrap,
@@ -38,7 +38,7 @@ const LoginForm = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validationSchema={shema.login}
+        validationSchema={schema.login}
       >
         {({ isValid, dirty }) => (
           <StyledForm autoComplete="off">

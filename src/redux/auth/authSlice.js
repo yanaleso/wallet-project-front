@@ -9,7 +9,7 @@ import {
 const initialState = {
   user: { name: null, email: null },
   token: null,
-  isLoggedIn: false,
+  isLoggedIn: true,
   isRefreshingUser: false,
 };
 
@@ -51,7 +51,7 @@ const authSlice = createSlice({
     builder.addCase(refreshUser.rejected, state => {
       state.user = { name: null, email: null };
       state.token = null;
-      state.isLoggedIn = false;
+      // state.isLoggedIn = false;
       state.refreshLoading = false;
     });
     builder.addCase(refreshUser.pending, state => {

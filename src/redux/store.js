@@ -13,6 +13,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import themeReducer from './theme/themeSlice';
+import { statisticReducer } from './statistic/statisticSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -30,6 +31,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     theme: persistReducer(themePersistConfig, themeReducer),
     transactions: transactionsReducer,
+    statistic: statisticReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({

@@ -17,9 +17,11 @@ const ModalAddTransaction = ({ children }) => {
 
   useEffect(() => {
     window.addEventListener('keydown', onEscPress);
+    document.body.style.overflow = "hidden";
 
     return () => {
       window.removeEventListener('keydown', onEscPress);
+      document.body.style.overflow = "";
     };
   });
 

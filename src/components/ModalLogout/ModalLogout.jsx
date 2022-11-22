@@ -9,8 +9,12 @@ import {
 } from './ModalLogout.styled';
 import { enablePageScroll } from 'scroll-lock';
 import { useEffect } from 'react';
+import { userLogout } from '../../redux/auth/authOperation';
+import { useDispatch } from 'react-redux';
 
 const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     document.addEventListener('keydown', closeModalEsc);
 
@@ -30,13 +34,19 @@ const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
     setIsOpenExitModal(false);
   };
 
+  const LogOut = () => {
+    dispatch(userLogout());
+    enablePageScroll();
+    setIsOpenExitModal(false);
+  };
+
   return (
     <Overlay onClick={disableScrollOn} opened={openExitModal}>
       <Modal onClick={e => e.stopPropagation()} opened={openExitModal}>
         <ModalTitle>Are you definitely want to log out?</ModalTitle>
         <Wrapper>
           <WrapperItem>
-            <Exit>Exit </Exit>
+            <Exit onClick={LogOut}>Exit </Exit>
           </WrapperItem>
           <WrapperItem>
             <Stay onClick={disableScrollOn}>Cancel</Stay>

@@ -5,6 +5,8 @@ import { HiEyeOff, HiEye } from 'react-icons/hi';
 import { userLogin } from 'redux/auth/authOperation';
 import schema from 'helpers';
 import Logo from 'components/Logo';
+import { ReactComponent as EmailIcon } from 'images/email.svg';
+import { ReactComponent as PasswordIcon } from 'images/password.svg';
 import {
   FormWrap,
   LogoWrap,
@@ -43,7 +45,7 @@ const LoginForm = () => {
         {({ isValid, dirty }) => (
           <StyledForm autoComplete="off">
             <Label>
-              SVG
+              <EmailIcon />
               <Input type="email" name="email" placeholder="E-mail" />
               <ErrorMessage
                 name="email"
@@ -51,7 +53,7 @@ const LoginForm = () => {
               />
             </Label>
             <Label>
-              SVG
+              <PasswordIcon />
               <Input
                 type={isHidePassword ? 'password' : 'text'}
                 name="password"

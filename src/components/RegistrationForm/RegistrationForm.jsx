@@ -5,6 +5,9 @@ import { useState } from 'react';
 import { HiEyeOff, HiEye } from 'react-icons/hi';
 import schema from 'helpers';
 import Logo from 'components/Logo';
+import { ReactComponent as EmailIcon } from 'images/email.svg';
+import { ReactComponent as PasswordIcon } from 'images/password.svg';
+import { ReactComponent as UserIcon } from 'images/user.svg';
 import {
   FormWrap,
   LogoWrap,
@@ -50,15 +53,15 @@ const RegisterForm = () => {
         {({ isValid, dirty, values }) => (
           <StyledForm autoComplete="off">
             <Label>
-              SVG
+              <EmailIcon />
               <Input type="email" name="email" placeholder="E-mail" />
               <ErrorMessage
                 name="email"
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}
               />
             </Label>
-            <Label>
-              SVG
+            <Label passwordlength={values.password.length}>
+              <PasswordIcon />
               <Input
                 type={isHideFirstPass ? 'password' : 'text'}
                 name="password"
@@ -76,7 +79,7 @@ const RegisterForm = () => {
               />
             </Label>
             <Label>
-              SVG
+              <PasswordIcon />
               <Input
                 type={isHideSecondPass ? 'password' : 'text'}
                 name="confirmPassword"
@@ -96,7 +99,7 @@ const RegisterForm = () => {
               />
             </Label>
             <Label>
-              SVG
+              <UserIcon />
               <Input type="text" name="name" placeholder="First name" />
               <ErrorMessage
                 name="name"

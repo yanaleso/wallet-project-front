@@ -29,8 +29,11 @@ export const StyledForm = styled(Form)`
 
 export const Label = styled.label`
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   width: 100%;
+  padding-left: 10px;
   border-bottom: 1px solid ${p => p.theme.colors.secondaryLightText};
 
   & + & {
@@ -39,12 +42,30 @@ export const Label = styled.label`
 `;
 
 export const Input = styled(Field)`
-  width: auto;
+  width: 240px;
   padding: 8px 20px;
   border: none;
+  font-family: ${p => p.theme.fonts.body};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: 1.5;
+  color: ${p => p.theme.colors.primaryText};
 
   &:focus {
     outline: none;
+  }
+  ::placeholder {
+    font-family: ${p => p.theme.fonts.body};
+    font-style: normal;
+    font-weight: ${p => p.theme.fontWeights.normal};
+    font-size: ${p => p.theme.fontSizes.m};
+    line-height: 1.5;
+    color: ${p => p.theme.colors.secondaryText};
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 370px;
   }
 `;
 
@@ -69,6 +90,12 @@ export const SubmitBtn = styled.button`
   text-transform: uppercase;
   border: none;
   border-radius: 20px;
+  font-family: ${p => p.theme.fonts.body};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: 1.5;
+  letter-spacing: 0.1em;
   color: ${p => p.theme.colors.primaryBtn};
   background-color: ${p => p.theme.colors.primaryBgBtn};
 
@@ -94,6 +121,12 @@ export const StyledNavLink = styled(Link)`
   text-transform: uppercase;
   border: 1px solid ${p => p.theme.colors.secondaryBtn};
   border-radius: 20px;
+  font-family: ${p => p.theme.fonts.body};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: 1.5;
+  letter-spacing: 0.1em;
   color: ${p => p.theme.colors.secondaryBtn};
   background-color: ${p => p.theme.colors.primaryBtn};
   @media screen and (min-width: 768px) {

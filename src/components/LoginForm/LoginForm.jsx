@@ -1,5 +1,12 @@
 import { Formik, ErrorMessage } from 'formik';
-import shema from 'helpers';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { HiEyeOff, HiEye } from 'react-icons/hi';
+import { userLogin } from 'redux/auth/authOperation';
+import schema from 'helpers';
+import Logo from 'components/Logo';
+import { ReactComponent as EmailIcon } from 'images/email.svg';
+import { ReactComponent as PasswordIcon } from 'images/password.svg';
 import {
   FormWrap,
   LogoWrap,
@@ -17,22 +24,28 @@ const initialValues = {
 };
 
 const LoginForm = () => {
+  const [isHidePassword, setIsHidePassword] = useState(true);
+
+  const dispatch = useDispatch();
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
+    dispatch(userLogin(values));
+    resetForm();
   };
 
   return (
     <FormWrap>
-      <LogoWrap>LOGO</LogoWrap>
+      <LogoWrap>
+        <Logo />
+      </LogoWrap>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validationSchema={shema.login}
+        validationSchema={schema.login}
       >
         {({ isValid, dirty }) => (
           <StyledForm autoComplete="off">
             <Label>
-              SVG
+              <EmailIcon />
               <Input type="email" name="email" placeholder="E-mail" />
               <ErrorMessage
                 name="email"
@@ -40,8 +53,17 @@ const LoginForm = () => {
               />
             </Label>
             <Label>
-              SVG
-              <Input type="password" name="password" placeholder="Password" />
+              <PasswordIcon />
+              <Input
+                type={isHidePassword ? 'password' : 'text'}
+                name="password"
+                placeholder="Password"
+              />
+              {isHidePassword ? (
+                <HiEye onClick={() => setIsHidePassword(false)} />
+              ) : (
+                <HiEyeOff onClick={() => setIsHidePassword(true)} />
+              )}
               <ErrorMessage
                 name="password"
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}

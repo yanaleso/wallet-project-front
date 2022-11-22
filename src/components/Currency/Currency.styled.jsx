@@ -7,6 +7,7 @@ export const CurrencyBox = styled.div`
   background: ${p => p.theme.colors.houseStat};
   border-radius: 30px;
   color: white;
+  margin: 0 auto;
 
   @media (min-width: 768px) {
     width: 336px;
@@ -19,7 +20,6 @@ export const CurrencyBox = styled.div`
 `;
 
 export const PrivatTableList = styled.ul`
-  margin: 0;
   display: flex;
   justify-content: space-evenly;
 
@@ -48,7 +48,6 @@ export const PrivatTableList = styled.ul`
 `;
 
 export const CurrencyList = styled.ul`
-  margin: 0;
   display: flex;
   flex-wrap: wrap;
 

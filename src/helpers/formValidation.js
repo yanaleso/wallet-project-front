@@ -20,7 +20,7 @@ const schema = {
   }),
   login: yup.object().shape({
     email: yup.string().email('Invalid email').required(),
-    password: yup.string().min().max().required('Required'),
+    password: yup.string().required('Required'),
   }),
 };
 

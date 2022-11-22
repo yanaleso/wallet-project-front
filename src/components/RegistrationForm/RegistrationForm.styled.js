@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Form, Field } from 'formik';
+import {
+  changeMainLineColor,
+  changeAfterLineColor,
+  changeAfterLineWidth,
+} from 'helpers/passwordIndicators';
 
 export const FormWrap = styled.div`
   width: 320px;
@@ -18,9 +23,8 @@ export const FormWrap = styled.div`
 `;
 
 export const LogoWrap = styled.div`
-  width: 50px;
-  margin-right: auto;
-  margin-left: auto;
+  display: flex;
+  justify-content: center;
 `;
 
 export const StyledForm = styled(Form)`
@@ -28,10 +32,42 @@ export const StyledForm = styled(Form)`
   margin-top: 60px;
 `;
 
+export const Input = styled(Field)`
+  width: 240px;
+  padding: 8px 20px;
+  border: none;
+  font-family: ${p => p.theme.fonts.body};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: 24px;
+  color: ${p => p.theme.colors.primaryText};
+
+  &:focus {
+    outline: none;
+  }
+
+  ::placeholder {
+    font-family: ${p => p.theme.fonts.body};
+    font-style: normal;
+    font-weight: ${p => p.theme.fontWeights.normal};
+    font-size: ${p => p.theme.fontSizes.m};
+    line-height: 1.5;
+    color: ${p => p.theme.colors.secondaryText};
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 370px;
+  }
+`;
+
 export const Label = styled.label`
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   width: 100%;
+  padding-left: 10px;
   border-bottom: 1px solid ${p => p.theme.colors.secondaryLightText};
 
   & + & {
@@ -39,22 +75,12 @@ export const Label = styled.label`
   }
 `;
 
-export const Input = styled(Field)`
-  width: auto;
-  padding: 8px 20px;
-  border: none;
-
-  &:focus {
-    outline: none;
-  }
-`;
-
 export const ErrorMsg = styled.div`
   position: absolute;
   right: 0;
-  bottom: -30px;
+  bottom: -35px;
   padding: 4px 5px;
-  color: red;
+  color: #f21407;
   background-color: transparent;
 `;
 
@@ -70,6 +96,12 @@ export const SubmitBtn = styled.button`
   text-transform: uppercase;
   border: none;
   border-radius: 20px;
+  font-family: ${p => p.theme.fonts.body};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: 1.5;
+  letter-spacing: 0.1em;
   color: ${p => p.theme.colors.primaryBtn};
   background-color: ${p => p.theme.colors.primaryBgBtn};
 
@@ -95,9 +127,36 @@ export const StyledNavLink = styled(Link)`
   text-transform: uppercase;
   border: 1px solid ${p => p.theme.colors.secondaryBtn};
   border-radius: 20px;
+  font-family: ${p => p.theme.fonts.body};
+  font-style: normal;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: 1.5;
+  letter-spacing: 0.1em;
   color: ${p => p.theme.colors.secondaryBtn};
   background-color: ${p => p.theme.colors.primaryBtn};
   @media screen and (min-width: 768px) {
     width: 300px;
+  }
+`;
+
+export const PasswordIndicator = styled.div`
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: ${p => changeMainLineColor(p.lenth)};
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: ${p => changeAfterLineWidth(p.lenth)};
+    height: 4px;
+    border-radius: 2px;
+    background-color: ${p => changeAfterLineColor(p.lenth)};
   }
 `;

@@ -1,7 +1,9 @@
 import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { HiEyeOff, HiEye } from 'react-icons/hi';
 import { userLogin } from 'redux/auth/authOperation';
-import shema from 'helpers';
+import schema from 'helpers';
 import Logo from 'components/Logo';
 import { ReactComponent as EmailIcon } from 'images/email.svg';
 import { ReactComponent as PasswordIcon } from 'images/password.svg';
@@ -22,6 +24,8 @@ const initialValues = {
 };
 
 const LoginForm = () => {
+  const [isHidePassword, setIsHidePassword] = useState(true);
+
   const dispatch = useDispatch();
   const handleSubmit = (values, { resetForm }) => {
     dispatch(userLogin(values));
@@ -36,7 +40,7 @@ const LoginForm = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        validationSchema={shema.login}
+        validationSchema={schema.login}
       >
         {({ isValid, dirty }) => (
           <StyledForm autoComplete="off">
@@ -50,7 +54,16 @@ const LoginForm = () => {
             </Label>
             <Label>
               <PasswordIcon />
-              <Input type="password" name="password" placeholder="Password" />
+              <Input
+                type={isHidePassword ? 'password' : 'text'}
+                name="password"
+                placeholder="Password"
+              />
+              {isHidePassword ? (
+                <HiEye onClick={() => setIsHidePassword(false)} />
+              ) : (
+                <HiEyeOff onClick={() => setIsHidePassword(true)} />
+              )}
               <ErrorMessage
                 name="password"
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}

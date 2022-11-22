@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Form, Field } from 'formik';
+import {
+  changeMainLineColor,
+  changeAfterLineColor,
+  changeAfterLineWidth,
+} from 'helpers/passwordIndicators';
 
 export const FormWrap = styled.div`
   width: 320px;
@@ -73,14 +78,9 @@ export const Label = styled.label`
 export const ErrorMsg = styled.div`
   position: absolute;
   right: 0;
-  bottom: -30px;
+  bottom: -35px;
   padding: 4px 5px;
-  font-family: ${p => p.theme.fonts.body};
-  font-style: normal;
-  font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.s};
-  line-height: 1.5;
-  color: red;
+  color: #f21407;
   background-color: transparent;
 `;
 
@@ -137,5 +137,26 @@ export const StyledNavLink = styled(Link)`
   background-color: ${p => p.theme.colors.primaryBtn};
   @media screen and (min-width: 768px) {
     width: 300px;
+  }
+`;
+
+export const PasswordIndicator = styled.div`
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: ${p => changeMainLineColor(p.lenth)};
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: ${p => changeAfterLineWidth(p.lenth)};
+    height: 4px;
+    border-radius: 2px;
+    background-color: ${p => changeAfterLineColor(p.lenth)};
   }
 `;

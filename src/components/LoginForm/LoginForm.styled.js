@@ -72,14 +72,9 @@ export const Input = styled(Field)`
 export const ErrorMsg = styled.div`
   position: absolute;
   right: 0;
-  bottom: -30px;
+  bottom: -35px;
   padding: 4px 5px;
-  font-family: ${p => p.theme.fonts.body};
-  font-style: normal;
-  font-weight: ${p => p.theme.fontWeights.normal};
-  font-size: ${p => p.theme.fontSizes.m};
-  line-height: 1.5;
-  color: red;
+  color: #f21407;
   background-color: transparent;
 `;
 

@@ -8,12 +8,30 @@ import {
   Stay,
 } from './ModalLogout.styled';
 import { enablePageScroll } from 'scroll-lock';
+import { useEffect } from 'react';
 
 const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
+  useEffect(() => {
+    if (openExitModal) {
+      document.addEventListener('keydown', closeModalEsc);
+    }
+
+    return function () {
+      document.removeEventListener('keydown', closeModalEsc);
+    };
+  }, [openExitModal]);
+
+  function closeModalEsc(e) {
+    if (e.key === 'Escape') {
+      setIsOpenExitModal(false);
+    }
+  }
+
   const disableScrollOn = () => {
     enablePageScroll();
     setIsOpenExitModal(false);
   };
+
   return (
     <Overlay onClick={disableScrollOn} opened={openExitModal}>
       <Modal onClick={e => e.stopPropagation()} opened={openExitModal}>

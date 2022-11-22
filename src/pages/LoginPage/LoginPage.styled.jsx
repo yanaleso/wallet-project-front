@@ -35,7 +35,7 @@ export const Wrapper = styled.div`
   display: flex;
   @media screen and (max-width: 767px) {
     align-items: center;
-    height: 100vh;
+    height: 100%;
     max-width: 480px;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {

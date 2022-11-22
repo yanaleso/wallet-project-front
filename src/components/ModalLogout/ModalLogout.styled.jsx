@@ -23,7 +23,7 @@ export const Modal = styled.div`
   left: 50%;
   visibility: visible;
   opacity: 1;
-  background: #ffffff;
+  background-color: ${theme.colors.primaryBtn};
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   padding: 80px 100px;
@@ -40,7 +40,7 @@ export const Modal = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 0px;
+    border-radius: ${theme.borders.none};
     padding: 30px 0;
   }
 `;
@@ -50,8 +50,8 @@ export const ModalTitle = styled.h2`
   justify-content: center;
   align-items: center;
   font-style: normal;
-  font-weight: 700;
-  font-size: 30px;
+  font-weight: ${theme.fontWeights.bold};
+  font-size: ${theme.fontSizes.l};
   line-height: 1.2;
   margin-bottom: 30px;
   white-space: nowrap;
@@ -77,23 +77,23 @@ export const WrapperItem = styled.li`
     align-items: center;
     width: 300px;
     font-style: normal;
-    font-weight: 800;
-    font-size: 22px;
+    font-weight: ${theme.fontWeights.bold};
+    font-size: ${theme.fontSizes.m};
     line-height: 1.2;
     padding: 12px 5px;
     border-radius: 20px;
     border: 0;
     text-transform: uppercase;
+
+    color: ${theme.colors.primaryBtn};
   }
 `;
 
 export const Exit = styled.button`
-  color: #fff;
   background-color: ${theme.colors.expense};
   margin-bottom: 20px;
 `;
 
 export const Stay = styled.button`
-  color: #fff;
   background-color: ${theme.colors.primaryBgBtn}; ;
 `;

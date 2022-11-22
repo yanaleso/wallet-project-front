@@ -19,18 +19,18 @@ const Header = ({ setIsOpenExitModal }) => {
   return (
     <header>
       <Container>
-      <Logo />
-      <UserBox>
-        <TextName>Name</TextName>
-        <IconContext.Provider value={{ color: '#BDBDBD', size: '25' }}>
-          <ButtonExit onClick={disableScrollOff}>
-            <IoExitOutline />
-            <Text>Exit</Text>
-          </ButtonExit>
-        </IconContext.Provider>
+        <Logo />
+        <UserBox>
+          <TextName>Name</TextName>
+          <IconContext.Provider value={{ color: '#BDBDBD', size: '25' }}>
+            <ButtonExit onClick={disableScrollOff}>
+              <IoExitOutline />
+              <Text>Exit</Text>
+            </ButtonExit>
+          </IconContext.Provider>
         </UserBox>
       </Container>
-      </header>
+    </header>
   );
 };
 

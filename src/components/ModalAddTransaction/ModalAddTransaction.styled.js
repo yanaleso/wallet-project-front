@@ -10,6 +10,7 @@ export const Overlay = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: #3935356e;
+  z-index: 6;
 `;
 
 export const Modal = styled.div`

@@ -9,7 +9,6 @@ export const Button = styled.button`
   position: fixed;
   right: 30px;
   bottom: 30px;
-  display: inline-block;
   border: none;
   border-radius: 50%;
   padding: 5px;

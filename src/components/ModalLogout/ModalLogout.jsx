@@ -12,14 +12,12 @@ import { useEffect } from 'react';
 
 const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
   useEffect(() => {
-    if (openExitModal) {
-      document.addEventListener('keydown', closeModalEsc);
-    }
+    document.addEventListener('keydown', closeModalEsc);
 
     return function () {
       document.removeEventListener('keydown', closeModalEsc);
     };
-  }, [openExitModal]);
+  });
 
   function closeModalEsc(e) {
     if (e.key === 'Escape') {

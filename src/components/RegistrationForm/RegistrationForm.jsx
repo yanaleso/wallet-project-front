@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import { userRegistration } from 'redux/auth/authOperation';
 import shema from 'helpers';
 import Logo from 'components/Logo';
+import { ReactComponent as EmailIcon } from 'images/email.svg';
+import { ReactComponent as PasswordIcon } from 'images/password.svg';
+import { ReactComponent as UserIcon } from 'images/user.svg';
 import {
   FormWrap,
   LogoWrap,
@@ -41,18 +44,18 @@ const RegisterForm = () => {
         onSubmit={handleSubmit}
         validationSchema={shema.register}
       >
-        {({ isValid, dirty }) => (
+        {({ isValid, dirty, values }) => (
           <StyledForm autoComplete="off">
             <Label>
-              SVG
+              <EmailIcon />
               <Input type="email" name="email" placeholder="E-mail" />
               <ErrorMessage
                 name="email"
                 render={msg => <ErrorMsg>{msg}</ErrorMsg>}
               />
             </Label>
-            <Label>
-              SVG
+            <Label passwordlength={values.password.length}>
+              <PasswordIcon />
               <Input type="password" name="password" placeholder="Password" />
               <ErrorMessage
                 name="password"
@@ -60,7 +63,7 @@ const RegisterForm = () => {
               />
             </Label>
             <Label>
-              SVG
+              <PasswordIcon />
               <Input
                 type="password"
                 name="confirmPassword"
@@ -72,7 +75,7 @@ const RegisterForm = () => {
               />
             </Label>
             <Label>
-              SVG
+              <UserIcon />
               <Input type="text" name="name" placeholder="First name" />
               <ErrorMessage
                 name="name"

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../../theme';
 
 export const Overlay = styled.div`
   position: absolute;
@@ -23,7 +22,7 @@ export const Modal = styled.div`
   left: 50%;
   visibility: visible;
   opacity: 1;
-  background-color: ${theme.colors.primaryBtn};
+  background-color: ${p => p.theme.colors.primaryBtn};
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   padding: 80px 100px;
@@ -40,7 +39,7 @@ export const Modal = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: ${theme.borders.none};
+    border-radius: ${p => p.theme.borders.none};
     padding: 30px 0;
   }
 `;
@@ -50,8 +49,8 @@ export const ModalTitle = styled.h2`
   justify-content: center;
   align-items: center;
   font-style: normal;
-  font-weight: ${theme.fontWeights.bold};
-  font-size: ${theme.fontSizes.l};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.l};
   line-height: 1.2;
   margin-bottom: 30px;
   white-space: nowrap;
@@ -77,23 +76,24 @@ export const WrapperItem = styled.li`
     align-items: center;
     width: 300px;
     font-style: normal;
-    font-weight: ${theme.fontWeights.bold};
-    font-size: ${theme.fontSizes.m};
+    font-weight: ${p => p.theme.fontWeights.bold};
+    font-size: ${p => p.theme.fontSizes.m};
     line-height: 1.2;
     padding: 12px 5px;
     border-radius: 20px;
     border: 0;
     text-transform: uppercase;
+    cursor: pointer;
 
-    color: ${theme.colors.primaryBtn};
+    color: ${p => p.theme.colors.primaryBtn};
   }
 `;
 
 export const Exit = styled.button`
-  background-color: ${theme.colors.expense};
+  background-color: ${p => p.theme.colors.expense};
   margin-bottom: 20px;
 `;
 
 export const Stay = styled.button`
-  background-color: ${theme.colors.primaryBgBtn}; ;
+  background-color: ${p => p.theme.colors.primaryBgBtn}; ;
 `;

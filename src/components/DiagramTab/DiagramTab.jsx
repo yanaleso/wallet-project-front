@@ -20,6 +20,7 @@ import { getStatistic } from 'redux/statistic/statisticSelectors';
 const DiagramTab = ({ data }) => {
   const dispatch = useDispatch();
   const { transaction, isLoading, error } = useSelector(getStatistic);
+  console.log(transaction);
 
   useEffect(() => {
     dispatch(getAllStatistic());

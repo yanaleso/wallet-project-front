@@ -22,10 +22,10 @@ const HomeTab = ({ data }) => {
         </StyledTableHeader>
 
         <StyledTableBody>
-          {data.map(({ id, date, type, category, comment, sum, balance }) => (
+          {data.map(({ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }) => (
             <HomeTabItem
-              key={id}
-              transaction={{ id, date, type, category, comment, sum, balance }}
+              key={_id}
+              transaction={{ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }}
             />
           ))}
         </StyledTableBody>
@@ -34,12 +34,12 @@ const HomeTab = ({ data }) => {
   } else {
     return (
       <StyledWrap>
-        {data.map(({ id, date, type, category, comment, sum, balance }) => (
-          <HomeTabMobItem
-            key={id}
-            transaction={{ id, date, type, category, comment, sum, balance }}
-          />
-        ))}
+        {data.map(({ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }) => (
+            <HomeTabMobItem
+              key={_id}
+              transaction={{ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }}
+            />
+          ))}
       </StyledWrap>
     );
   }

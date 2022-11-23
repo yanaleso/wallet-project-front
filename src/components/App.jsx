@@ -15,15 +15,32 @@ import FormTransaction from './FormTransaction/FormTransaction';
 import { refreshUser } from 'redux/auth/authOperation';
 import Currency from './Currency';
 import { useMedia } from 'react-use';
+import { getAllTransactions } from 'redux/transactions/transactionOperations';
+
+import axios from 'axios';
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2U1NzE0MmQ2ZjE4YzNhNmMxNjRlZCIsImlhdCI6MTY2OTIzMjY4NiwiZXhwIjoxNjY5MjM5ODg2fQ.Z2c31ZwA8zS7RS8xjDM8mVsoz7io3qlunlCF-y8_87A';
+axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 export const App = () => {
   const dispatch = useDispatch();
   const { isModalAddOpen } = useSelector(state => state.transactions);
+  const { transactions } = useSelector(state => state.transactions);
+  
   const isMobie = useMedia('(max-width: 767px)');
+
+
+  useEffect(() => {
+    dispatch(getAllTransactions());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
+  if (transactions.length < 0) {
+    return null;
+  }
 
   return (
     <>
@@ -52,55 +69,7 @@ export const App = () => {
             path="home"
             element={
               <PrivateRoute>
-                <HomeTab
-                  data={[
-                    {
-                      id: 1,
-                      date: '04.01.2022',
-                      type: '+',
-                      category: 'Other',
-                      comment: 'Gift for you',
-                      sum: '300.00',
-                      balance: '6900.00',
-                    },
-                    {
-                      id: 2,
-                      date: '07.01.2022',
-                      type: '-',
-                      category: 'Car',
-                      comment: 'Repair',
-                      sum: '700.00',
-                      balance: '6200.00',
-                    },
-                    {
-                      id: 3,
-                      date: '02.01.2022',
-                      type: '+',
-                      category: 'Wages',
-                      comment: 'Wages',
-                      sum: '3000.00',
-                      balance: '9200.00',
-                    },
-                    {
-                      id: 4,
-                      date: '08.11.2022',
-                      type: '-',
-                      category: 'Other',
-                      comment: 'Sashas Birthday',
-                      sum: '1000.00',
-                      balance: '8200.00',
-                    },
-                    {
-                      id: 5,
-                      date: '01.01.2022',
-                      type: '-',
-                      category: 'Shopping',
-                      comment: 'Silpo',
-                      sum: '250.00',
-                      balance: '7950.00',
-                    },
-                  ]}
-                />
+                <HomeTab data={transactions} />
                 <ButtonAddTransactions />
               </PrivateRoute>
             }

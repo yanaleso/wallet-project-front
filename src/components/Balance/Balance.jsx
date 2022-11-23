@@ -2,16 +2,13 @@ import { useSelector } from 'react-redux';
 import { Container, Title, CurrencySign, Text } from './Balance.styled';
 
 const Balance = () => {
-  const { transactions } = useSelector(state => state.transactions);
-
-  const lastTransaction = transactions.length - 1;
-  const balance = transactions[lastTransaction]?.balanceAfterTransaction;
+  const { totalBalance } = useSelector(state => state.transactions);
 
   return (
     <Container>
       <Title>Your balance</Title>
       <CurrencySign>₴ </CurrencySign>
-      <Text>{balance || 0}</Text>
+      <Text>{totalBalance}</Text>
     </Container>
   );
 };

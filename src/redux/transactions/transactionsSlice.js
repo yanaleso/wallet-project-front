@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getBalance } from 'helpers/formAddTransaction/getBalance';
 import { addNewTransaction, getAllTransactions } from './transactionOperations';
 
 const initialState = {
@@ -23,7 +24,7 @@ const transactionsSlice = createSlice({
       state.error = null;
       state.isLoading = true;
     });
-    builder.addCase(addNewTransaction.fulfilled, (state, action) => {
+    builder.addCase(addNewTransaction.fulfilled, (state, _) => {
       state.isLoading = false;
     });
     builder.addCase(addNewTransaction.rejected, (state, action) => {
@@ -38,6 +39,7 @@ const transactionsSlice = createSlice({
     builder.addCase(getAllTransactions.fulfilled, (state, action) => {
       state.isLoading = false;
       state.transactions = action.payload;
+      state.totalBalance = getBalance(action.payload);
     });
     builder.addCase(getAllTransactions.rejected, (state, action) => {
       state.isLoading = false;

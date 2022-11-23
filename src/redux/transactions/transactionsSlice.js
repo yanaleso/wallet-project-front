@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addNewTransaction } from './transactionOperations';
+import { addNewTransaction, getAllTransactions } from './transactionOperations';
 
 const initialState = {
   isModalAddOpen: false,
+  totalBalance: 0,
   transactions: [],
   isLoading: false,
   error: null,
@@ -15,10 +16,6 @@ const transactionsSlice = createSlice({
     toggleModalAdd: (state, action) => {
       state.isModalAddOpen = action.payload;
     },
-
-    addTransaction: (state, action) => {
-      state.transactions.push(action.payload);
-    },
   },
 
   extraReducers: builder => {
@@ -26,16 +23,29 @@ const transactionsSlice = createSlice({
       state.error = null;
       state.isLoading = true;
     });
-    builder.addCase(addNewTransaction.fulfilled, state => {
+    builder.addCase(addNewTransaction.fulfilled, (state, action) => {
       state.isLoading = false;
     });
     builder.addCase(addNewTransaction.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     });
+
+    builder.addCase(getAllTransactions.pending, (state, _) => {
+      state.error = null;
+      state.isLoading = true;
+    });
+    builder.addCase(getAllTransactions.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.transactions = action.payload;
+    });
+    builder.addCase(getAllTransactions.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 
-export const { toggleModalAdd, addTransaction } = transactionsSlice.actions;
+export const { toggleModalAdd } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;

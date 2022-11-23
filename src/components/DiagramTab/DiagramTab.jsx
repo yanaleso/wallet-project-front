@@ -3,6 +3,9 @@ import { Formik } from 'formik';
 import Select from 'react-select';
 import { months } from 'helpers/monthList';
 import { years } from 'helpers/yearList';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllStatistic } from 'redux/statistic/statisticOperation';
 
 import {
   StyledTable,
@@ -12,8 +15,16 @@ import {
   StyledTableFooter,
   StyledFilters,
 } from './DiagramTab.styled';
+import { getStatistic } from 'redux/statistic/statisticSelectors';
 
 const DiagramTab = ({ data }) => {
+  const dispatch = useDispatch();
+  const { transaction, isLoading, error } = useSelector(getStatistic);
+
+  useEffect(() => {
+    dispatch(getAllStatistic());
+  }, [dispatch]);
+
   const screenWidth = window.screen.width;
 
   const incomeTotal = data
@@ -30,6 +41,8 @@ const DiagramTab = ({ data }) => {
   if (screenWidth >= 768) {
     return (
       <>
+        {isLoading && <b>Loading tasks...</b>}
+        {error && <b>{error}</b>}
         <StyledTable>
           <Formik>
             <StyledFilters>

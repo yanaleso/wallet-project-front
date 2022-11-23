@@ -10,10 +10,7 @@ import { ReactComponent as Minus } from '../../images/minus.svg';
 import { ReactComponent as Calendar } from '../../images/calender.svg';
 
 import { options } from 'helpers/formAddTransaction/options';
-import {
-  addTransaction,
-  toggleModalAdd,
-} from 'redux/transactions/transactionsSlice';
+import { toggleModalAdd } from 'redux/transactions/transactionsSlice';
 
 import {
   ButtonAdd,
@@ -42,6 +39,7 @@ import {
 import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
 import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
+import { addNewTransaction } from 'redux/transactions/transactionOperations';
 
 const FormTransaction = () => {
   const dispatch = useDispatch();
@@ -73,24 +71,27 @@ const FormTransaction = () => {
     dispatch(toggleModalAdd(false));
   };
 
+  const onSubmitFormTransaction = values => {
+    const typeOperation = onChangeType(values.typeOperation);
+
+    const transaction = {
+      ...values,
+      amount: Number(values.amount),
+      typeOperation,
+    };
+
+    dispatch(addNewTransaction(transaction));
+    // dispatch(addTransaction(transaction));
+    console.log('Transaction :', transaction);
+    dispatch(toggleModalAdd(false));
+  };
+
   return (
     <FormWrapper>
       <Title>Add transaction</Title>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => {
-          const typeOperation = onChangeType(values.typeOperation);
-
-          const transaction = {
-            ...values,
-            amount: Number(values.amount),
-            typeOperation,
-          };
-
-          dispatch(addTransaction(transaction));
-          console.log('onFormAddSubmit ~ transaction', transaction);
-          dispatch(toggleModalAdd(false));
-        }}
+        onSubmit={onSubmitFormTransaction}
         validationSchema={transactionShema}
       >
         {({ handleSubmit, handleChange, setFieldValue, values }) => (

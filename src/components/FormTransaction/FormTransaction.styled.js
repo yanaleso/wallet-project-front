@@ -26,6 +26,7 @@ export const ImputsWrapper = styled.div`
 `;
 
 export const Title = styled.h2`
+  font-family: ${p => p.theme.fonts.heading};
   font-size: 24px;
   line-height: 35px;
   font-weight: ${p => p.theme.fontWeights.normal};

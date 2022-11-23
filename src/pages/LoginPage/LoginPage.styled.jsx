@@ -6,7 +6,7 @@ export const Section = styled.section`
   @media screen and (min-width: 768px) {
     width: 100%;
     min-height: 100vh;
-    background-color: #e7eaf2;
+    background-color: ${p => p.theme.colors.loginPageBg};
     background-image: url(${EllipseViolet}), url(${EllipseRed});
     background-position: 0 100%, 100% 0;
     background-repeat: no-repeat;
@@ -35,7 +35,7 @@ export const Wrapper = styled.div`
   display: flex;
   @media screen and (max-width: 767px) {
     align-items: center;
-    height: 100vh;
+    height: 100%;
     max-width: 480px;
   }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -96,7 +96,7 @@ export const FormContainer = styled.div`
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(50px);
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: ${p => p.theme.colors.secondaryBg};
     padding: 52px 91px 52px 107px;
   }
 `;

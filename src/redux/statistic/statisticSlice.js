@@ -10,21 +10,16 @@ const initialState = {
 const statisticSlice = createSlice({
   name: 'statistic',
   initialState,
-  extraReducers: {
-    // [getAllStatistic.pending](state) {
-    //   state.isLoading = true;
-    // },
-    [getAllStatistic.fulfilled](state, action) {
+  extraReducers: builder => {
+    builder.addCase(getAllStatistic.fulfilled, (state, action) => {
       state.isLoading = false;
       state.transaction = action.payload;
       state.error = null;
-    },
-    [getAllStatistic.rejected](state, action) {
-      console.log(state);
-      state.isLoading = false;
+    });
+    builder.addCase(getAllStatistic.rejected, (state, action) => {
       state.error = action.payload;
-    },
+    });
   },
 });
 
-export const statisticReducer = statisticSlice.reducer;
+export default statisticSlice.reducer;

@@ -13,7 +13,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import themeReducer from './theme/themeSlice';
-import { statisticReducer } from './statistic/statisticSlice';
+import { statisticReducer } from './statistic';
 
 const authPersistConfig = {
   key: 'auth',

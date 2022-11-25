@@ -13,7 +13,7 @@ const myChart = () => {
     ctx.font = '700 18px Circe-Regular';
     ctx.textBaseline = 'middle';
     const dataArrValues = chart.config._config.data.datasets[0].data;
-
+    ctx.cutoutPercentage = 30;
     const text = `₴${dataArrValues
       .reduce((total, b) => total + b, 0)
       .toFixed(2)}`;
@@ -24,46 +24,46 @@ const myChart = () => {
     ctx.save();
   };
 
-  const optionsChart = {
-    cutoutPercentage: 55,
-    elements: {
-      center: {
-        text: 'total',
-        fontColor: '#666666',
-        fontFamily: 'Allianz-Neo',
-        fontStyle: 'bold',
-        minFontSize: 15,
-        maxFontSize: 20,
-      },
-    },
-    plugins: {
-      outlabels: {
-        backgroundColor: 'white', // Background color of Label
-        borderColor: 'none', // Border color of Label
-        borderRadius: 0, // Border radius of Label
-        borderWidth: 0, // Thickness of border
-        color: 'black', // Font color
-        display: false,
-        lineWidth: 1, // Thickness of line between chart arc and Label
-        padding: 0,
-        lineColor: 'black',
-        textAlign: 'center',
-        stretch: 45,
-      },
-      labels: false,
-    },
-    legend: {
-      display: true,
-      position: 'right',
-      align: 'right',
-      fontFamily: 'Allianz-Neo',
-      textDirection: 'ltr',
-      labels: {
-        usePointStyle: true,
-        fontColor: '#006192',
-      },
-    },
-  };
+  // const optionsChart = {
+  //   cutoutPercentage: 30,
+  //   elements: {
+  //     center: {
+  //       text: 'total',
+  //       fontColor: '#666666',
+  //       fontFamily: 'Allianz-Neo',
+  //       fontStyle: 'bold',
+  //       minFontSize: 15,
+  //       maxFontSize: 20,
+  //     },
+  //   },
+  //   plugins: {
+  //     outlabels: {
+  //       backgroundColor: 'white', // Background color of Label
+  //       borderColor: 'none', // Border color of Label
+  //       borderRadius: 0, // Border radius of Label
+  //       borderWidth: 10, // Thickness of border
+  //       color: 'black', // Font color
+  //       display: false,
+  //       lineWidth: 1, // Thickness of line between chart arc and Label
+  //       padding: 0,
+  //       lineColor: 'black',
+  //       textAlign: 'center',
+  //       stretch: 45,
+  //     },
+  //     labels: false,
+  //   },
+  //   legend: {
+  //     display: false,
+  //     position: 'right',
+  //     align: 'right',
+  //     fontFamily: 'Allianz-Neo',
+  //     textDirection: 'ltr',
+  //     labels: {
+  //       usePointStyle: true,
+  //       fontColor: '#006192',
+  //     },
+  //   },
+  // };
 
   const data = {
     labels: categories,
@@ -95,7 +95,11 @@ const myChart = () => {
         width={288}
         height={288}
         data={data}
-        options={optionsChart}
+        options={{
+          cutoutPercentage: 65,
+          responsive: true,
+          maintainAspectRatio: true,
+        }}
         plugins={[
           {
             beforeDraw: function (chart) {

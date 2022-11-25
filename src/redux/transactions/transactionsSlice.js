@@ -38,8 +38,10 @@ const transactionsSlice = createSlice({
     });
     builder.addCase(getAllTransactions.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.transactions = action.payload;
-      state.totalBalance = getBalance(action.payload);
+      state.transactions = [...state.transactions, ...action.payload];
+      if (action.payload.length > 0) {
+        state.totalBalance = getBalance(action.payload);
+      }
     });
     builder.addCase(getAllTransactions.rejected, (state, action) => {
       state.isLoading = false;

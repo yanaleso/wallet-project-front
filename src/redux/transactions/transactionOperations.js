@@ -17,9 +17,9 @@ export const addNewTransaction = createAsyncThunk(
 
 export const getAllTransactions = createAsyncThunk(
   'transaction/GET_ALL',
-  async (_, { rejectWithValue }) => {
+  async (page = 1, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/transactions');
+      const { data } = await axios.get(`/transactions?page=${page}&limit=5`);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

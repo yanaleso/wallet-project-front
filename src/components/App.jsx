@@ -18,6 +18,7 @@ import { useMedia } from 'react-use';
 import { getAllTransactions } from 'redux/transactions/transactionOperations';
 
 import axios from 'axios';
+import NotFoundPage from 'pages/NotFoundPage';
 const token =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2U1NzE0MmQ2ZjE4YzNhNmMxNjRlZCIsImlhdCI6MTY2OTIzMjY4NiwiZXhwIjoxNjY5MjM5ODg2fQ.Z2c31ZwA8zS7RS8xjDM8mVsoz7io3qlunlCF-y8_87A';
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -224,6 +225,7 @@ export const App = () => {
             }
           ></Route>
         </Route>
+        <Route path='/*' element={<NotFoundPage />} />
       </Routes>
 
       {isModalAddOpen && (

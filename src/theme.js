@@ -38,10 +38,17 @@ export const theme = {
     s: '16px',
     m: '18px',
     l: '30px',
+    xl: '40px',
   },
   fontWeights: {
     normal: 400,
     bold: 700,
+  },
+  lineHeights: {
+    body: 1.5,
+  },
+  letterSpacings: {
+    body: '0.1em',
   },
   borders: {
     none: 'none',
@@ -51,5 +58,6 @@ export const theme = {
     none: '0',
     normal: '4px',
     round: '50%',
+    btn: '20px',
   },
 };

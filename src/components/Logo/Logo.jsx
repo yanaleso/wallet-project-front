@@ -1,20 +1,18 @@
 import logo from '../../images/logo.png';
 import logoBig from '../../images/logoBig.png';
 import { LogoBox, LogoWallet } from './Logo.styled';
-import Media from 'react-media';
+import { useMedia } from 'react-use';
 
 const Logo = () => {
+  const isWide = useMedia('(min-width: 768px)');
+
   return (
     <LogoBox>
-      <Media queries={{ small: { maxWidth: 767 } }}>
-        {matches =>
-          matches.small ? (
-            <LogoWallet src={logo} alt="logo" />
-          ) : (
-            <LogoWallet src={logoBig} alt="logo" />
-          )
-        }
-      </Media>
+      {isWide ? (
+        <LogoWallet src={logoBig} alt="logo" />
+      ) : (
+        <LogoWallet src={logo} alt="logo" />
+      )}
       Wallet
     </LogoBox>
   );

@@ -39,7 +39,10 @@ import {
 import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
 import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
-import { addNewTransaction } from 'redux/transactions/transactionOperations';
+import {
+  addNewTransaction,
+  getAllTransactions,
+} from 'redux/transactions/transactionOperations';
 
 const FormTransaction = () => {
   const dispatch = useDispatch();
@@ -47,7 +50,7 @@ const FormTransaction = () => {
   const initialValues = {
     comment: '',
     amount: '',
-    category: '',
+    category: 'Regular income',
     typeOperation: false,
     date: new Date().toString(),
   };
@@ -71,7 +74,7 @@ const FormTransaction = () => {
     dispatch(toggleModalAdd(false));
   };
 
-  const onSubmitFormTransaction = values => {
+  const onSubmitFormTransaction = async values => {
     const typeOperation = onChangeType(values.typeOperation);
 
     const transaction = {
@@ -80,9 +83,9 @@ const FormTransaction = () => {
       typeOperation,
     };
 
-    dispatch(addNewTransaction(transaction));
-    // dispatch(addTransaction(transaction));
-    console.log('Transaction :', transaction);
+    await dispatch(addNewTransaction(transaction));
+    await dispatch(getAllTransactions());
+
     dispatch(toggleModalAdd(false));
   };
 

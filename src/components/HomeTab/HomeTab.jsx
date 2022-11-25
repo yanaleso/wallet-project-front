@@ -5,8 +5,9 @@ import {
   StyledTableBody,
   StyledWrap,
 } from './HomeTab.styled';
+import { forwardRef } from 'react';
 
-const HomeTab = ({ data }) => {
+const HomeTab = forwardRef(({ data }, ref) => {
   const screenWidth = window.screen.width;
 
   if (screenWidth >= 768) {
@@ -22,27 +23,47 @@ const HomeTab = ({ data }) => {
         </StyledTableHeader>
 
         <StyledTableBody>
-          {data.map(({ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }) => (
-            <HomeTabItem
+          {data.map(({ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }, idx) =>{ 
+
+            if (data.length === idx + 1) {
+              return <HomeTabItem
+              key={_id}
+              ref={ref}
+              transaction={{ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }}
+            />
+            }
+
+            return  <HomeTabItem
               key={_id}
               transaction={{ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }}
             />
-          ))}
+          })}
+          
         </StyledTableBody>
       </StyledTable>
     );
   } else {
     return (
       <StyledWrap>
-        {data.map(({ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }) => (
-            <HomeTabMobItem
+        {data.map(({ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }, idx) => { 
+
+            if (data.length === idx + 1) {
+              return <HomeTabMobItem
+              ref={ref}
               key={_id}
               transaction={{ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }}
             />
-          ))}
+            }
+
+           return <HomeTabMobItem
+              key={_id}
+              transaction={{ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction }}
+            />
+          }
+          )}
       </StyledWrap>
     );
   }
-};
+});
 
 export default HomeTab;

@@ -20,16 +20,15 @@ import { getAllTransactions } from 'redux/transactions/transactionOperations';
 import axios from 'axios';
 import NotFoundPage from 'pages/NotFoundPage';
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2U1NzE0MmQ2ZjE4YzNhNmMxNjRlZCIsImlhdCI6MTY2OTIzMjY4NiwiZXhwIjoxNjY5MjM5ODg2fQ.Z2c31ZwA8zS7RS8xjDM8mVsoz7io3qlunlCF-y8_87A';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2RmZWMzYTM0MWQ5YjhmNzYyMDE1ZSIsImlhdCI6MTY2OTM5OTAxNSwiZXhwIjoxNjY5NDA2MjE1fQ.3bX7Kl9McFR6PLvipNc5fvndWmeSAa5UV6XE5yXNU0o';
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 export const App = () => {
   const dispatch = useDispatch();
   const { isModalAddOpen } = useSelector(state => state.transactions);
   const { transactions } = useSelector(state => state.transactions);
-  
-  const isMobie = useMedia('(max-width: 767px)');
 
+  const isMobie = useMedia('(max-width: 767px)');
 
   useEffect(() => {
     dispatch(getAllTransactions());
@@ -225,7 +224,7 @@ export const App = () => {
             }
           ></Route>
         </Route>
-        <Route path='/*' element={<NotFoundPage />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
 
       {isModalAddOpen && (

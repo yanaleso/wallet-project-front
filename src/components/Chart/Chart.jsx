@@ -1,11 +1,17 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { options } from 'helpers/formAddTransaction/options';
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  DoughnutController,
+} from 'chart.js';
+import { options as categories } from 'helpers/formAddTransaction/options';
 import { Doughnut } from 'react-chartjs-2';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend, DoughnutController);
 
-const myChart = () => {
-  const categories = options.map(option => option.label);
+const Chart = () => {
+  const chartCategories = categories.map(option => option.label);
 
   const drawInnerText = chart => {
     const ctx = chart.ctx;
@@ -23,50 +29,8 @@ const myChart = () => {
     ctx.fillStyle = '#000000';
     ctx.save();
   };
-
-  const optionsChart = {
-    cutoutPercentage: 55,
-    elements: {
-      center: {
-        text: 'total',
-        fontColor: '#666666',
-        fontFamily: 'Allianz-Neo',
-        fontStyle: 'bold',
-        minFontSize: 15,
-        maxFontSize: 20,
-      },
-    },
-    plugins: {
-      outlabels: {
-        backgroundColor: 'white', // Background color of Label
-        borderColor: 'none', // Border color of Label
-        borderRadius: 0, // Border radius of Label
-        borderWidth: 0, // Thickness of border
-        color: 'black', // Font color
-        display: false,
-        lineWidth: 1, // Thickness of line between chart arc and Label
-        padding: 0,
-        lineColor: 'black',
-        textAlign: 'center',
-        stretch: 45,
-      },
-      labels: false,
-    },
-    legend: {
-      display: true,
-      position: 'right',
-      align: 'right',
-      fontFamily: 'Allianz-Neo',
-      textDirection: 'ltr',
-      labels: {
-        usePointStyle: true,
-        fontColor: '#006192',
-      },
-    },
-  };
-
   const data = {
-    labels: categories,
+    labels: chartCategories,
     datasets: [
       {
         label: '# of Votes',
@@ -90,22 +54,30 @@ const myChart = () => {
 
   return (
     <div>
-      <h1>Statistics</h1>
-      <Doughnut
-        width={288}
-        height={288}
-        data={data}
-        options={optionsChart}
-        plugins={[
-          {
-            beforeDraw: function (chart) {
-              drawInnerText(chart);
+      <div style={{ maxWidth: '280px', margin: '0 auto' }}>
+        <Doughnut
+          width={288}
+          height={288}
+          data={data}
+          options={{
+            cutout: '70%',
+            plugins: {
+              legend: {
+                display: false,
+              },
             },
-          },
-        ]}
-      />
+          }}
+          plugins={[
+            {
+              beforeDraw: function (chart) {
+                drawInnerText(chart);
+              },
+            },
+          ]}
+        />
+      </div>
     </div>
   );
 };
 
-export default myChart;
+export default Chart;

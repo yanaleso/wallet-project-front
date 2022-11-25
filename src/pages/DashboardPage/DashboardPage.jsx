@@ -14,7 +14,8 @@ import {
   Wrapper,
   TabletWrapper,
   DesktopWrapper,
-  Vector,
+  Separator,
+  SideBar,
 } from './Dashboard.styled';
 import { useState } from 'react';
 
@@ -35,15 +36,17 @@ const DashboardPage = () => {
             setIsOpenExitModal={() => setIsOpenExitModal(false)}
           />
           {isMobie ? (
-            <Container>
-              <Wrapper>
-                <Navigation />
-                <Balance />
-                <Suspense fallback={null}>
-                  <Outlet />
-                </Suspense>
-              </Wrapper>
-            </Container>
+            <Blur>
+              <Container>
+                <Wrapper>
+                  <Navigation />
+                  <Balance />
+                  <Suspense fallback={null}>
+                    <Outlet />
+                  </Suspense>
+                </Wrapper>
+              </Container>
+            </Blur>
           ) : null}
           {isTablet ? (
             <Blur>
@@ -65,17 +68,17 @@ const DashboardPage = () => {
             <Blur>
               <Container>
                 <Wrapper>
+                  <SideBar>
+                    <Navigation />
+                    <Balance />
+                    <Currency />
+                  </SideBar>
+                  <Separator />
                   <DesktopWrapper>
-                    <div>
-                      <Navigation />
-                      <Balance />
-                      <Currency />
-                    </div>
-                    <Vector />
+                    <Suspense fallback={null}>
+                      <Outlet />
+                    </Suspense>
                   </DesktopWrapper>
-                  <Suspense fallback={null}>
-                    <Outlet />
-                  </Suspense>
                 </Wrapper>
               </Container>
             </Blur>

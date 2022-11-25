@@ -1,17 +1,11 @@
 import styled from 'styled-components';
 import EllipseRed from '../../images/EllipseRed.png';
 import EllipseViolet from '../../images/EllipseViolet.png';
-import { theme } from '../../theme';
+// import { theme } from '../../theme';
 
 export const Section = styled.section`
-  @media screen and (max-width: 767px) {
-    background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(25px);
-  }
+  background-color: ${p => p.theme.colors.loginPageBg};
   @media screen and (min-width: 768px) {
-    width: 100%;
-    height: 100vh;
-    background-color: ${theme.colors.loginPageBg};
     background-image: url(${EllipseViolet}), url(${EllipseRed});
     background-position: 0 100%, 100% 0;
     background-repeat: no-repeat;
@@ -19,8 +13,13 @@ export const Section = styled.section`
 `;
 
 export const Blur = styled.div`
-  min-height: 100vh;
-  backdrop-filter: blur(50px);
+  @media screen and (max-width: 767px) {
+    background-color: ${p => p.theme.colors.secondaryBg};
+    backdrop-filter: blur(25px);
+  }
+  @media screen and (min-width: 768px) {
+    backdrop-filter: blur(50px);
+  }
 `;
 
 export const Container = styled.div`
@@ -28,22 +27,19 @@ export const Container = styled.div`
 
   @media screen and (max-width: 767px) {
     max-width: 480px;
-    padding: 12px 20px;
+    padding: 12px 20px 0;
   }
   @media screen and (min-width: 768px) {
     width: 768px;
-    padding: 32px;
+    padding: 32px 32px 0;
   }
   @media screen and (min-width: 1280px) {
     width: 1280px;
-    padding: 46px 32px 0;
+    padding: 0 16px;
   }
 `;
 
 export const Wrapper = styled.div`
-  @media screen and (max-width: 767px) {
-    /* align-items: center; */
-  }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     display: flex;
     justify-content: space-between;
@@ -61,16 +57,19 @@ export const TabletWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const DesktopWrapper = styled.div`
-  display: flex;
+export const SideBar = styled.div`
+  padding-top: 46px;
 `;
 
-export const Vector = styled.div`
-  position: relative;
-  top: -46px;
+export const Separator = styled.div`
   height: 100vh;
   margin: 0 69px;
-  border: ${theme.borders.normal} #e7e5f2;
+  border: ${p => p.theme.borders.normal} #e7e5f2;
   box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
     1px 0px 0px rgba(255, 255, 255, 0.6);
+`;
+
+export const DesktopWrapper = styled.div`
+  display: flex;
+  padding-top: 46px;
 `;

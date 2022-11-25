@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {theme} from '../../theme';
 
 export const Container = styled.div`
     display: flex;
@@ -23,7 +22,7 @@ export const Container = styled.div`
 export const UserBox = styled.div`
     display: flex;
     align-items: center;
-    color: ${theme.colors.secondaryText};
+    color: ${p => p.theme.colors.secondaryText};
 `;
 
 
@@ -34,9 +33,9 @@ export const ButtonExit = styled.button`
     border-color: transparent;
     cursor: pointer;
     
-    color: ${theme.colors.secondaryText};
+    color: ${p => p.theme.colors.secondaryText};
     font-family: inherit;
-    font-size: ${theme.fontSizes.m};
+    font-size: ${p => p.theme.fontSizes.m};
 
     padding-right: 0;
     
@@ -59,5 +58,5 @@ export const Text = styled.span`
 `;
 
 export const TextName = styled.span`
-    font-size: ${theme.fontSizes.m};
+    font-size: ${p => p.theme.fontSizes.m};
 `;

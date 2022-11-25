@@ -19,7 +19,7 @@ const Chart = () => {
     ctx.font = '700 18px Circe-Regular';
     ctx.textBaseline = 'middle';
     const dataArrValues = chart.config._config.data.datasets[0].data;
-
+    ctx.cutoutPercentage = 30;
     const text = `₴${dataArrValues
       .reduce((total, b) => total + b, 0)
       .toFixed(2)}`;

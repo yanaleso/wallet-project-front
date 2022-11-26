@@ -5,6 +5,7 @@ import { addNewTransaction, getAllTransactions } from './transactionOperations';
 const initialState = {
   isModalAddOpen: false,
   totalBalance: 0,
+  pageNum: 1,
   transactions: [],
   isLoading: false,
   error: null,
@@ -16,6 +17,15 @@ const transactionsSlice = createSlice({
   reducers: {
     toggleModalAdd: (state, action) => {
       state.isModalAddOpen = action.payload;
+    },
+
+    getNextPage: (state, action) => {
+      state.pageNum = state.pageNum + 1
+    },
+
+    resetTransactions: (state, action) => {
+      state.transactions = [];
+      state.pageNum = 1;
     },
   },
 
@@ -39,6 +49,7 @@ const transactionsSlice = createSlice({
     builder.addCase(getAllTransactions.fulfilled, (state, action) => {
       state.isLoading = false;
       state.transactions = [...state.transactions, ...action.payload];
+      
       if (action.payload.length > 0) {
         state.totalBalance = getBalance(action.payload);
       }
@@ -50,6 +61,6 @@ const transactionsSlice = createSlice({
   },
 });
 
-export const { toggleModalAdd } = transactionsSlice.actions;
+export const { toggleModalAdd, getNextPage, resetTransactions } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;

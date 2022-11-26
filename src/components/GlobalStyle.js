@@ -3,6 +3,16 @@ import 'modern-normalize';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const GlobalStyle = createGlobalStyle`
+  ::-webkit-scrollbar {
+    width: 8px; /* ширина для вертикального скролла */
+    height: 8px; /* высота для горизонтального скролла */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #1a88716b; /* bg-color скролла */
+    border-radius: 10px; /* радиус скролла */
+  }
+
   body {
     margin: 0;
     font-family: ${p => p.theme.fonts.body};

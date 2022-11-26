@@ -7,6 +7,7 @@ import { useMedia } from 'react-use';
 import ModalLogout from 'components/ModalLogout';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import bgImg from '../../images/Rectangle.png'
 import {
   Section,
   Blur,
@@ -19,6 +20,8 @@ import {
 } from './Dashboard.styled';
 import { useState } from 'react';
 
+
+
 const DashboardPage = () => {
   const isMobie = useMedia('(max-width: 767px)');
   const isTablet = useMedia('(min-width: 768px) and (max-width: 1279px)');
@@ -30,7 +33,7 @@ const DashboardPage = () => {
     <SharedLayout>
       <Header setIsOpenExitModal={() => setIsOpenExitModal(true)} />
       <main>
-        <Section>
+        <Section bgImg={bgImg} >
           <ModalLogout
             openExitModal={openExitModal}
             setIsOpenExitModal={() => setIsOpenExitModal(false)}

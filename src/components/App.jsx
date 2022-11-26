@@ -25,10 +25,10 @@ import DashboardPage from '../pages/DashboardPage';
 import NotFoundPage from 'pages/NotFoundPage';
 
 
-// import axios from 'axios';
-// const token =
-//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2RmZWMzYTM0MWQ5YjhmNzYyMDE1ZSIsImlhdCI6MTY2OTQ4MDM3MSwiZXhwIjoxNjY5NDg3NTcxfQ.Ai-s5m67SgLPkCXLK6t23rzMQFyhNUrHf5L7mexwd20';
-// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+import axios from 'axios';
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODI2ZDViYzQ3NzZhMzNiZGVkMWQzMCIsImlhdCI6MTY2OTQ5MjA3NiwiZXhwIjoxNjcwNzAxNjc2fQ.qgY622DOh_akzHa8IqfWjLNWTAGfX2-zQz5-oFZAMk4';
+axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 export const App = () => {
   const isMobie = useMedia('(max-width: 767px)');

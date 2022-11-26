@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Plus } from '../../images/plus.svg';
 import { ReactComponent as Minus } from '../../images/minus.svg';
 import { ReactComponent as Calendar } from '../../images/calender.svg';
@@ -42,11 +42,12 @@ import {
 import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
 import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
-import { addNewTransaction } from 'redux/transactions/transactionOperations';
+import { addNewTransaction, getAllTransactions } from 'redux/transactions/transactionOperations';
 import { Box } from 'components/Box';
 
 const FormTransaction = () => {
   const dispatch = useDispatch();
+  const { pageNum } = useSelector(state => state.transactions);
 
   const initialValues = {
     comment: '',
@@ -88,7 +89,9 @@ const FormTransaction = () => {
 
     await dispatch(resetTransactions());
 
-    // await dispatch(getAllTransactions(1));
+    if (pageNum === 1) {
+      await dispatch(getAllTransactions(1));
+    }
 
     dispatch(toggleModalAdd(false));
   };

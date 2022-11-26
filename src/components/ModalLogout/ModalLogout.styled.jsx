@@ -41,6 +41,7 @@ export const Modal = styled.div`
     height: 100%;
     border-radius: ${p => p.theme.borders.none};
     padding: 30px 0;
+    border-radius: 0;
   }
 `;
 

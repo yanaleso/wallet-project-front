@@ -19,21 +19,46 @@ import { getAllTransactions } from 'redux/transactions/transactionOperations';
 
 import axios from 'axios';
 import NotFoundPage from 'pages/NotFoundPage';
+import { useState } from 'react';
+import { useRef } from 'react';
+import { useCallback } from 'react';
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2U1NzE0MmQ2ZjE4YzNhNmMxNjRlZCIsImlhdCI6MTY2OTIzMjY4NiwiZXhwIjoxNjY5MjM5ODg2fQ.Z2c31ZwA8zS7RS8xjDM8mVsoz7io3qlunlCF-y8_87A';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2RmZWMzYTM0MWQ5YjhmNzYyMDE1ZSIsImlhdCI6MTY2OTQwMjQ0NSwiZXhwIjoxNjY5NDA5NjQ1fQ.wP5owRM5GzOkuoWW_XjDBpbriCLAV-Sfweok4KaGQec';
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 export const App = () => {
+  const isMobie = useMedia('(max-width: 767px)');
+
   const dispatch = useDispatch();
   const { isModalAddOpen } = useSelector(state => state.transactions);
   const { transactions } = useSelector(state => state.transactions);
-  
-  const isMobie = useMedia('(max-width: 767px)');
 
+  const [pageNum, setPageNum] = useState(1);
+  const observer = useRef(null);
+
+  const lastElement = useCallback(item => {
+
+    const options = {
+      // rootMargin: '500px',
+      // threshold: 0.5,
+    };
+
+    observer.current = new IntersectionObserver(entries => {
+
+      if (entries[0].isIntersecting) {
+        observer.current.unobserve(entries[0].target)
+        setPageNum(prev => prev + 1);
+      }
+    }, options);
+
+    if (item) {
+      observer.current.observe(item);
+    }
+  },[]);
 
   useEffect(() => {
-    dispatch(getAllTransactions());
-  }, [dispatch]);
+    dispatch(getAllTransactions(pageNum));
+  }, [dispatch, pageNum]);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -70,7 +95,7 @@ export const App = () => {
             path="home"
             element={
               <PrivateRoute>
-                <HomeTab data={transactions} />
+                <HomeTab data={transactions} ref={lastElement} />
                 <ButtonAddTransactions />
               </PrivateRoute>
             }
@@ -225,7 +250,7 @@ export const App = () => {
             }
           ></Route>
         </Route>
-        <Route path='/*' element={<NotFoundPage />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
 
       {isModalAddOpen && (

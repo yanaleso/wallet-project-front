@@ -46,10 +46,19 @@ export const StyledFilters = styled.div`
 export const CheckBoxLabel = styled.label`
   background-color: #ffffff;
   position: relative;
-  width: 181px;
   height: 50px;
   border: 1px solid #000000;
   border-radius: 30px;
+  margin-bottom: 20px;
+  @media screen and (max-width: 767px) {
+    width: 280px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 181px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 181px;
+  }
 `;
 
 export const CheckBox = styled(Field)`

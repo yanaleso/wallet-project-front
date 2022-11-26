@@ -43,6 +43,7 @@ import {
   addNewTransaction,
   getAllTransactions,
 } from 'redux/transactions/transactionOperations';
+import { Box } from 'components/Box';
 
 const FormTransaction = () => {
   const dispatch = useDispatch();
@@ -181,13 +182,13 @@ const FormTransaction = () => {
               </CommentWrapper>
             </ImputsWrapper>
 
-            <div style={{ width: '300px', margin: '0 auto' }}>
+            <Box width="300px" margin="0 auto">
               <ButtonAdd type="submit">Add</ButtonAdd>
 
               <ButtonCancel type="button" onClick={onCancelClick}>
                 Cancel
               </ButtonCancel>
-            </div>
+            </Box>
           </TransactionForm>
         )}
       </Formik>

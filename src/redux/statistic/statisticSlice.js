@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getStatistic } from './statisticOperation';
 
 const initialState = {
-  statistic: { _id: '', totalSum: null, type: '' },
+  statistic: [],
   isLoading: false,
   error: null,
 };
@@ -13,7 +13,7 @@ const statisticSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getStatistic.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.transaction = action.payload;
+      state.statistic = action.payload;
       state.error = null;
     });
     builder.addCase(getStatistic.rejected, (state, action) => {

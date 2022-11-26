@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import Select from 'react-select';
 import { months } from 'helpers/monthList';
 import { years } from 'helpers/yearList';
+//import { categoriesColors } from 'helpers/categoriesColors';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
 import { useEffect } from 'react';
@@ -13,6 +14,8 @@ import {
   StyledWrap,
   StyledTableFooter,
   StyledFilters,
+  StyledItem,
+  StyledInnerSpan,
 } from './DiagramTab.styled';
 import { getStatistic } from 'redux/statistic/statisticOperation';
 
@@ -25,21 +28,27 @@ const DiagramTab = () => {
   const res = useSelector(selectAllStatistic);
   const data = res.statistic;
 
-  console.log(res.statistic);
   const screenWidth = window.screen.width;
 
   const incomeTotal = data
-    .filter(data => data.type === '+')
+    .filter(data => data.type === 'income')
     .reduce((total, data) => total + Number(data.totalSum), 0);
 
   const expensesTotal = data
-    .filter(data => data.type !== '+')
+    .filter(data => data.type !== 'income')
     .reduce((total, data) => total + Number(data.totalSum), 0);
 
-  const balance = data.reduce(
-    (total, data) => total + Number(data.totalSum),
-    0
-  );
+  // const categoryKey = categoriesColors.map(
+  //   categoriesColors => categoriesColors.category
+  // );
+  // const colorValue = categoriesColors.map(
+  //   categoriesColors => categoriesColors.background
+  // );
+
+  // const balance = data.reduce(
+  //   (total, data) => total + Number(data.totalSum),
+  //   0
+  // );
 
   if (screenWidth >= 768) {
     return (
@@ -127,12 +136,32 @@ const DiagramTab = () => {
           </StyledTableHeader>
 
           <StyledTableBody>
-            {data.map(({ _id, type, totalSum }) => (
-              <DiagramTabItem
-                //key={id}
-                statistic={{ _id, type, totalSum }}
-              />
-            ))}
+            <ul>
+              {data.map(({ _id, type, totalSum }) => (
+                <li key={_id}>
+                  <StyledItem>
+                    <StyledInnerSpan
+                      style={{
+                        width: '24px',
+                        height: '24px',
+                        marginRight: '10px',
+                        background: '#24CCA7',
+                      }}
+                    ></StyledInnerSpan>
+                    <p>{_id}</p>
+                  </StyledItem>
+                  <p>
+                    <span
+                      style={{
+                        color: type === 'income' ? '#24CCA7' : '#FF6596',
+                      }}
+                    >
+                      {totalSum}
+                    </span>
+                  </p>
+                </li>
+              ))}
+            </ul>
           </StyledTableBody>
           <StyledTableFooter>
             <li>

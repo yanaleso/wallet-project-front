@@ -5,13 +5,18 @@ import {
   Legend,
   DoughnutController,
 } from 'chart.js';
-import { options as categories } from 'helpers/formAddTransaction/options';
 import { Doughnut } from 'react-chartjs-2';
+import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
+import { useSelector } from 'react-redux';
 
 ChartJS.register(ArcElement, Tooltip, Legend, DoughnutController);
 
 const Chart = () => {
-  const chartCategories = categories.map(option => option.label);
+  const res = useSelector(selectAllStatistic);
+  const results = res.statistic;
+
+  const chartCategories = results.map(result => result._id);
+  const sum = results.map(result => result.totalSum);
 
   const drawInnerText = chart => {
     const ctx = chart.ctx;
@@ -34,7 +39,7 @@ const Chart = () => {
     datasets: [
       {
         label: '# of Votes',
-        data: [12.0, 19.0, 3.0, 5.0, 2.0, 10.0, 67, 33],
+        data: sum,
         text: 'summ',
         backgroundColor: [
           '#FED057',

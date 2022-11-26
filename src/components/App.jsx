@@ -15,8 +15,13 @@ import FormTransaction from './FormTransaction/FormTransaction';
 import { refreshUser } from 'redux/auth/authOperation';
 import Currency from './Currency';
 import { useMedia } from 'react-use';
+import axios from 'axios';
 
 export const App = () => {
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2RmZWMzYTM0MWQ5YjhmNzYyMDE1ZSIsImlhdCI6MTY2OTQ2MjU4OCwiZXhwIjoxNjY5NDY5Nzg4fQ.ycYqIRathbgiD2jTuhafAAQ-cd79xk28tA3yjOJZJsU';
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
   const dispatch = useDispatch();
   const { isModalAddOpen } = useSelector(state => state.transactions);
   const isMobie = useMedia('(max-width: 767px)');
@@ -106,7 +111,7 @@ export const App = () => {
             }
           />
           <Route
-            path="statistic"
+            path="/statistic"
             element={
               <PrivateRoute>
                 <Chart
@@ -148,45 +153,7 @@ export const App = () => {
                     },
                   ]}
                 />
-                <DiagramTab
-                  data={[
-                    {
-                      id: 1,
-                      type: '+',
-                      category: 'Other',
-                      sum: '300.00',
-                      balance: '6900.00',
-                    },
-                    {
-                      id: 2,
-                      type: '-',
-                      category: 'Car',
-                      sum: '700.00',
-                      balance: '6200.00',
-                    },
-                    {
-                      id: 3,
-                      type: '+',
-                      category: 'Wages',
-                      sum: '3000.00',
-                      balance: '9200.00',
-                    },
-                    {
-                      id: 4,
-                      type: '-',
-                      category: 'Other',
-                      sum: '1000.00',
-                      balance: '8200.00',
-                    },
-                    {
-                      id: 5,
-                      type: '-',
-                      category: 'Shopping',
-                      sum: '250.00',
-                      balance: '7950.00',
-                    },
-                  ]}
-                />
+                <DiagramTab />
               </PrivateRoute>
             }
           />

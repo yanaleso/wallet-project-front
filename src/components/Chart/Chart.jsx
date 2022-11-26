@@ -39,12 +39,13 @@ const Chart = () => {
         backgroundColor: [
           '#FED057',
           '#FFD8D0',
-          '#FD9498',
+
           '#C5BAFF',
           '#6E78E8',
           '#81E1FF',
           '#FD9498',
           '#C5BAFF',
+          '#FD9498',
         ],
 
         borderWidth: 0,

@@ -1,12 +1,11 @@
-import { DiagramTabItem, DiagramTabMobItem } from './DiagramTabItem';
+import { DiagramTabItem } from './DiagramTabItem';
 import { Formik } from 'formik';
 import Select from 'react-select';
 import { months } from 'helpers/monthList';
 import { years } from 'helpers/yearList';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllStatistic } from 'redux/statistic/statisticOperation';
-
 import {
   StyledTable,
   StyledTableHeader,
@@ -15,34 +14,38 @@ import {
   StyledTableFooter,
   StyledFilters,
 } from './DiagramTab.styled';
-import { getStatistic } from 'redux/statistic/statisticSelectors';
+import { getStatistic } from 'redux/statistic/statisticOperation';
 
-const DiagramTab = ({ data }) => {
+const DiagramTab = () => {
   const dispatch = useDispatch();
-  const { transaction, isLoading, error } = useSelector(getStatistic);
-
   useEffect(() => {
-    dispatch(getAllStatistic());
+    dispatch(getStatistic());
   }, [dispatch]);
 
+  const res = useSelector(selectAllStatistic);
+  const data = res.statistic;
+
+  console.log(res.statistic);
   const screenWidth = window.screen.width;
 
   const incomeTotal = data
     .filter(data => data.type === '+')
-    .reduce((total, data) => total + Number(data.sum), 0);
+    .reduce((total, data) => total + Number(data.totalSum), 0);
 
   const expensesTotal = data
     .filter(data => data.type !== '+')
-    .reduce((total, data) => total + Number(data.sum), 0);
+    .reduce((total, data) => total + Number(data.totalSum), 0);
 
-  const balance = data.reduce((total, data) => total + Number(data.sum), 0);
-  console.log(balance);
+  const balance = data.reduce(
+    (total, data) => total + Number(data.totalSum),
+    0
+  );
 
   if (screenWidth >= 768) {
     return (
       <>
-        {isLoading && <b>Loading tasks...</b>}
-        {error && <b>{error}</b>}
+        {/* {isLoading && <b>Loading tasks...</b>}
+        {error && <b>{error}</b>} */}
         <StyledTable>
           <Formik>
             <StyledFilters>
@@ -124,10 +127,10 @@ const DiagramTab = ({ data }) => {
           </StyledTableHeader>
 
           <StyledTableBody>
-            {data.map(({ id, type, category, sum, balance }) => (
+            {data.map(({ _id, type, totalSum }) => (
               <DiagramTabItem
-                key={id}
-                transaction={{ id, type, category, sum }}
+                //key={id}
+                statistic={{ _id, type, totalSum }}
               />
             ))}
           </StyledTableBody>
@@ -147,10 +150,10 @@ const DiagramTab = ({ data }) => {
   } else {
     return (
       <StyledWrap>
-        {data.map(({ id, type, category, sum, balance }) => (
-          <DiagramTabMobItem
-            key={id}
-            transaction={{ id, type, category, sum, balance }}
+        {data.map(({ _id, type, totalSum, balance }) => (
+          <DiagramTabItem
+            //key={id}
+            statistic={{ _id, type, totalSum, balance }}
           />
         ))}
       </StyledWrap>

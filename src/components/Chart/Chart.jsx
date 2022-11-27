@@ -8,7 +8,6 @@ import {
 import { Doughnut } from 'react-chartjs-2';
 import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
 import { useSelector } from 'react-redux';
-//import { categoriesColors } from '../../helpers/categoriesColors';
 
 ChartJS.register(ArcElement, Tooltip, Legend, DoughnutController);
 

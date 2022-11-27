@@ -3,16 +3,74 @@ import {
   CurrencyList,
   CurrencyBox,
   ImageVektor,
-  CurrencyItem,
 } from './Currency.styled';
 import grafSvg from '../../images/currencyVektor.svg';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Loader } from 'components/Spinner/Spinner.styled';
+import CurrencyListItem from './CurrencyListItem';
 
-const kurs = [
-  { ccy: 'USD', base_ccy: 'UAH', buy: '39.50000', sale: '40.00000' },
-  { ccy: 'EUR', base_ccy: 'UAH', buy: '39.70000', sale: '40.70000' },
-];
+const getApiMono = async () => {
+  const res = await axios
+    .get('https://api.monobank.ua/bank/currency')
+    .then(res => {
+      const date = new Date();
+      localStorage.setItem('getMono', JSON.stringify(res.data));
+      localStorage.setItem('date', JSON.stringify(+date));
+      return res;
+    })
+    .catch(error => console.log(error.message));
+  return res.data;
+};
 
 const Currency = () => {
+  const [arrow, setArrow] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getCurrency = async () => {
+      setLoading(true);
+
+      const savedApiMono = localStorage.getItem('getMono');
+      const parsedApiMono = JSON.parse(savedApiMono);
+
+      const savedApiDate = localStorage.getItem('date');
+      const parsedApiDate = JSON.parse(savedApiDate);
+
+      const date = new Date();
+
+      const update = date - parsedApiDate >= 3600000;
+
+      console.log(update);
+      if (!parsedApiDate) {
+        localStorage.setItem('date', JSON.stringify(+date));
+      }
+
+      if (update) {
+        setLoading(true);
+        console.log('let`s go');
+        await getApiMono();
+      }
+
+      if (parsedApiMono) {
+        const arrow = parsedApiMono.slice(0, 2);
+        setArrow(arrow);
+        return;
+      }
+
+      try {
+        const data = await getApiMono();
+        const newArrow = data.slice(0, 2);
+        setArrow(newArrow);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getCurrency();
+    setLoading(false);
+  }, []);
+
   return (
     <CurrencyBox>
       <PrivatTableList>
@@ -21,15 +79,10 @@ const Currency = () => {
         <li>Sale</li>
       </PrivatTableList>
       <CurrencyList>
-        {kurs.map(({ ccy, buy, sale }) => (
-          <CurrencyItem key={ccy}>
-            <p>{ccy}</p>
-            <p>{Number(buy).toFixed(2)}</p>
-            <p>{Number(sale).toFixed(2)}</p>
-          </CurrencyItem>
-        ))}
+        {!loading ? <CurrencyListItem arrow={arrow} /> : <Loader />}
       </CurrencyList>
-      <ImageVektor src={grafSvg} alt="" />
+
+      <ImageVektor src={grafSvg} alt="vektor" />
     </CurrencyBox>
   );
 };

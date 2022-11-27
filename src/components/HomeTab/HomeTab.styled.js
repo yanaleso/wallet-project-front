@@ -66,6 +66,7 @@ export const StyledTableBody = styled.ul`
   li {
     align-items: center;
     height: 52px;
+    /* padding: 8px 0 ; */
     &:not(:last-child) {
       border-bottom: 1px solid #dcdcdf;
     }
@@ -75,6 +76,7 @@ export const StyledTableBody = styled.ul`
   }
   li > p {
     margin: 0;
+    line-height: 1.12;
     @media (min-width: 768px) {
       &:nth-child(1) {
         width: 15%;
@@ -86,6 +88,10 @@ export const StyledTableBody = styled.ul`
       }
       &:nth-child(3) {
         width: 20%;
+      }
+      span{
+        display: block;
+        max-width: 106px;
       }
       &:nth-child(4) {
         width: 25%;

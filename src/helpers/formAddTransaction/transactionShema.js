@@ -9,6 +9,6 @@ export const transactionShema = Yup.object().shape({
 
   comment: Yup.string()
     .min(2, 'Must be longer than 2 latters')
-    .max(10, 'Must be shorter than 10 latters')
+    .max(20, 'Must be shorter than 20 latters')
     .required('This field is required'),
 });

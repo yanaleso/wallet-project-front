@@ -12,14 +12,14 @@ const HomeTabItem = forwardRef(({ transaction }, ref) => {
   <>
     <p>{currenrDate}</p>
     <p>{getSymbolType(typeOperation)}</p>
-    <p>{category}</p>
+    <p><span>{category}</span></p>
     <p>{comment}</p>
     <p style={{ color: typeOperation === "income" ? '#24CCA7' : '#FF6596' }}>{amount}</p>
     <p>{balanceAfterTransaction}</p>
   </>
 
   const content = ref
-    ? <li ref={ref} style={{background: "tomato"}}>{bodyTransaction}</li>
+    ? <li ref={ref}>{bodyTransaction}</li>
     : <li>{bodyTransaction}</li>
 
   return content
@@ -35,7 +35,7 @@ const HomeTabMobItem = forwardRef(({ transaction }, ref) => {
   </>
 
   const content = ref
-    ? <li ref={ref} style={{background: "tomato"}}>Balance {bodyTransaction}</li>
+    ? <li ref={ref} >Balance {bodyTransaction}</li>
     : <li>Balance {bodyTransaction}</li>
       
   return <StyledList style={{ 'borderLeft': typeOperation === "income" ? '5px solid #24CCA7' : '5px solid#FF6596' }}>

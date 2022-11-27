@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 import DiagramTab from './DiagramTab';
 import Chart from './Chart';
 import DashboardPage from '../pages/DashboardPage';
@@ -16,6 +17,7 @@ import { refreshUser } from 'redux/auth/authOperation';
 import Currency from './Currency';
 import { useMedia } from 'react-use';
 import { getAllTransactions } from 'redux/transactions/transactionOperations';
+import { nightTheme, dayTheme } from '../theme';
 
 import axios from 'axios';
 import NotFoundPage from 'pages/NotFoundPage';
@@ -30,6 +32,7 @@ export const App = () => {
   const isMobie = useMedia('(max-width: 767px)');
 
   const dispatch = useDispatch();
+  const isDarkTheme = useSelector(store => store.theme.isNightTheme);
   const { isModalAddOpen } = useSelector(state => state.transactions);
   const { transactions } = useSelector(state => state.transactions);
 
@@ -37,16 +40,14 @@ export const App = () => {
   const observer = useRef(null);
 
   const lastElement = useCallback(item => {
-
     const options = {
       // rootMargin: '500px',
       // threshold: 0.5,
     };
 
     observer.current = new IntersectionObserver(entries => {
-
       if (entries[0].isIntersecting) {
-        observer.current.unobserve(entries[0].target)
+        observer.current.unobserve(entries[0].target);
         setPageNum(prev => prev + 1);
       }
     }, options);
@@ -54,7 +55,7 @@ export const App = () => {
     if (item) {
       observer.current.observe(item);
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     dispatch(getAllTransactions(pageNum));
@@ -69,7 +70,7 @@ export const App = () => {
   }
 
   return (
-    <>
+    <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
 
@@ -258,6 +259,6 @@ export const App = () => {
           <FormTransaction />
         </ModalAddTransaction>
       )}
-    </>
+    </ThemeProvider>
   );
 };

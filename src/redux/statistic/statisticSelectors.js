@@ -1,1 +1,1 @@
-export const getStatistic = state => state.transactions;
+export const selectAllStatistic = state => state.statistic;

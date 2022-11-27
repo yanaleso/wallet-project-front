@@ -7,7 +7,7 @@ import {
 } from './authOperation';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { firstName: null, email: null, balance: 0 },
   token: null,
   isLoggedIn: false,
   isRefreshingUser: false,
@@ -36,7 +36,7 @@ const authSlice = createSlice({
       state.error = action.payload;
     });
     builder.addCase(userLogout.fulfilled, state => {
-      state.user = { name: null, email: null };
+      state.user = { name: null, email: null, balance: 0 };
       state.token = null;
       state.isLoggedIn = false;
     });
@@ -49,9 +49,9 @@ const authSlice = createSlice({
       state.refreshLoading = false;
     });
     builder.addCase(refreshUser.rejected, state => {
-      state.user = { name: null, email: null };
+      state.user = { name: null, email: null, balance: 0 };
       state.token = null;
-      // state.isLoggedIn = false;
+      state.isLoggedIn = false;
       state.refreshLoading = false;
     });
     builder.addCase(refreshUser.pending, state => {

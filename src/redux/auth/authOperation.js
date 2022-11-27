@@ -17,7 +17,6 @@ export const userRegistration = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/register', userData);
-      console.log(data);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -64,7 +63,7 @@ export const refreshUser = createAsyncThunk(
 
     token.set(persistedToken);
     try {
-      const { data } = await axios('/users/refresh');
+      const { data } = await axios('/users/current');
       return data;
     } catch (error) {
       RejectWithValue();

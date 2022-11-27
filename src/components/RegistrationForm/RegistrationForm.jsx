@@ -8,6 +8,7 @@ import Logo from 'components/Logo';
 import { ReactComponent as EmailIcon } from 'images/email.svg';
 import { ReactComponent as PasswordIcon } from 'images/password.svg';
 import { ReactComponent as UserIcon } from 'images/user.svg';
+import ThemeToggle from 'components/ThemeToggle/ThemeToggle';
 import {
   FormWrap,
   LogoWrap,
@@ -45,6 +46,7 @@ const RegisterForm = () => {
       <LogoWrap>
         <Logo />
       </LogoWrap>
+      <ThemeToggle />
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}

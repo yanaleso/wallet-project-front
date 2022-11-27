@@ -5,7 +5,7 @@ import { useMedia } from 'react-use';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
-
+import { ThemeProvider } from 'styled-components';
 import { refreshUser } from 'redux/auth/authOperation';
 import { getNextPage } from 'redux/transactions/transactionsSlice';
 import { getAllTransactions } from 'redux/transactions/transactionOperations';
@@ -19,6 +19,7 @@ import PrivateRoute from './PrivateRoute';
 import ModalAddTransaction from './ModalAddTransaction';
 import ButtonAddTransactions from './ButtonAddTransactions';
 import FormTransaction from './FormTransaction/FormTransaction';
+import { nightTheme, dayTheme } from '../theme';
 
 import LoginPage from '../pages/LoginPage';
 import DashboardPage from '../pages/DashboardPage';
@@ -34,6 +35,7 @@ export const App = () => {
   const isMobie = useMedia('(max-width: 767px)');
 
   const dispatch = useDispatch();
+  const isDarkTheme = useSelector(store => store.theme.isNightTheme);
   const { pageNum } = useSelector(state => state.transactions);
   const { transactions } = useSelector(state => state.transactions);
   const { isModalAddOpen } = useSelector(state => state.transactions);
@@ -43,14 +45,12 @@ export const App = () => {
   const observer = useRef(null);
 
   const lastElement = useCallback(item => {
-
     const options = {
       rootMargin: '5px',
       threshold: 1,
     };
 
     observer.current = new IntersectionObserver(entries => {
-
       if (entries[0].isIntersecting) {
         observer.current.unobserve(entries[0].target)
         dispatch(getNextPage())
@@ -76,7 +76,7 @@ export const App = () => {
   }
 
   return (
-    <>
+    <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
 
@@ -227,6 +227,6 @@ export const App = () => {
           <FormTransaction />
         </ModalAddTransaction>
       )}
-    </>
+    </ThemeProvider>
   );
 };

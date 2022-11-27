@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../../theme';
 
 export const Container = styled.div`
   min-width: 280px;
@@ -8,7 +7,7 @@ export const Container = styled.div`
   padding: 8px 40px;
   border-radius: 30px;
 
-  background-color: ${theme.colors.primaryBg};
+  background-color: ${p => p.theme.colors.primaryBg};
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     width: 336px;
     margin-bottom: 0;
@@ -20,27 +19,27 @@ export const Container = styled.div`
 
 export const Title = styled.p`
   margin-bottom: 12px;
-  font-family: ${theme.fonts.body};
-  font-size: ${theme.fontSizes.xs};
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1.5;
 
-  color: ${theme.colors.secondaryDarkText};
+  color: ${p => p.theme.colors.secondaryDarkText};
   text-transform: uppercase;
 `;
 
 export const CurrencySign = styled.span`
-  font-family: ${theme.fonts.heading};
-  font-size: ${theme.fontSizes.l};
+  font-family: ${p => p.theme.fonts.heading};
+  font-size: ${p => p.theme.fontSizes.l};
   line-height: 1.5;
 
-  color: ${theme.colors.primaryText};
+  color: ${p => p.theme.colors.primaryText};
 `;
 
 export const Text = styled.span`
-  font-family: ${theme.fonts.headingBold};
-  font-size: ${theme.fontSizes.l};
-  font-weight: ${theme.fontWeights.bold};
+  font-family: ${p => p.theme.fonts.headingBold};
+  font-size: ${p => p.theme.fontSizes.l};
+  font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.5;
 
-  color: ${theme.colors.primaryText};
+  color: ${p => p.theme.colors.primaryText};
 `;

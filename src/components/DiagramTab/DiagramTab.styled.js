@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../../theme';
 import { Field } from 'formik';
 
 export const StyledFilters = styled.div`
@@ -121,7 +120,7 @@ export const StyledTable = styled.div`
 export const StyledTableBody = styled.ul`
   margin: 0;
   padding: 0 20px;
-  font-size: ${theme.fontSizes.s};
+  font-size: ${p => p.theme.fontSizes.s};
   line-height: 1.5;
   li {
     align-items: center;
@@ -153,7 +152,7 @@ export const StyledTableBody = styled.ul`
       }
       &:nth-child(5) {
         width: 10%;
-        font-weight: ${theme.fontWeights.bold};
+        font-weight: ${p => p.theme.fontWeights.bold};
         display: flex;
         justify-content: flex-end;
       }

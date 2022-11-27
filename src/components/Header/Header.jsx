@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { IoExitOutline } from 'react-icons/io5';
 import Logo from 'components/Logo';
@@ -9,6 +10,7 @@ import {
   Text,
   TextName,
 } from './Header.styled';
+import ThemeToggle from 'components/ThemeToggle/ThemeToggle';
 
 const Header = ({ setIsOpenExitModal }) => {
   const disableScrollOff = () => {
@@ -16,12 +18,15 @@ const Header = ({ setIsOpenExitModal }) => {
     setIsOpenExitModal();
   };
 
+  const { firstName } = useSelector(state => state.auth.user);
+
   return (
     <header>
       <Container>
         <Logo />
         <UserBox>
-          <TextName>Name</TextName>
+          <ThemeToggle />
+          <TextName>{ firstName }</TextName>
           <IconContext.Provider value={{ color: '#BDBDBD', size: '25' }}>
             <ButtonExit onClick={disableScrollOff}>
               <IoExitOutline />

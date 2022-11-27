@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/wallet-project-front/static/css/main.34b35052.css",
-    "main.js": "/wallet-project-front/static/js/main.aa64f615.js",
+    "main.css": "/wallet-project-front/static/css/main.270ce63d.css",
+    "main.js": "/wallet-project-front/static/js/main.20a624c5.js",
     "static/media/Circe-Regular.ttf": "/wallet-project-front/static/media/Circe-Regular.f80cf2f1a50fc5107f4c.ttf",
     "static/media/Circe-Bold.ttf": "/wallet-project-front/static/media/Circe-Bold.d9332714c66b14bb30e5.ttf",
+    "static/media/Rectangle.png": "/wallet-project-front/static/media/Rectangle.570e6ef6c5ef58c50abb.png",
     "static/media/Poppins-Regular.ttf": "/wallet-project-front/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/Poppins-Bold.ttf": "/wallet-project-front/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
     "static/media/frameBig.png": "/wallet-project-front/static/media/frameBig.9ba04be8971316586062.png",
@@ -20,11 +21,11 @@
     "static/media/home.svg": "/wallet-project-front/static/media/home.7bb7687f8c8e2af95acaec211ef60ddc.svg",
     "static/media/plus.svg": "/wallet-project-front/static/media/plus.6194a661e88e1e5113d28da2398b6404.svg",
     "static/media/minus.svg": "/wallet-project-front/static/media/minus.c1930871236002c803c7b6a6c0b99024.svg",
-    "main.34b35052.css.map": "/wallet-project-front/static/css/main.34b35052.css.map",
-    "main.aa64f615.js.map": "/wallet-project-front/static/js/main.aa64f615.js.map"
+    "main.270ce63d.css.map": "/wallet-project-front/static/css/main.270ce63d.css.map",
+    "main.20a624c5.js.map": "/wallet-project-front/static/js/main.20a624c5.js.map"
   },
   "entrypoints": [
-    "static/css/main.34b35052.css",
-    "static/js/main.aa64f615.js"
+    "static/css/main.270ce63d.css",
+    "static/js/main.20a624c5.js"
   ]
 }

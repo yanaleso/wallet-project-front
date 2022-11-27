@@ -26,10 +26,10 @@ import DashboardPage from '../pages/DashboardPage';
 import NotFoundPage from 'pages/NotFoundPage';
 
 
-import axios from 'axios';
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODI2ZDViYzQ3NzZhMzNiZGVkMWQzMCIsImlhdCI6MTY2OTQ5MjA3NiwiZXhwIjoxNjcwNzAxNjc2fQ.qgY622DOh_akzHa8IqfWjLNWTAGfX2-zQz5-oFZAMk4';
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+// import axios from 'axios';
+// const token =
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODI2ZDViYzQ3NzZhMzNiZGVkMWQzMCIsImlhdCI6MTY2OTQ5MjA3NiwiZXhwIjoxNjcwNzAxNjc2fQ.qgY622DOh_akzHa8IqfWjLNWTAGfX2-zQz5-oFZAMk4';
+// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 export const App = () => {
   const isMobie = useMedia('(max-width: 767px)');
@@ -39,6 +39,7 @@ export const App = () => {
   const { pageNum } = useSelector(state => state.transactions);
   const { transactions } = useSelector(state => state.transactions);
   const { isModalAddOpen } = useSelector(state => state.transactions);
+  const { isLoggedIn } = useSelector(state => state.auth);
   // console.log("App ~ pageNum", pageNum);
   // console.log("App ~ transactions", transactions);
 
@@ -64,8 +65,10 @@ export const App = () => {
   },[dispatch]);
 
   useEffect(() => {
-    dispatch(getAllTransactions(pageNum));
-  }, [dispatch, pageNum]);
+    if (isLoggedIn) {
+      dispatch(getAllTransactions(pageNum));
+    } 
+  }, [dispatch, isLoggedIn, pageNum]);
 
   useEffect(() => {
     dispatch(refreshUser());

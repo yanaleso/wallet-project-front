@@ -3,10 +3,32 @@ import { useMedia } from 'react-use';
 
 import { HomeTabItem, HomeTabMobItem } from './HomeTabItem';
 import { StyledTable, StyledTableHeader, StyledTableBody, StyledWrap } from './HomeTab.styled';
+// import { useSelector } from 'react-redux';
 
 
 const HomeTab = forwardRef(({ data }, ref) => {
   const isMobie = useMedia('(max-width: 767px)');
+
+  // const { totalBalance } = useSelector(state => state.transactions);
+
+  // const getBalances = () => {
+  //   const balances = data.reduce((acc, {amount, typeOperation}, idx) => {
+  
+  //   return [
+  //     ...acc, typeOperation === "expense" 
+  //     ? acc[idx] += amount 
+  //     : acc[idx] -= amount ]
+  
+  //   },[Number(totalBalance)])
+
+
+  //   return balances
+  // }
+
+  // const balances = getBalances()
+  // console.log("HomeTab ~ balances", balances);
+
+
 
   return (
     <div>

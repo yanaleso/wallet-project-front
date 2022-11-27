@@ -1,24 +1,19 @@
 import styled from 'styled-components';
-import EllipseRed from '../../images/EllipseRed.png';
-import EllipseViolet from '../../images/EllipseViolet.png';
-// import { theme } from '../../theme';
 
 export const Section = styled.section`
-  background-color: ${p => p.theme.colors.loginPageBg};
+  
   @media screen and (min-width: 768px) {
-    background-image: url(${EllipseViolet}), url(${EllipseRed});
-    background-position: 0 100%, 100% 0;
+    background-image: url(${p => p.bgImg});
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
   }
 `;
 
 export const Blur = styled.div`
   @media screen and (max-width: 767px) {
     background-color: ${p => p.theme.colors.secondaryBg};
-    backdrop-filter: blur(25px);
-  }
-  @media screen and (min-width: 768px) {
-    backdrop-filter: blur(50px);
   }
 `;
 

@@ -45,8 +45,6 @@ export const StyledTableHeader = styled.div`
 `;
 
 export const StyledTable = styled.div`
-  overflow: hidden;
-
   @media (max-width: 1279px) {
     width: 704px;
   }
@@ -62,17 +60,8 @@ export const StyledTableBody = styled.ul`
   font-size: ${p => p.theme.fontSizes.m};
   line-height: 1.5;
 
-  overflow: auto;
-  height: 255px;
-  width: 730px;
-
-  @media (max-width: 1279px) {
-    width: 712px;
-  }
-
-  @media (min-width: 1280px) {
-    width: 730px;
-  }
+  overflow-y: scroll;
+  height: 260px;
 
   li {
     align-items: center;

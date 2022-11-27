@@ -1,46 +1,32 @@
 import { forwardRef } from 'react';
 import { useMedia } from 'react-use';
+import { useSelector } from 'react-redux';
 
 import { HomeTabItem, HomeTabMobItem } from './HomeTabItem';
 import { StyledTable, StyledTableHeader, StyledTableBody, StyledWrap } from './HomeTab.styled';
-// import { useSelector } from 'react-redux';
+import { getBalances } from 'helpers/formAddTransaction/getBalance';
 
 
 const HomeTab = forwardRef(({ data }, ref) => {
   const isMobie = useMedia('(max-width: 767px)');
+  const { totalBalance } = useSelector(state => state.transactions);
 
-  // const { totalBalance } = useSelector(state => state.transactions);
-
-  // const getBalances = () => {
-  //   const balances = data.reduce((acc, {amount, typeOperation}, idx) => {
-  
-  //   return [
-  //     ...acc, typeOperation === "expense" 
-  //     ? acc[idx] += amount 
-  //     : acc[idx] -= amount ]
-  
-  //   },[Number(totalBalance)])
-
-
-  //   return balances
-  // }
-
-  // const balances = getBalances()
-  // console.log("HomeTab ~ balances", balances);
-
-
+  const balances = getBalances(data, totalBalance);
 
   return (
     <div>
       {isMobie ? (
         <StyledWrap>
-          {data.map(( { _id, date, typeOperation, category, comment, amount, balanceAfterTransaction,}, idx) => {
+          {data.map(( { _id, date, typeOperation, category, comment, amount, }, idx) => {
+
+            const itemBalance = balances[idx]
+
             if (data.length === idx + 1) {
               return (
                 <HomeTabMobItem
                   ref={ref}
                   key={_id}
-                  transaction={{ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction,}}
+                  transaction={{ _id, date, typeOperation, category, comment, amount, itemBalance,}}
                 />
               );
             }
@@ -48,7 +34,7 @@ const HomeTab = forwardRef(({ data }, ref) => {
             return (
               <HomeTabMobItem
                 key={_id}
-                transaction={{ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction,}}
+                transaction={{ _id, date, typeOperation, category, comment, amount, itemBalance,}}
               />
             );
             }
@@ -66,13 +52,16 @@ const HomeTab = forwardRef(({ data }, ref) => {
           </StyledTableHeader>
 
           <StyledTableBody>
-            {data.map(({ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction, }, idx) => {
+            {data.map(({ _id, date, typeOperation, category, comment, amount }, idx) => {
+
+              const itemBalance = balances[idx]
+
               if (data.length === idx + 1) {
                 return (
                   <HomeTabItem
                     key={_id}
                     ref={ref}
-                    transaction={{ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction, }}
+                    transaction={{ _id, date, typeOperation, category, comment, amount, itemBalance, }}
                   />
                 );
               }
@@ -80,7 +69,7 @@ const HomeTab = forwardRef(({ data }, ref) => {
               return (
                 <HomeTabItem
                   key={_id}
-                  transaction={{ _id, date, typeOperation, category, comment, amount, balanceAfterTransaction, }}
+                  transaction={{ _id, date, typeOperation, category, comment, amount, itemBalance, }}
                 />
               );
               }

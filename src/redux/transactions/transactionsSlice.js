@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getBalance } from 'helpers/formAddTransaction/getBalance';
 import { addNewTransaction, getAllTransactions } from './transactionOperations';
 
 const initialState = {
@@ -48,12 +47,13 @@ const transactionsSlice = createSlice({
     });
     builder.addCase(getAllTransactions.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.transactions = [...state.transactions, ...action.payload];
+      state.transactions = [...state.transactions, ...action.payload.transactions];
 
-      if (action.payload.length > 0 && state.pageNum === 1) {
-        state.totalBalance = getBalance(action.payload);
+      if (action.payload.transactions.length > 0 && state.pageNum === 1) {
+        state.totalBalance = action.payload.userBalance;
       }
     });
+    
     builder.addCase(getAllTransactions.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
@@ -61,7 +61,6 @@ const transactionsSlice = createSlice({
   },
 });
 
-export const { toggleModalAdd, getNextPage, resetTransactions } =
-  transactionsSlice.actions;
+export const { toggleModalAdd, getNextPage, resetTransactions } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;

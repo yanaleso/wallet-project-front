@@ -5,10 +5,9 @@ import Navigation from 'components/Navigation';
 import Balance from 'components/Balance';
 import { useMedia } from 'react-use';
 import ModalLogout from 'components/ModalLogout';
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import bgImg from '../../images/Rectangle.png'
-import { useDispatch } from 'react-redux';
 import {
   Section,
   Blur,
@@ -20,7 +19,7 @@ import {
   SideBar,
 } from './Dashboard.styled';
 import { useState } from 'react';
-import { getStatistic } from '../../redux/statistic/statisticOperation';
+// import { getStatistic } from '../../redux/statistic/statisticOperation';
 
 
 
@@ -31,10 +30,10 @@ const DashboardPage = () => {
 
   const [openExitModal, setIsOpenExitModal] = useState(false);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getStatistic());
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getStatistic());
+  // }, [dispatch]);
 
   return (
     <SharedLayout>

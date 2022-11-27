@@ -167,6 +167,7 @@ export const ButtonAdd = styled.button`
   width: 100%;
   height: 50px;
   border-radius: 20px;
+  cursor: pointer;
 
   font-size: ${p => p.theme.fontSizes.m};
   line-height: 26px;
@@ -184,6 +185,7 @@ export const ButtonCancel = styled.button`
   width: 100%;
   height: 50px;
   border-radius: 20px;
+  cursor: pointer;
 
   font-size: ${p => p.theme.fontSizes.m};
   line-height: 26px;

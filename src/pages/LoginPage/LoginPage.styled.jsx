@@ -80,7 +80,7 @@ export const ImageContainer = styled.div`
   }
 `;
 export const Text = styled.p`
-  font-family: 'Poppins';
+  font-family: ${p => p.theme.fonts.headingBold};
   font-style: normal;
   font-weight: 400;
   font-size: 30px;

@@ -5,8 +5,9 @@ import Navigation from 'components/Navigation';
 import Balance from 'components/Balance';
 import { useMedia } from 'react-use';
 import ModalLogout from 'components/ModalLogout';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import {
   Section,
   Blur,
@@ -18,6 +19,7 @@ import {
   SideBar,
 } from './Dashboard.styled';
 import { useState } from 'react';
+import { getStatistic } from '../../redux/statistic/statisticOperation';
 
 const DashboardPage = () => {
   const isMobie = useMedia('(max-width: 767px)');
@@ -25,6 +27,11 @@ const DashboardPage = () => {
   const isDesktop = useMedia('(min-width: 1280px)');
 
   const [openExitModal, setIsOpenExitModal] = useState(false);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getStatistic());
+  }, [dispatch]);
 
   return (
     <SharedLayout>

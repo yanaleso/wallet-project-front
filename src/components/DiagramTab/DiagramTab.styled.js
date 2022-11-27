@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../../theme';
 import { Field } from 'formik';
 
 export const StyledFilters = styled.div`
@@ -121,7 +120,7 @@ export const StyledTable = styled.div`
 export const StyledTableBody = styled.ul`
   margin: 0;
   padding: 0 20px;
-  font-size: ${theme.fontSizes.s};
+  font-size: ${p => p.theme.fontSizes.s};
   line-height: 1.5;
   li {
     align-items: center;
@@ -138,7 +137,7 @@ export const StyledTableBody = styled.ul`
     margin: 0;
     @media (min-width: 768px) {
       &:nth-child(1) {
-        width: 15%;
+        width: 40%;
       }
       &:nth-child(2) {
         width: 15%;
@@ -153,7 +152,7 @@ export const StyledTableBody = styled.ul`
       }
       &:nth-child(5) {
         width: 10%;
-        font-weight: ${theme.fontWeights.bold};
+        font-weight: ${p => p.theme.fontWeights.bold};
         display: flex;
         justify-content: flex-end;
       }
@@ -216,4 +215,14 @@ export const StyledWrap = styled.div`
       margin-bottom: 8px;
     }
   }
+`;
+
+export const StyledItem = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+export const StyledInnerSpan = styled.span`
+  width: '24px';
+  height: '24px';
+  marginright: '10px';
 `;

@@ -59,4 +59,5 @@ export const Text = styled.span`
 
 export const TextName = styled.span`
     font-size: ${p => p.theme.fontSizes.m};
+    margin-left: 8px;
 `;

@@ -140,30 +140,33 @@ const DiagramTab = () => {
 
           <StyledTableBody>
             <ul>
-              {data.map(({ _id, type, totalSum }) => (
-                <li key={_id}>
-                  <StyledItem>
-                    <StyledInnerSpan
-                      style={{
-                        width: '24px',
-                        height: '24px',
-                        marginRight: '10px',
-                        background: '#24CCA7',
-                      }}
-                    ></StyledInnerSpan>
-                    <p>{_id}</p>
-                  </StyledItem>
-                  <p>
-                    <span
-                      style={{
-                        color: type === 'income' ? '#24CCA7' : '#FF6596',
-                      }}
-                    >
-                      {totalSum}
-                    </span>
-                  </p>
-                </li>
-              ))}
+              {data.map(({ _id, type, totalSum }) => {
+                if (type==="expense"){
+                  return (<li key={_id}>
+                    <StyledItem>
+                      <StyledInnerSpan
+                      category={_id}
+                        style={{
+                          width: '24px',
+                          height: '24px',
+                          marginRight: '10px',
+                          
+                        }}
+                      ></StyledInnerSpan>
+                      <p>{_id}</p>
+                    </StyledItem>
+                    <p>
+                      <span
+                        style={{
+                          color: type === 'income' ? '#24CCA7' : '#FF6596',
+                        }}
+                      >
+                        {totalSum}
+                      </span>
+                    </p>
+                  </li>)
+                }
+              })}
             </ul>
           </StyledTableBody>
           <StyledTableFooter>

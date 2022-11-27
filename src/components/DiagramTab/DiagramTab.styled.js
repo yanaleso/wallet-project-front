@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { dayTheme } from '../../theme';
 import { Field } from 'formik';
 
 export const StyledFilters = styled.div`
@@ -120,7 +121,7 @@ export const StyledTable = styled.div`
 export const StyledTableBody = styled.ul`
   margin: 0;
   padding: 0 20px;
-  font-size: ${p => p.theme.fontSizes.s};
+  font-size: ${dayTheme.fontSizes.s};
   line-height: 1.5;
   li {
     align-items: center;
@@ -152,7 +153,7 @@ export const StyledTableBody = styled.ul`
       }
       &:nth-child(5) {
         width: 10%;
-        font-weight: ${p => p.theme.fontWeights.bold};
+        font-weight: ${dayTheme.fontWeights.bold};
         display: flex;
         justify-content: flex-end;
       }
@@ -221,8 +222,19 @@ export const StyledItem = styled.div`
   display: flex;
   justify-content: flex-start;
 `;
-export const StyledInnerSpan = styled.span`
+export const StyledInnerSpan = styled.div`
+display: block;
   width: '24px';
   height: '24px';
-  marginright: '10px';
+  margin-right: '10px';
+  background: ${ 
+  props => props.category === "Main" ? '#FED057' :
+                        props.category === 'Food' ? '#FFD8D0' : 
+                        props.category === 'Auto' ? '#FD9498' : 
+                        props.category === 'Development' ? '#C5BAFF' : 
+                        props.category === 'Children' ? '#6E78E8' : 
+                        props.category === 'House' ? '#4A56E2' : 
+                        props.category === 'Education' ? '#81E1FF' : 
+                        props.category === 'Leisure' ? '#24CCA7' : '#00AD84'}
+                      
 `;

@@ -1,12 +1,12 @@
-import { DiagramTabItem, DiagramTabMobItem } from './DiagramTabItem';
+import { DiagramTabItem } from './DiagramTabItem';
 import { Formik } from 'formik';
 import Select from 'react-select';
 import { months } from 'helpers/monthList';
 import { years } from 'helpers/yearList';
+//import { categoriesColors } from 'helpers/categoriesColors';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllStatistic } from 'redux/statistic/statisticOperation';
-
 import {
   StyledTable,
   StyledTableHeader,
@@ -14,36 +14,50 @@ import {
   StyledWrap,
   StyledTableFooter,
   StyledFilters,
+  StyledItem,
+  StyledInnerSpan,
 } from './DiagramTab.styled';
-import { getStatistic } from 'redux/statistic/statisticSelectors';
+import { getStatistic } from 'redux/statistic/statisticOperation';
 
-const DiagramTab = ({ data }) => {
+const DiagramTab = () => {
   const dispatch = useDispatch();
   const { transaction, isLoading, error } = useSelector(getStatistic);
   console.log(transaction);
 
   useEffect(() => {
-    dispatch(getAllStatistic());
+    dispatch(getStatistic());
   }, [dispatch]);
+
+  const res = useSelector(selectAllStatistic);
+  const data = res.statistic;
 
   const screenWidth = window.screen.width;
 
   const incomeTotal = data
-    .filter(data => data.type === '+')
-    .reduce((total, data) => total + Number(data.sum), 0);
+    .filter(data => data.type === 'income')
+    .reduce((total, data) => total + Number(data.totalSum), 0);
 
   const expensesTotal = data
-    .filter(data => data.type !== '+')
-    .reduce((total, data) => total + Number(data.sum), 0);
+    .filter(data => data.type !== 'income')
+    .reduce((total, data) => total + Number(data.totalSum), 0);
 
-  const balance = data.reduce((total, data) => total + Number(data.sum), 0);
-  console.log(balance);
+  // const categoryKey = categoriesColors.map(
+  //   categoriesColors => categoriesColors.category
+  // );
+  // const colorValue = categoriesColors.map(
+  //   categoriesColors => categoriesColors.background
+  // );
+
+  // const balance = data.reduce(
+  //   (total, data) => total + Number(data.totalSum),
+  //   0
+  // );
 
   if (screenWidth >= 768) {
     return (
       <>
-        {isLoading && <b>Loading tasks...</b>}
-        {error && <b>{error}</b>}
+        {/* {isLoading && <b>Loading tasks...</b>}
+        {error && <b>{error}</b>} */}
         <StyledTable>
           <Formik>
             <StyledFilters>
@@ -125,12 +139,32 @@ const DiagramTab = ({ data }) => {
           </StyledTableHeader>
 
           <StyledTableBody>
-            {data.map(({ id, type, category, sum, balance }) => (
-              <DiagramTabItem
-                key={id}
-                transaction={{ id, type, category, sum }}
-              />
-            ))}
+            <ul>
+              {data.map(({ _id, type, totalSum }) => (
+                <li key={_id}>
+                  <StyledItem>
+                    <StyledInnerSpan
+                      style={{
+                        width: '24px',
+                        height: '24px',
+                        marginRight: '10px',
+                        background: '#24CCA7',
+                      }}
+                    ></StyledInnerSpan>
+                    <p>{_id}</p>
+                  </StyledItem>
+                  <p>
+                    <span
+                      style={{
+                        color: type === 'income' ? '#24CCA7' : '#FF6596',
+                      }}
+                    >
+                      {totalSum}
+                    </span>
+                  </p>
+                </li>
+              ))}
+            </ul>
           </StyledTableBody>
           <StyledTableFooter>
             <li>
@@ -148,10 +182,10 @@ const DiagramTab = ({ data }) => {
   } else {
     return (
       <StyledWrap>
-        {data.map(({ id, type, category, sum, balance }) => (
-          <DiagramTabMobItem
-            key={id}
-            transaction={{ id, type, category, sum, balance }}
+        {data.map(({ _id, type, totalSum, balance }) => (
+          <DiagramTabItem
+            //key={id}
+            statistic={{ _id, type, totalSum, balance }}
           />
         ))}
       </StyledWrap>

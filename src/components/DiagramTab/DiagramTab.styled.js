@@ -138,7 +138,7 @@ export const StyledTableBody = styled.ul`
     margin: 0;
     @media (min-width: 768px) {
       &:nth-child(1) {
-        width: 15%;
+        width: 40%;
       }
       &:nth-child(2) {
         width: 15%;
@@ -216,4 +216,14 @@ export const StyledWrap = styled.div`
       margin-bottom: 8px;
     }
   }
+`;
+
+export const StyledItem = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+export const StyledInnerSpan = styled.span`
+  width: '24px';
+  height: '24px';
+  marginright: '10px';
 `;

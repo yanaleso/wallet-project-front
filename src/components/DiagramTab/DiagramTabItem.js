@@ -1,18 +1,9 @@
 import { StyledList } from './DiagramTab.styled';
+//import { useDispatch } from 'react-redux';
 
-const DiagramTabItem = ({ transaction }) => {
-  const { category, type, sum } = transaction;
-  return (
-    <li>
-      <p>{category}</p>
+const DiagramTabItem = ({ type, _id, totalSum }) => {
+  // const dispatch = useDispatch();
 
-      <p style={{ color: type === '+' ? '#24CCA7' : '#FF6596' }}>{sum}</p>
-    </li>
-  );
-};
-
-const DiagramTabMobItem = ({ transaction }) => {
-  const { type, category, sum, balance } = transaction;
   return (
     <StyledList
       style={{
@@ -20,19 +11,16 @@ const DiagramTabMobItem = ({ transaction }) => {
       }}
     >
       <li>
-        Category <span>{category}</span>
+        Category <span>{_id}</span>
       </li>
       <li>
         Sum{' '}
         <span style={{ color: type === '+' ? '#24CCA7' : '#FF6596' }}>
-          {sum}
+          {totalSum}
         </span>
-      </li>
-      <li>
-        Balance <span>{balance}</span>
       </li>
     </StyledList>
   );
 };
 
-export { DiagramTabItem, DiagramTabMobItem };
+export { DiagramTabItem };

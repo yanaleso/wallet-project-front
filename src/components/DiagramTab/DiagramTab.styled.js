@@ -227,7 +227,8 @@ display: block;
   width: '24px';
   height: '24px';
   margin-right: '10px';
-  background: ${ props => props.category === "Main" ? '#FED057' :
+  background: ${ 
+  props => props.category === "Main" ? '#FED057' :
                         props.category === 'Food' ? '#FFD8D0' : 
                         props.category === 'Auto' ? '#FD9498' : 
                         props.category === 'Development' ? '#C5BAFF' : 

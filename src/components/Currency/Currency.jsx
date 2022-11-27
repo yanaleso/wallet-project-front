@@ -41,14 +41,12 @@ const Currency = () => {
 
       const update = date - parsedApiDate >= 3600000;
 
-      console.log(update);
       if (!parsedApiDate) {
         localStorage.setItem('date', JSON.stringify(+date));
       }
 
       if (update) {
         setLoading(true);
-        console.log('let`s go');
         await getApiMono();
       }
 

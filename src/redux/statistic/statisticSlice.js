@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllStatistic } from './statisticOperation';
+import { getStatistic } from './statisticOperation';
 
 const initialState = {
-  transaction: [],
+  statistic: [],
   isLoading: false,
   error: null,
 };
@@ -11,12 +11,12 @@ const statisticSlice = createSlice({
   name: 'statistic',
   initialState,
   extraReducers: builder => {
-    builder.addCase(getAllStatistic.fulfilled, (state, action) => {
+    builder.addCase(getStatistic.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.transaction = action.payload;
+      state.statistic = action.payload;
       state.error = null;
     });
-    builder.addCase(getAllStatistic.rejected, (state, action) => {
+    builder.addCase(getStatistic.rejected, (state, action) => {
       state.error = action.payload;
     });
   },

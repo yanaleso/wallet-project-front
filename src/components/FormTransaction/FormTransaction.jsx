@@ -4,13 +4,16 @@ import { Formik } from 'formik';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Plus } from '../../images/plus.svg';
 import { ReactComponent as Minus } from '../../images/minus.svg';
 import { ReactComponent as Calendar } from '../../images/calender.svg';
 
 import { options } from 'helpers/formAddTransaction/options';
-import { toggleModalAdd } from 'redux/transactions/transactionsSlice';
+import {
+  resetTransactions,
+  toggleModalAdd,
+} from 'redux/transactions/transactionsSlice';
 
 import {
   ButtonAdd,
@@ -39,14 +42,12 @@ import {
 import { selectStyles } from 'helpers/formAddTransaction/selectStyles';
 import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
-import {
-  addNewTransaction,
-  getAllTransactions,
-} from 'redux/transactions/transactionOperations';
+import { addNewTransaction, getAllTransactions } from 'redux/transactions/transactionOperations';
 import { Box } from 'components/Box';
 
 const FormTransaction = () => {
   const dispatch = useDispatch();
+  const { pageNum } = useSelector(state => state.transactions);
 
   const initialValues = {
     comment: '',
@@ -85,7 +86,12 @@ const FormTransaction = () => {
     };
 
     await dispatch(addNewTransaction(transaction));
-    await dispatch(getAllTransactions());
+
+    await dispatch(resetTransactions());
+
+    if (pageNum === 1) {
+      await dispatch(getAllTransactions(1));
+    }
 
     dispatch(toggleModalAdd(false));
   };
@@ -113,14 +119,13 @@ const FormTransaction = () => {
                     onChange={handleChange}
                   />
 
-                  <Switch isChecked={values.typeOperation}>
+                  <Switch 
+                    isChecked={values.typeOperation}>
                     {values.typeOperation ? <Plus /> : <Minus />}
                   </Switch>
                 </CheckBoxLabel>
 
-                <TextExpense isChecked={values.typeOperation}>
-                  Expense
-                </TextExpense>
+                <TextExpense isChecked={values.typeOperation}>Expense</TextExpense>
               </CheckBoxWrapper>
 
               {!values.typeOperation && (
@@ -184,10 +189,7 @@ const FormTransaction = () => {
 
             <Box width="300px" margin="0 auto">
               <ButtonAdd type="submit">Add</ButtonAdd>
-
-              <ButtonCancel type="button" onClick={onCancelClick}>
-                Cancel
-              </ButtonCancel>
+              <ButtonCancel type="button" onClick={onCancelClick}>Cancel</ButtonCancel>
             </Box>
           </TransactionForm>
         )}

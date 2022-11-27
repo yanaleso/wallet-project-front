@@ -3,13 +3,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://wallet-project.onrender.com/api';
 
-export const getAllStatistic = createAsyncThunk(
-  'transaction/statistic',
-  async (userID, { rejectWithValue }) => {
+export const getStatistic = createAsyncThunk(
+  'transactions/statistics',
+  async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('./transaction/statistics');
-      console.log(data);
-      return data;
+      const res = await axios.get('/transactions/statistics');
+
+      return res.data;
     } catch (error) {
       return rejectWithValue('Error');
     }

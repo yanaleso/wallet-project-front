@@ -1,31 +1,34 @@
-import { useDispatch } from 'react-redux';
+import { useRef } from 'react';
 import { useEffect } from 'react';
+import { useCallback } from 'react';
+import { useMedia } from 'react-use';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import DiagramTab from './DiagramTab';
+import { refreshUser } from 'redux/auth/authOperation';
+import { getNextPage } from 'redux/transactions/transactionsSlice';
+import { getAllTransactions } from 'redux/transactions/transactionOperations';
+
 import Chart from './Chart';
-import DashboardPage from '../pages/DashboardPage';
-import LoginPage from '../pages/LoginPage';
 import HomeTab from './HomeTab';
-import ButtonAddTransactions from './ButtonAddTransactions';
+import Currency from './Currency';
+import DiagramTab from './DiagramTab';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import ModalAddTransaction from './ModalAddTransaction';
+import ButtonAddTransactions from './ButtonAddTransactions';
 import FormTransaction from './FormTransaction/FormTransaction';
-import { refreshUser } from 'redux/auth/authOperation';
-import Currency from './Currency';
-import { useMedia } from 'react-use';
-import { getAllTransactions } from 'redux/transactions/transactionOperations';
 import { nightTheme, dayTheme } from '../theme';
 
-import axios from 'axios';
+import LoginPage from '../pages/LoginPage';
+import DashboardPage from '../pages/DashboardPage';
 import NotFoundPage from 'pages/NotFoundPage';
-import { useState } from 'react';
-import { useRef } from 'react';
-import { useCallback } from 'react';
+
+
+import axios from 'axios';
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2RmZWMzYTM0MWQ5YjhmNzYyMDE1ZSIsImlhdCI6MTY2OTQwMjQ0NSwiZXhwIjoxNjY5NDA5NjQ1fQ.wP5owRM5GzOkuoWW_XjDBpbriCLAV-Sfweok4KaGQec';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODI2ZDViYzQ3NzZhMzNiZGVkMWQzMCIsImlhdCI6MTY2OTQ5MjA3NiwiZXhwIjoxNjcwNzAxNjc2fQ.qgY622DOh_akzHa8IqfWjLNWTAGfX2-zQz5-oFZAMk4';
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
 export const App = () => {
@@ -33,29 +36,32 @@ export const App = () => {
 
   const dispatch = useDispatch();
   const isDarkTheme = useSelector(store => store.theme.isNightTheme);
-  const { isModalAddOpen } = useSelector(state => state.transactions);
+  const { pageNum } = useSelector(state => state.transactions);
   const { transactions } = useSelector(state => state.transactions);
+  const { isModalAddOpen } = useSelector(state => state.transactions);
+  // console.log("App ~ pageNum", pageNum);
+  // console.log("App ~ transactions", transactions);
 
-  const [pageNum, setPageNum] = useState(1);
   const observer = useRef(null);
 
   const lastElement = useCallback(item => {
     const options = {
-      // rootMargin: '500px',
-      // threshold: 0.5,
+      rootMargin: '5px',
+      threshold: 1,
     };
 
     observer.current = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
-        observer.current.unobserve(entries[0].target);
-        setPageNum(prev => prev + 1);
+        observer.current.unobserve(entries[0].target)
+        dispatch(getNextPage())
+       
       }
     }, options);
 
     if (item) {
       observer.current.observe(item);
     }
-  }, []);
+  },[dispatch]);
 
   useEffect(() => {
     dispatch(getAllTransactions(pageNum));
@@ -102,7 +108,7 @@ export const App = () => {
             }
           />
           <Route
-            path="statistic"
+            path="/statistic"
             element={
               <PrivateRoute>
                 <Chart
@@ -144,45 +150,7 @@ export const App = () => {
                     },
                   ]}
                 />
-                <DiagramTab
-                  data={[
-                    {
-                      id: 1,
-                      type: '+',
-                      category: 'Other',
-                      sum: '300.00',
-                      balance: '6900.00',
-                    },
-                    {
-                      id: 2,
-                      type: '-',
-                      category: 'Car',
-                      sum: '700.00',
-                      balance: '6200.00',
-                    },
-                    {
-                      id: 3,
-                      type: '+',
-                      category: 'Wages',
-                      sum: '3000.00',
-                      balance: '9200.00',
-                    },
-                    {
-                      id: 4,
-                      type: '-',
-                      category: 'Other',
-                      sum: '1000.00',
-                      balance: '8200.00',
-                    },
-                    {
-                      id: 5,
-                      type: '-',
-                      category: 'Shopping',
-                      sum: '250.00',
-                      balance: '7950.00',
-                    },
-                  ]}
-                />
+                <DiagramTab />
               </PrivateRoute>
             }
           />

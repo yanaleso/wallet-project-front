@@ -21,8 +21,8 @@ import { getStatistic } from 'redux/statistic/statisticOperation';
 
 const DiagramTab = () => {
   const dispatch = useDispatch();
-  const { transaction, isLoading, error } = useSelector(getStatistic);
-  console.log(transaction);
+  // const { transaction, isLoading, error } = useSelector(getStatistic);
+  // console.log(transaction);
 
   useEffect(() => {
     dispatch(getStatistic());

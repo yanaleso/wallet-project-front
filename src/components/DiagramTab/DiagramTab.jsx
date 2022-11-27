@@ -30,7 +30,7 @@ const DiagramTab = () => {
 
   const res = useSelector(selectAllStatistic);
   const data = res.statistic;
-
+console.log('data', data);
   const screenWidth = window.screen.width;
 
   const incomeTotal = data
@@ -166,7 +166,9 @@ const DiagramTab = () => {
                     </p>
                   </li>)
                 }
-              })}
+                return (<h1>Nothing here yet!</h1>)
+              })
+              }
             </ul>
           </StyledTableBody>
           <StyledTableFooter>

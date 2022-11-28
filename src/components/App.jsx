@@ -20,6 +20,7 @@ import ModalAddTransaction from './ModalAddTransaction';
 import ButtonAddTransactions from './ButtonAddTransactions';
 import FormTransaction from './FormTransaction/FormTransaction';
 import { nightTheme, dayTheme } from '../theme';
+import Spinner from './Spinner';
 
 import LoginPage from '../pages/LoginPage';
 import DashboardPage from '../pages/DashboardPage';
@@ -75,7 +76,7 @@ export const App = () => {
   }
 
   return isRefreshingUser ? (
-    <div>LOADER</div>
+      <Spinner/>
   ) : (
     <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
       <Routes>

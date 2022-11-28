@@ -7,7 +7,7 @@ import {
 import grafSvg from '../../images/currencyVektor.svg';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Loader } from 'components/Spinner/Spinner.styled';
+import Spinner from 'components/Spinner';
 import CurrencyListItem from './CurrencyListItem';
 
 const getApiMono = async () => {
@@ -77,7 +77,7 @@ const Currency = () => {
         <li>Sale</li>
       </PrivatTableList>
       <CurrencyList>
-        {!loading ? <CurrencyListItem arrow={arrow} /> : <Loader />}
+        {!loading ? <CurrencyListItem arrow={arrow} /> : <Spinner />}
       </CurrencyList>
 
       <ImageVektor src={grafSvg} alt="vektor" />

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const StyledHeader = styled.header`
+    background-color: ${p => p.theme.colors.primaryBg};
+`;
+
 export const Container = styled.div`
     display: flex;
     justify-content: space-between;

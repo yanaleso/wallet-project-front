@@ -4,6 +4,7 @@ import { IoExitOutline } from 'react-icons/io5';
 import Logo from 'components/Logo';
 import { disablePageScroll } from 'scroll-lock';
 import {
+  StyledHeader,
   Container,
   UserBox,
   ButtonExit,
@@ -21,7 +22,7 @@ const Header = ({ setIsOpenExitModal }) => {
   const { firstName } = useSelector(state => state.auth.user);
 
   return (
-    <header>
+    <StyledHeader>
       <Container>
         <Logo />
         <UserBox>
@@ -35,7 +36,7 @@ const Header = ({ setIsOpenExitModal }) => {
           </IconContext.Provider>
         </UserBox>
       </Container>
-    </header>
+    </StyledHeader>
   );
 };
 

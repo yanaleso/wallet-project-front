@@ -66,6 +66,7 @@ const Table = ({ _id, type, totalSum }) => {
                   borderRadius: '30px',
                   width: '181px',
                   height: '50px',
+                  background: 'transparent',
                 }),
                 indicatorSeparator: (baseStyles, state) => ({
                   ...baseStyles,
@@ -101,6 +102,7 @@ const Table = ({ _id, type, totalSum }) => {
                   borderRadius: '30px',
                   width: '181px',
                   height: '50px',
+                  background: 'transparent',
                 }),
                 indicatorSeparator: (baseStyles, state) => ({
                   ...baseStyles,

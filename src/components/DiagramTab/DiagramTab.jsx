@@ -153,7 +153,7 @@ console.log('data', data);
                     </li>
                   );
                 }
-                return (<h1>Nothing here yet!</h1>)
+                return null
               })
               }
             </ul>

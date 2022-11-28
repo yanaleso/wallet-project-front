@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const Section = styled.section`
   background-color: ${p => p.theme.colors.loginPageBg};
   @media screen and (min-width: 768px) {
-    position: fixed;
+    /* position: fixed;
     width: 100vw;
-    height: 100vh;
+    height: 100vh; */
     background-image: url(${p => p.bgImg});
     background-repeat: no-repeat;
     background-position: center;

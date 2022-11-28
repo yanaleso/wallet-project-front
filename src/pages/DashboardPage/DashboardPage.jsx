@@ -7,7 +7,6 @@ import { useMedia } from 'react-use';
 import ModalLogout from 'components/ModalLogout';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Routes, Route } from 'react-router';
 import bgImg from '../../images/Rectangle.png';
 import {
   Section,
@@ -49,9 +48,7 @@ const DashboardPage = () => {
               <Container>
                 <Wrapper>
                   <Navigation />
-                  <Routes>
-                    <Route path="/home" element={<Balance />} />
-                  </Routes>
+                    <Balance />
                   <Suspense fallback={null}>
                     <Outlet />
                   </Suspense>

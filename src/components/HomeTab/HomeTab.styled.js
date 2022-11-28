@@ -145,5 +145,5 @@ export const StyledWrap = styled.div`
 `;
 
 export const CategoryName = styled.p`
-  ${p => p.theme.colors.primaryText}
+  color: ${p => p.theme.colors.primaryText};
 `;

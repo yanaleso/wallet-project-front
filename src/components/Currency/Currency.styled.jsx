@@ -90,3 +90,7 @@ export const ImageVektor = styled.img`
     height: 134px;
   }
 `;
+
+export const Text = styled.p`
+  color: #ffffff;
+`;

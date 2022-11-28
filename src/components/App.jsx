@@ -6,6 +6,10 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+<<<<<<< Updated upstream
+=======
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+>>>>>>> Stashed changes
 import { refreshUser } from 'redux/auth/authOperation';
 import { getNextPage } from 'redux/transactions/transactionsSlice';
 import { getAllTransactions } from 'redux/transactions/transactionOperations';
@@ -74,6 +78,13 @@ export const App = () => {
     return null;
   }
 
+<<<<<<< Updated upstream
+=======
+  if (isError) {
+    // Notify.failure(isError);
+  }
+
+>>>>>>> Stashed changes
   return isRefreshingUser ? (
     <div>LOADER</div>
   ) : (

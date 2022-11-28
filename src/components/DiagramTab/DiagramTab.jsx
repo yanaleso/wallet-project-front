@@ -1,6 +1,11 @@
 import { DiagramTabItem } from './DiagramTabItem';
+<<<<<<< Updated upstream
 import React from 'react';
 import { Formik } from 'formik';
+=======
+import axios from 'axios';
+import { useState } from 'react';import { Formik } from 'formik';
+>>>>>>> Stashed changes
 import Select from 'react-select';
 import { months } from 'helpers/monthList';
 import { years } from 'helpers/yearList';
@@ -22,6 +27,18 @@ import { getStatistic } from 'redux/statistic/statisticOperation';
 
 const DiagramTab = () => {
   const dispatch = useDispatch();
+  const [month, setMonth] = useState(null);
+  const [year, setYear] = useState(null);
+
+  const getTransactionsByMonth = async (month=11, year=2022) => {
+  const res = await axios
+    .get(`https://wallet-project.onrender.com/api/transactions/statistics?month=${month}&year=${year}`)
+    .then(res => console.log(res.data))
+    return res;
+};
+
+getTransactionsByMonth(month.value-1, year.value);
+
 
   useEffect(() => {
     dispatch(getStatistic());
@@ -95,6 +112,8 @@ const DiagramTab = () => {
               <Select
                 name="year"
                 options={years}
+                selected={year}
+                onChange={setYear}
                 isClearable
                 isSearchable
                 placeholder={<div>Year</div>}

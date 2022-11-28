@@ -6,6 +6,7 @@ const initialState = {
   totalBalance: 0,
   transactions: [],
   pageNum: 1,
+  hasNextPage: false,
   isLoading: false,
   error: null,
 };
@@ -48,6 +49,7 @@ const transactionsSlice = createSlice({
     builder.addCase(getAllTransactions.fulfilled, (state, action) => {
       state.isLoading = false;
       state.transactions = [...state.transactions, ...action.payload.transactions];
+      state.hasNextPage = Boolean(action.payload.transactions.length)
 
       if (action.payload.transactions.length > 0 && state.pageNum === 1) {
         state.totalBalance = action.payload.userBalance;

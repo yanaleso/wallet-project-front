@@ -34,6 +34,7 @@ export const App = () => {
 
   const { pageNum } = useSelector(state => state.transactions);
   const { transactions } = useSelector(state => state.transactions);
+  const { hasNextPage } = useSelector(state => state.transactions);
   const { isLoggedIn } = useSelector(state => state.auth);
 
   const observer = useRef(null);
@@ -45,7 +46,7 @@ export const App = () => {
     };
 
     observer.current = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
+      if (entries[0].isIntersecting && hasNextPage) {
         observer.current.unobserve(entries[0].target)
         dispatch(getNextPage())
        
@@ -55,7 +56,7 @@ export const App = () => {
     if (item) {
       observer.current.observe(item);
     }
-  },[dispatch]);
+  },[dispatch, hasNextPage]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -104,7 +105,7 @@ export const App = () => {
             }
           />
           <Route
-            path="/statistic"
+            path="statistic"
             element={
               <PrivateRoute>
                 <Chart

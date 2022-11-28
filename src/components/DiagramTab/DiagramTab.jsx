@@ -21,8 +21,6 @@ import { getStatistic } from 'redux/statistic/statisticOperation';
 
 const DiagramTab = () => {
   const dispatch = useDispatch();
-  // const { transaction, isLoading, error } = useSelector(getStatistic);
-  // console.log(transaction);
 
   useEffect(() => {
     dispatch(getStatistic());
@@ -30,7 +28,7 @@ const DiagramTab = () => {
 
   const res = useSelector(selectAllStatistic);
   const data = res.statistic;
-
+console.log('data', data);
   const screenWidth = window.screen.width;
 
   const incomeTotal = data
@@ -40,18 +38,6 @@ const DiagramTab = () => {
   const expensesTotal = data
     .filter(data => data.type !== 'income')
     .reduce((total, data) => total + Number(data.totalSum), 0);
-
-  // const categoryKey = categoriesColors.map(
-  //   categoriesColors => categoriesColors.category
-  // );
-  // const colorValue = categoriesColors.map(
-  //   categoriesColors => categoriesColors.background
-  // );
-
-  // const balance = data.reduce(
-  //   (total, data) => total + Number(data.totalSum),
-  //   0
-  // );
 
   if (screenWidth >= 768) {
     return (
@@ -141,32 +127,35 @@ const DiagramTab = () => {
           <StyledTableBody>
             <ul>
               {data.map(({ _id, type, totalSum }) => {
-                if (type==="expense"){
-                  return (<li key={_id}>
-                    <StyledItem>
-                      <StyledInnerSpan
-                      category={_id}
-                        style={{
-                          width: '24px',
-                          height: '24px',
-                          marginRight: '10px',
-                          
-                        }}
-                      ></StyledInnerSpan>
-                      <p>{_id}</p>
-                    </StyledItem>
-                    <p>
-                      <span
-                        style={{
-                          color: type === 'income' ? '#24CCA7' : '#FF6596',
-                        }}
-                      >
-                        {totalSum}
-                      </span>
-                    </p>
-                  </li>)
+                if (type === 'expense') {
+                  return (
+                    <li key={_id}>
+                      <StyledItem>
+                        <StyledInnerSpan
+                          category={_id}
+                          style={{
+                            width: '24px',
+                            height: '24px',
+                            marginRight: '10px',
+                          }}
+                        ></StyledInnerSpan>
+                        <p>{_id}</p>
+                      </StyledItem>
+                      <p>
+                        <span
+                          style={{
+                            color: type === 'income' ? '#24CCA7' : '#FF6596',
+                          }}
+                        >
+                          {totalSum}
+                        </span>
+                      </p>
+                    </li>
+                  );
                 }
-              })}
+                return null
+              })
+              }
             </ul>
           </StyledTableBody>
           <StyledTableFooter>

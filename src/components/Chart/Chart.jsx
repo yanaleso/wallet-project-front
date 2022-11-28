@@ -14,8 +14,9 @@ ChartJS.register(ArcElement, Tooltip, Legend, DoughnutController);
 
 const Chart = () => {
   const res = useSelector(selectAllStatistic);
-  const { totalBalance } = useSelector(state => state.transactions);
 
+  const { totalBalance } = useSelector(state => state.transactions);
+  console.log(totalBalance);
   const expenseResults = res.statistic.filter(
     result => result.type === 'expense'
   );
@@ -25,7 +26,7 @@ const Chart = () => {
   });
   const sum = expenseResults.map(result => result.totalSum);
 
-  const colors =  expenseResults.map(item => getCategoryColor(item._id))
+  const colors = expenseResults.map(item => getCategoryColor(item._id));
 
   const drawInnerText = chart => {
     const ctx = chart.ctx;
@@ -38,6 +39,7 @@ const Chart = () => {
     ctx.fillText(text, textX, textY);
     ctx.fillStyle = '#000000';
     ctx.save();
+    console.log(text);
   };
 
   const data = {

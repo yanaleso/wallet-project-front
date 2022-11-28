@@ -29,7 +29,7 @@ export const App = () => {
   const isMobie = useMedia('(max-width: 767px)');
 
   const dispatch = useDispatch();
-  const { isDarkTheme } = useSelector(store => store.theme);
+  const isDarkTheme = useSelector(store => store.theme.isNightTheme);
   const { isModalAddOpen } = useSelector(state => state.transactions);
   const { pageNum } = useSelector(state => state.transactions);
   const { transactions } = useSelector(state => state.transactions);

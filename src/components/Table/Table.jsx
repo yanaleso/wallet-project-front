@@ -1,3 +1,5 @@
+import axios from 'axios';
+import {useState} from 'react';
 import {
   StyledTable,
   StyledTableHeader,
@@ -17,6 +19,21 @@ import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
 import { getCategoryColor } from 'helpers/getCategoryColor';
 // import { getStatistic } from 'redux/statistic/statisticOperation'
 const Table = ({ _id, type, totalSum }) => {
+  const [month, setMonth] = useState(null)
+  const [year, setYear] = useState(null)
+  const [filteredData, setFilteredData] = useState([])
+  console.log(month, year);
+
+  const getTransactionsByTime= async (month,year)=>{
+    const res = axios.get(`https://wallet-project.onrender.com/api/transactions/statistics?month=${month}&year=${year}`)
+    .then(res => setFilteredData(res.data));
+    return res.data;
+  }
+
+    if(month && year){
+    getTransactionsByTime(month.value-1, year.value);
+    }
+
   const res = useSelector(selectAllStatistic);
   const data = res.statistic;
   const incomeTotal = data
@@ -37,6 +54,8 @@ const Table = ({ _id, type, totalSum }) => {
             <Select
               name="month"
               options={months}
+              selected={month}
+              onChange={setMonth}
               isClearable
               isSearchable
               placeholder={<div>Month</div>}
@@ -70,6 +89,8 @@ const Table = ({ _id, type, totalSum }) => {
             <Select
               name="year"
               options={years}
+              selected={year}
+              onChange={setYear}
               isClearable
               isSearchable
               placeholder={<div>Year</div>}

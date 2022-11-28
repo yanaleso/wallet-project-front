@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { refreshUser } from 'redux/auth/authOperation';
 import { getNextPage } from 'redux/transactions/transactionsSlice';
 import { getAllTransactions } from 'redux/transactions/transactionOperations';
@@ -77,7 +77,7 @@ export const App = () => {
   }
 
   if (isError) {
-    Notify.failure(isError);
+    // Notify.failure(isError);
   }
 
   return isRefreshingUser ? (

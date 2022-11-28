@@ -3,6 +3,7 @@ import {
   CurrencyList,
   CurrencyBox,
   ImageVektor,
+  Text,
 } from './Currency.styled';
 import grafSvg from '../../images/currencyVektor.svg';
 import axios from 'axios';
@@ -72,9 +73,9 @@ const Currency = () => {
   return (
     <CurrencyBox>
       <PrivatTableList>
-        <li>Currency</li>
-        <li>Purchase</li>
-        <li>Sale</li>
+        <Text>Currency</Text>
+        <Text>Purchase</Text>
+        <Text>Sale</Text>
       </PrivatTableList>
       <CurrencyList>
         {!loading ? <CurrencyListItem arrow={arrow} /> : <Spinner />}

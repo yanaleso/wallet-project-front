@@ -6,7 +6,7 @@ export const CurrencyBox = styled.div`
   height: 174px;
   background: ${p => p.theme.colors.houseStat};
   border-radius: 30px;
-  color: white;
+  color: ${p => p.theme.colors.primaryBtn};
   margin: 0 auto;
   margin-top: 30px;
 
@@ -89,4 +89,8 @@ export const ImageVektor = styled.img`
   @media (min-width: 1280px) {
     height: 134px;
   }
+`;
+
+export const Text = styled.p`
+  color: #ffffff;
 `;

@@ -51,6 +51,7 @@ export const Input = styled(Field)`
   font-size: ${p => p.theme.fontSizes.m};
   line-height: 1.5;
   color: ${p => p.theme.colors.primaryText};
+  background-color: transparent;
 
   &:focus {
     outline: none;
@@ -101,6 +102,18 @@ export const SubmitBtn = styled.button`
 
   :disabled {
     opacity: 0.5;
+
+    :hover,
+    :focus {
+      background-color: ${p => p.theme.colors.primaryBgBtn};
+      color: ${p => p.theme.colors.primaryBtn};
+    }
+  }
+
+  :hover,
+  :focus {
+    background-color: ${p => p.theme.colors.primaryBtn};
+    color: ${p => p.theme.colors.primaryBgBtn};
   }
 
   @media screen and (min-width: 768px) {
@@ -129,6 +142,13 @@ export const StyledNavLink = styled(Link)`
   letter-spacing: 0.1em;
   color: ${p => p.theme.colors.secondaryBtn};
   background-color: ${p => p.theme.colors.primaryBtn};
+
+  :hover,
+  :focus {
+    background-color: ${p => p.theme.colors.secondaryBtn};
+    color: ${p => p.theme.colors.primaryBtn};
+  }
+
   @media screen and (min-width: 768px) {
     width: 300px;
   }

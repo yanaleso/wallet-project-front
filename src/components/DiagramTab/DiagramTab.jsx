@@ -28,7 +28,7 @@ const DiagramTab = () => {
 
   const res = useSelector(selectAllStatistic);
   const data = res.statistic;
-console.log('data', data);
+  console.log('data', data);
   const screenWidth = window.screen.width;
 
   const incomeTotal = data
@@ -62,6 +62,7 @@ console.log('data', data);
                     borderRadius: '30px',
                     width: '181px',
                     height: '50px',
+                    backgroundColor: 'transparent',
                   }),
                   indicatorSeparator: (baseStyles, state) => ({
                     ...baseStyles,
@@ -97,6 +98,7 @@ console.log('data', data);
                     borderRadius: '30px',
                     width: '181px',
                     height: '50px',
+                    backgroundColor: 'transparent',
                   }),
                   indicatorSeparator: (baseStyles, state) => ({
                     ...baseStyles,
@@ -153,9 +155,8 @@ console.log('data', data);
                     </li>
                   );
                 }
-                return null
-              })
-              }
+                return null;
+              })}
             </ul>
           </StyledTableBody>
           <StyledTableFooter>

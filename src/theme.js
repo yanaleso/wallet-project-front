@@ -25,6 +25,7 @@ export const dayTheme = {
     educationStat: '#81E1FF',
     leisureStat: '#24CCA7',
     otherStat: '#00AD84',
+    gradient: 'linear-gradient(rgba(47, 48, 58, 0),rgba(47, 48, 58, 0))',
   },
   space: [0, 8, 12, 16, 20, 28, 36, 40, 60],
   fonts: {
@@ -64,16 +65,16 @@ export const dayTheme = {
 
 export const nightTheme = {
   colors: {
-    primaryBg: '#C9C8C8',
-    secondaryBg: '#4D4D4D',
-    loginPageBg: '#9A9CA0',
-    primaryText: '#000000',
-    secondaryText: '#DAD8D8',
+    primaryBg: '#38398F',
+    secondaryBg: '#9B91C7',
+    loginPageBg: '#685AA2',
+    primaryText: '#ffffff',
+    secondaryText: '#ffffff',
     secondaryDarkText: '#DAD8D8',
     secondaryLightText: '#ECEAEA',
-    primaryBtn: '#858383',
-    primaryBgBtn: '#177A64',
-    secondaryBtn: '#3942A9',
+    primaryBtn: '#FFFFFF',
+    primaryBgBtn: '#24CCA7',
+    secondaryBtn: '#4A56E2',
     secondaryBgBtn: 'transparent',
     primaryPasswordIndicator: '#24CCA7',
     secondaryPasswordIndicator: '#E5F1EF',
@@ -89,6 +90,7 @@ export const nightTheme = {
     educationStat: '#81E1FF',
     leisureStat: '#24CCA7',
     otherStat: '#00AD84',
+    gradient: 'linear-gradient(rgba(47, 48, 58, 0.35),rgba(47, 48, 58, 0.35))',
   },
   space: [0, 8, 12, 16, 20, 28, 36, 40, 60],
   fonts: {

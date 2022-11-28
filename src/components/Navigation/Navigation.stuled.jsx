@@ -17,9 +17,9 @@ export const Link = styled(NavLink)`
   color: ${p => p.theme.colors.primaryText};
 
   svg {
-    color: #6e78e8;
+    color: ${p => p.theme.colors.navIconBg};
     &.active {
-      color: #4a56e2;
+      color: ${p => p.theme.colors.navIconBgActive};
     }
   }
 
@@ -37,10 +37,10 @@ export const ListMob = styled.ul`
 `;
 
 export const LinkMob = styled(NavLink)`
-  color: #6e78e8;
+  color: ${p => p.theme.colors.navIconBg};
 
   &.active {
-    color: #4a56e2;
+    color: ${p => p.theme.colors.navIconBgActive};
   }
 `;
 
@@ -63,4 +63,8 @@ export const StatisticSvg = styled(Statistic)`
 
 export const CurrencySvg = styled(Currency)`
   fill: currentColor;
+`;
+
+export const LinkText = styled.p`
+  color: ${p => p.theme.colors.primaryText};
 `;

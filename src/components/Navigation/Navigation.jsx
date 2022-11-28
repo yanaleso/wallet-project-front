@@ -6,6 +6,7 @@ import {
   HomeSvg,
   StatisticSvg,
   CurrencySvg,
+  LinkText,
 } from './Navigation.stuled';
 import { useMedia } from 'react-use';
 
@@ -29,11 +30,11 @@ const Navigation = () => {
         <List>
           <Link to="/home">
             <HomeSvg />
-            <p>Home</p>
+            <LinkText>Home</LinkText>
           </Link>
           <Link to="/statistic">
             <StatisticSvg />
-            <p>Statistic</p>
+            <LinkText>Statistic</LinkText>
           </Link>
         </List>
       )}

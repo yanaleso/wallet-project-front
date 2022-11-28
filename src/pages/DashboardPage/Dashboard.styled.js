@@ -6,7 +6,7 @@ export const Section = styled.section`
     /* position: fixed;
     width: 100vw;
     height: 100vh; */
-    background-image: url(${p => p.bgImg});
+    background-image: ${p => p.theme.colors.gradient}, url(${p => p.bgImg});
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

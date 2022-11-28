@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { dayTheme } from '../../theme';
 import { Field } from 'formik';
 
 export const StyledStatisticWraper = styled.div`

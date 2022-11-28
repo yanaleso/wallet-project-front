@@ -22,7 +22,7 @@ export const Modal = styled.div`
   left: 50%;
   visibility: visible;
   opacity: 1;
-  background-color: ${p => p.theme.colors.primaryBtn};
+  background-color: ${p => p.theme.colors.primaryBg};
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   padding: 80px 100px;

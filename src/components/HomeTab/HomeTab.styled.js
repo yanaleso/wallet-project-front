@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledTableHeader = styled.div`
-  background-color: #ffffff;
+  background-color: ${p => p.theme.colors.primaryBg};
   font-weight: 700;
   font-size: 18px;
   line-height: 1.5;
@@ -143,4 +143,8 @@ export const StyledWrap = styled.div`
       margin-bottom: 8px;
     }
   }
+`;
+
+export const CategoryName = styled.p`
+  color: ${p => p.theme.colors.primaryText};
 `;

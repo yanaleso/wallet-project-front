@@ -68,7 +68,7 @@ export const Separator = styled.div`
 
 export const DesktopWrapper = styled.div`
   display: flex;
-  padding-top: 46px;
+  ${'' /* padding-top: 46px; */}
 `;
 
 export const StatisticWrapper = styled.div`

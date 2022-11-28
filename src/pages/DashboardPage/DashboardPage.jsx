@@ -20,7 +20,6 @@ import {
   StatisticWrapper,
 } from './Dashboard.styled';
 import { useState } from 'react';
-// import { getStatistic } from '../../redux/statistic/statisticOperation';
 
 const DashboardPage = () => {
   const isMobie = useMedia('(max-width: 767px)');
@@ -28,11 +27,6 @@ const DashboardPage = () => {
   const isDesktop = useMedia('(min-width: 1280px)');
 
   const [openExitModal, setIsOpenExitModal] = useState(false);
-
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getStatistic());
-  // }, [dispatch]);
 
   return (
     <SharedLayout>
@@ -48,7 +42,8 @@ const DashboardPage = () => {
               <Container>
                 <Wrapper>
                   <Navigation />
-                    <Balance />
+                  <Balance />
+
                   <Suspense fallback={null}>
                     <Outlet />
                   </Suspense>

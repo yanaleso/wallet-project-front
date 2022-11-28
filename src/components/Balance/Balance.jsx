@@ -3,7 +3,7 @@ import { Container, Title, CurrencySign, Text } from './Balance.styled';
 
 const Balance = () => {
   const { totalBalance } = useSelector(state => state.transactions);
-
+  console.log(totalBalance);
   return (
     <Container>
       <Title>Your balance</Title>

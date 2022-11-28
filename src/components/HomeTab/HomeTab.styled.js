@@ -45,6 +45,7 @@ export const StyledTableHeader = styled.div`
 `;
 
 export const StyledTable = styled.div`
+  margin-top: 46px;
   @media (max-width: 1279px) {
     width: 704px;
   }

@@ -95,7 +95,7 @@ export const SubmitBtn = styled.button`
   cursor: pointer;
   text-align: center;
   text-transform: uppercase;
-  border: none;
+  border: 1px solid ${p => p.theme.colors.primaryBgBtn};
   border-radius: 20px;
   font-family: ${p => p.theme.fonts.body};
   font-style: normal;
@@ -113,6 +113,7 @@ export const SubmitBtn = styled.button`
     :focus {
       background-color: ${p => p.theme.colors.primaryBgBtn};
       color: ${p => p.theme.colors.primaryBtn};
+      border: 1px solid ${p => p.theme.colors.primaryBgBtn};
     }
   }
 
@@ -120,6 +121,7 @@ export const SubmitBtn = styled.button`
   :focus {
     background-color: ${p => p.theme.colors.primaryBtn};
     color: ${p => p.theme.colors.primaryBgBtn};
+    border: 1px solid ${p => p.theme.colors.primaryBgBtn};
   }
 
   @media screen and (min-width: 768px) {

@@ -24,7 +24,7 @@ const HomeTabItem = forwardRef(({ transaction }, ref) => {
   );
 
   const content = ref ? (
-    <li ref={ref} style={{ background: 'tomato' }}>
+    <li ref={ref}>
       {bodyTransaction}
     </li>
   ) : (
@@ -46,7 +46,7 @@ const HomeTabMobItem = forwardRef(({ transaction }, ref) => {
   );
 
   const content = ref ? (
-    <li ref={ref} style={{ background: 'tomato' }}>
+    <li ref={ref}>
       Balance {bodyTransaction}
     </li>
   ) : (

@@ -29,39 +29,41 @@ export const App = () => {
   const isMobie = useMedia('(max-width: 767px)');
 
   const dispatch = useDispatch();
-  const isDarkTheme = useSelector(store => store.theme.isNightTheme);
+  const { isDarkTheme } = useSelector(store => store.theme);
   const { isModalAddOpen } = useSelector(state => state.transactions);
-
   const { pageNum } = useSelector(state => state.transactions);
   const { transactions } = useSelector(state => state.transactions);
   const { hasNextPage } = useSelector(state => state.transactions);
   const { isLoggedIn } = useSelector(state => state.auth);
+  const { isRefreshingUser } = useSelector(state => state.auth);
 
   const observer = useRef(null);
 
-  const lastElement = useCallback(item => {
-    const options = {
-      rootMargin: '5px',
-      threshold: 1,
-    };
+  const lastElement = useCallback(
+    item => {
+      const options = {
+        rootMargin: '5px',
+        threshold: 1,
+      };
 
-    observer.current = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting && hasNextPage) {
-        observer.current.unobserve(entries[0].target)
-        dispatch(getNextPage())
-       
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          observer.current.unobserve(entries[0].target);
+          dispatch(getNextPage());
+        }
+      }, options);
+
+      if (item) {
+        observer.current.observe(item);
       }
-    }, options);
-
-    if (item) {
-      observer.current.observe(item);
-    }
-  },[dispatch, hasNextPage]);
+    },
+    [dispatch, hasNextPage]
+  );
 
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getAllTransactions(pageNum));
-    } 
+    }
   }, [dispatch, isLoggedIn, pageNum]);
 
   useEffect(() => {
@@ -72,7 +74,9 @@ export const App = () => {
     return null;
   }
 
-  return (
+  return isRefreshingUser ? (
+    <div>LOADER</div>
+  ) : (
     <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />

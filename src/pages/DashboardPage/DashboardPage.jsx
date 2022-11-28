@@ -7,7 +7,8 @@ import { useMedia } from 'react-use';
 import ModalLogout from 'components/ModalLogout';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import bgImg from '../../images/Rectangle.png'
+import { Routes, Route } from 'react-router';
+import bgImg from '../../images/Rectangle.png';
 import {
   Section,
   Blur,
@@ -17,11 +18,10 @@ import {
   DesktopWrapper,
   Separator,
   SideBar,
+  StatisticWrapper,
 } from './Dashboard.styled';
 import { useState } from 'react';
 // import { getStatistic } from '../../redux/statistic/statisticOperation';
-
-
 
 const DashboardPage = () => {
   const isMobie = useMedia('(max-width: 767px)');
@@ -39,7 +39,7 @@ const DashboardPage = () => {
     <SharedLayout>
       <Header setIsOpenExitModal={() => setIsOpenExitModal(true)} />
       <main>
-        <Section bgImg={bgImg} >
+        <Section bgImg={bgImg}>
           <ModalLogout
             openExitModal={openExitModal}
             setIsOpenExitModal={() => setIsOpenExitModal(false)}
@@ -49,7 +49,9 @@ const DashboardPage = () => {
               <Container>
                 <Wrapper>
                   <Navigation />
-                  <Balance />
+                  <Routes>
+                    <Route path="/home" element={<Balance />} />
+                  </Routes>
                   <Suspense fallback={null}>
                     <Outlet />
                   </Suspense>
@@ -67,9 +69,11 @@ const DashboardPage = () => {
                   </TabletWrapper>
                   <Currency />
                 </Wrapper>
-                <Suspense fallback={null}>
-                  <Outlet />
-                </Suspense>
+                <StatisticWrapper>
+                  <Suspense fallback={null}>
+                    <Outlet />
+                  </Suspense>
+                </StatisticWrapper>
               </Container>
             </Blur>
           ) : null}

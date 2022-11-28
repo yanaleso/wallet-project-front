@@ -109,11 +109,17 @@ export const SubmitBtn = styled.button`
   :disabled {
     opacity: 0.5;
 
-    :hover:not('disabled'),
-    :focus:not('disabled') {
-      background-color: ${p => p.theme.colors.primaryBtn};
-      color: ${p => p.theme.colors.primaryBgBtn};
+    :hover,
+    :focus {
+      background-color: ${p => p.theme.colors.primaryBgBtn};
+      color: ${p => p.theme.colors.primaryBtn};
     }
+  }
+
+  :hover,
+  :focus {
+    background-color: ${p => p.theme.colors.primaryBtn};
+    color: ${p => p.theme.colors.primaryBgBtn};
   }
 
   @media screen and (min-width: 768px) {

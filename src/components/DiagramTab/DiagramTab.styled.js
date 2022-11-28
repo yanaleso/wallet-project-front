@@ -227,14 +227,6 @@ display: block;
   width: '24px';
   height: '24px';
   margin-right: '10px';
-  background: ${ 
-  props => props.category === "Main" ? '#FED057' :
-                        props.category === 'Food' ? '#FFD8D0' : 
-                        props.category === 'Auto' ? '#FD9498' : 
-                        props.category === 'Development' ? '#C5BAFF' : 
-                        props.category === 'Children' ? '#6E78E8' : 
-                        props.category === 'House' ? '#4A56E2' : 
-                        props.category === 'Education' ? '#81E1FF' : 
-                        props.category === 'Leisure' ? '#24CCA7' : '#00AD84'}
+  background-color: ${p => p.category};
                       
 `;

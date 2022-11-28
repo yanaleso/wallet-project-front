@@ -3,7 +3,6 @@ import { Formik } from 'formik';
 import Select from 'react-select';
 import { months } from 'helpers/monthList';
 import { years } from 'helpers/yearList';
-//import { categoriesColors } from 'helpers/categoriesColors';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
 import { useEffect } from 'react';
@@ -17,6 +16,7 @@ import {
   StyledItem,
   StyledInnerSpan,
 } from './DiagramTab.styled';
+import { getCategoryColor } from 'helpers/getCategoryColor';
 import { getStatistic } from 'redux/statistic/statisticOperation';
 
 const DiagramTab = () => {
@@ -132,7 +132,7 @@ console.log('data', data);
                     <li key={_id}>
                       <StyledItem>
                         <StyledInnerSpan
-                          category={_id}
+                          category={getCategoryColor(_id)}
                           style={{
                             width: '24px',
                             height: '24px',

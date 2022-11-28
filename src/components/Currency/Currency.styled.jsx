@@ -8,10 +8,13 @@ export const CurrencyBox = styled.div`
   border-radius: 30px;
   color: white;
   margin: 0 auto;
+  margin-top: 30px;
 
   @media (min-width: 768px) {
     width: 336px;
     height: 182px;
+
+    margin-top: 0;
   }
   @media (min-width: 1280px) {
     width: 393px;

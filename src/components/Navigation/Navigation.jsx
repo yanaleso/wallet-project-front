@@ -1,8 +1,13 @@
-import { Link, ImgNav, List, ListMob, LinkMob } from './Navigation.stuled';
-import homeSvg from '../../images/home.svg';
-import statisticSvg from '../../images/statistic.svg';
+import {
+  Link,
+  List,
+  ListMob,
+  LinkMob,
+  HomeSvg,
+  StatisticSvg,
+  CurrencySvg,
+} from './Navigation.stuled';
 import { useMedia } from 'react-use';
-import currencySvg from '../../images/currency.svg';
 
 const Navigation = () => {
   const isMobie = useMedia('(max-width: 767px)');
@@ -11,23 +16,23 @@ const Navigation = () => {
       {isMobie ? (
         <ListMob>
           <LinkMob to="/home">
-            <img src={homeSvg} alt="Statistic" />
+            <HomeSvg />
           </LinkMob>
           <LinkMob to="/statistic">
-            <img src={statisticSvg} alt="Statistic" />
+            <StatisticSvg />
           </LinkMob>
           <LinkMob to="/currency">
-            <img src={currencySvg} alt="Statistic" />
+            <CurrencySvg />
           </LinkMob>
         </ListMob>
       ) : (
         <List>
           <Link to="/home">
-            <ImgNav src={homeSvg} alt="Home image" />
+            <HomeSvg />
             <p>Home</p>
           </Link>
           <Link to="/statistic">
-            <ImgNav src={statisticSvg} alt="Statistic image" />
+            <StatisticSvg />
             <p>Statistic</p>
           </Link>
         </List>

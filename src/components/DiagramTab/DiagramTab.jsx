@@ -1,6 +1,11 @@
 import { DiagramTabItem } from './DiagramTabItem';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import React from 'react';
+=======
+import axios from 'axios';
+import {useState} from 'react';
+>>>>>>> Stashed changes
 import { Formik } from 'formik';
 =======
 import axios from 'axios';
@@ -27,6 +32,7 @@ import { getStatistic } from 'redux/statistic/statisticOperation';
 
 const DiagramTab = () => {
   const dispatch = useDispatch();
+<<<<<<< Updated upstream
   const [month, setMonth] = useState(null);
   const [year, setYear] = useState(null);
 
@@ -39,7 +45,24 @@ const DiagramTab = () => {
 
 getTransactionsByMonth(month.value-1, year.value);
 
+=======
+  const [month, setMonth] = useState(null)
+  const [year, setYear] = useState(null)
+  const [filteredData, setFilteredData] = useState([])
+>>>>>>> Stashed changes
 
+  const getTransactionsByTime= async (month,year)=>{
+    const res = axios.get(`https://wallet-project.onrender.com/api/transactions/statistics?month=${month}&year=${year}`)
+    .then(res => setFilteredData(res.data));
+    return res.data;
+  }
+  useEffect(() => {
+    if(month && year){
+    getTransactionsByTime(month.value-1, year.value);
+    }
+  });
+  
+  // console.log('filteredData', filteredData);
   useEffect(() => {
     dispatch(getStatistic());
   }, [dispatch]);
@@ -155,6 +178,7 @@ getTransactionsByMonth(month.value-1, year.value);
 
           <StyledTableBody>
             <ul>
+<<<<<<< Updated upstream
               {
               transactions.filter(({ _id, typeOperation, date, category, amount})=>{
                 const dateData = date.split(' ');
@@ -169,6 +193,10 @@ getTransactionsByMonth(month.value-1, year.value);
               })
               .map(({ _id, typeOperation, category, amount }) => {
                 if (typeOperation === 'expense') {
+=======
+              {filteredData.map(({ _id, type, totalSum }) => {
+                if (type === 'expense') {
+>>>>>>> Stashed changes
                   return (
                     <li key={_id}>
                       <StyledItem>

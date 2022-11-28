@@ -7,6 +7,10 @@ import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+>>>>>>> Stashed changes
 =======
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 >>>>>>> Stashed changes

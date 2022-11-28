@@ -108,6 +108,12 @@ export const SubmitBtn = styled.button`
 
   :disabled {
     opacity: 0.5;
+
+    :hover:not('disabled'),
+    :focus:not('disabled') {
+      background-color: ${p => p.theme.colors.primaryBtn};
+      color: ${p => p.theme.colors.primaryBgBtn};
+    }
   }
 
   @media screen and (min-width: 768px) {
@@ -136,6 +142,13 @@ export const StyledNavLink = styled(Link)`
   letter-spacing: 0.1em;
   color: ${p => p.theme.colors.secondaryBtn};
   background-color: ${p => p.theme.colors.primaryBtn};
+
+  :hover,
+  :focus {
+    background-color: ${p => p.theme.colors.secondaryBtn};
+    color: ${p => p.theme.colors.primaryBtn};
+  }
+
   @media screen and (min-width: 768px) {
     width: 300px;
   }

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { refreshUser } from 'redux/auth/authOperation';
 import { getNextPage } from 'redux/transactions/transactionsSlice';
 import { getAllTransactions } from 'redux/transactions/transactionOperations';
@@ -19,6 +20,7 @@ import ModalAddTransaction from './ModalAddTransaction';
 import ButtonAddTransactions from './ButtonAddTransactions';
 import FormTransaction from './FormTransaction/FormTransaction';
 import { nightTheme, dayTheme } from '../theme';
+import Spinner from './Spinner';
 
 import LoginPage from '../pages/LoginPage';
 import DashboardPage from '../pages/DashboardPage';
@@ -33,8 +35,9 @@ export const App = () => {
   const { pageNum } = useSelector(state => state.transactions);
   const { transactions } = useSelector(state => state.transactions);
   const { hasNextPage } = useSelector(state => state.transactions);
-  const { isLoggedIn } = useSelector(state => state.auth);
-  const { isRefreshingUser } = useSelector(state => state.auth);
+  const { isLoggedIn, isError, isRefreshingUser } = useSelector(
+    state => state.auth
+  );
 
   const observer = useRef(null);
 
@@ -73,8 +76,12 @@ export const App = () => {
     return null;
   }
 
+  if (isError) {
+    Notify.failure(isError);
+  }
+
   return isRefreshingUser ? (
-    <div>LOADER</div>
+      <Spinner/>
   ) : (
     <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
       <Routes>

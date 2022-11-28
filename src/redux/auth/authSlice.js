@@ -11,6 +11,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshingUser: false,
+  isError: null,
 };
 
 const authSlice = createSlice({
@@ -21,42 +22,46 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      state.error = null;
+      state.isError = null;
     });
     builder.addCase(userRegistration.rejected, (state, action) => {
-      state.error = action.payload;
+      state.isError = action.payload;
     });
     builder.addCase(userLogin.fulfilled, (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      state.error = null;
+      state.isError = null;
     });
     builder.addCase(userLogin.rejected, (state, action) => {
-      state.error = action.payload;
+      state.isError = action.payload;
     });
     builder.addCase(userLogout.fulfilled, state => {
       state.user = { name: null, email: null, balance: 0 };
       state.token = null;
       state.isLoggedIn = false;
       state.isRefreshingUser = false;
+      state.isError = null;
     });
     builder.addCase(userLogout.rejected, (state, action) => {
-      state.error = action.payload;
+      state.isError = action.payload;
     });
     builder.addCase(refreshUser.fulfilled, (state, action) => {
       state.user = action.payload;
       state.isLoggedIn = true;
       state.isRefreshingUser = false;
+      state.isError = null;
     });
-    builder.addCase(refreshUser.rejected, state => {
+    builder.addCase(refreshUser.rejected, (state, action) => {
       state.user = { name: null, email: null, balance: 0 };
       state.token = null;
       state.isLoggedIn = false;
       state.isRefreshingUser = false;
+      state.isError = action.payload;
     });
     builder.addCase(refreshUser.pending, state => {
       state.isRefreshingUser = true;
+      state.isError = null;
     });
   },
 });

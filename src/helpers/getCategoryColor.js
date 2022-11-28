@@ -1,11 +1,11 @@
 const categoryList = {
-'Food':           '#FED057',
-'Main':           '#FFD8D0',
-'House':          '#C5BAFF',
-'Auto':           '#6E78E8',
-'Children':       '#81E1FF',
-'Development':    '#FD9498',
-'Education':      '#C5BAFF',
+'Food':           '#d9de3f',
+'Main':           '#db9826',
+'House':          '#9f56cc',
+'Auto':           '#4A56E2',
+'Children':       '#7ec8de',
+'Development':    '#24CCA7',
+'Education':      '#13ae8a',
 'Other expenses': '#FD9498',
 }
   

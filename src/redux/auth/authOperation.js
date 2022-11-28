@@ -42,7 +42,7 @@ export const userLogout = createAsyncThunk(
   'users/logout',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/users/logout');
+      const { data } = await axios.post('/users/logout');
       token.unset();
       return data;
     } catch (error) {

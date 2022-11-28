@@ -8,14 +8,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { FontStyles } from 'components/FontStyles';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
+  <React.StrictMode>
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter basename="/wallet-project-front/">
+      <BrowserRouter basename="/wallet-project-front">
         <FontStyles />
         <App />
       </BrowserRouter>
     </PersistGate>
   </Provider>
-  // </React.StrictMode>
+  </React.StrictMode>
 );

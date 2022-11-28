@@ -39,6 +39,7 @@ const authSlice = createSlice({
       state.user = { name: null, email: null, balance: 0 };
       state.token = null;
       state.isLoggedIn = false;
+      state.isRefreshingUser = false;
     });
     builder.addCase(userLogout.rejected, (state, action) => {
       state.error = action.payload;
@@ -46,16 +47,16 @@ const authSlice = createSlice({
     builder.addCase(refreshUser.fulfilled, (state, action) => {
       state.user = action.payload;
       state.isLoggedIn = true;
-      state.refreshLoading = false;
+      state.isRefreshingUser = false;
     });
     builder.addCase(refreshUser.rejected, state => {
       state.user = { name: null, email: null, balance: 0 };
       state.token = null;
       state.isLoggedIn = false;
-      state.refreshLoading = false;
+      state.isRefreshingUser = false;
     });
     builder.addCase(refreshUser.pending, state => {
-      state.refreshLoading = true;
+      state.isRefreshingUser = true;
     });
   },
 });

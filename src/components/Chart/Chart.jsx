@@ -8,18 +8,24 @@ import {
 import { Doughnut } from 'react-chartjs-2';
 import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
 import { useSelector } from 'react-redux';
+import { getCategoryColor } from 'helpers/getCategoryColor';
 
 ChartJS.register(ArcElement, Tooltip, Legend, DoughnutController);
 
 const Chart = () => {
   const res = useSelector(selectAllStatistic);
+  const { totalBalance } = useSelector(state => state.transactions);
+
   const expenseResults = res.statistic.filter(
     result => result.type === 'expense'
   );
 
-  const { totalBalance } = useSelector(state => state.transactions);
-  const chartCategories = expenseResults.map(result => result._id);
+  const chartCategories = expenseResults.map(result => {
+    return result._id;
+  });
   const sum = expenseResults.map(result => result.totalSum);
+
+  const colors =  expenseResults.map(item => getCategoryColor(item._id))
 
   const drawInnerText = chart => {
     const ctx = chart.ctx;
@@ -41,17 +47,7 @@ const Chart = () => {
         label: '# of Votes',
         data: sum,
         text: 'summ',
-        backgroundColor: [
-          '#FED057',
-          '#FFD8D0',
-          '#C5BAFF',
-          '#6E78E8',
-          '#81E1FF',
-          '#FD9498',
-          '#C5BAFF',
-          '#FD9498',
-        ],
-
+        backgroundColor: colors,
         borderWidth: 0,
       },
     ],

@@ -1,4 +1,5 @@
 import { DiagramTabItem } from './DiagramTabItem';
+import React from 'react';
 import { Formik } from 'formik';
 import Select from 'react-select';
 import { months } from 'helpers/monthList';
@@ -25,10 +26,17 @@ const DiagramTab = () => {
   useEffect(() => {
     dispatch(getStatistic());
   }, [dispatch]);
+  const { transactions } = useSelector(state => state.transactions);
+  // const date = transactions[0].date.split(' ');
+  // const transactionMonth = date[1];
+  // console.log('date', transactionMonth);
+    const [month, setMonth] = React.useState(null);
+    // if(month){
+    //   console.log(month.label);
+    // }
 
   const res = useSelector(selectAllStatistic);
   const data = res.statistic;
-console.log('data', data);
   const screenWidth = window.screen.width;
 
   const incomeTotal = data
@@ -50,6 +58,8 @@ console.log('data', data);
               <Select
                 name="month"
                 options={months}
+                selected={month}
+                onChange={setMonth}
                 isClearable
                 isSearchable
                 placeholder={<div>Month</div>}
@@ -126,36 +136,47 @@ console.log('data', data);
 
           <StyledTableBody>
             <ul>
-              {data.map(({ _id, type, totalSum }) => {
-                if (type === 'expense') {
+              {
+              transactions.filter(({ _id, typeOperation, date, category, amount})=>{
+                const dateData = date.split(' ');
+                const transactionMonth = dateData[1];
+                if(month){
+                  if (month.label.includes(transactionMonth)){
+                  return {_id, typeOperation, category, amount}
+                }}
+                else{
+                  return {_id, typeOperation, category, amount}
+                }
+              })
+              .map(({ _id, typeOperation, category, amount }) => {
+                if (typeOperation === 'expense') {
                   return (
                     <li key={_id}>
                       <StyledItem>
                         <StyledInnerSpan
+<<<<<<< Updated upstream
                           category={getCategoryColor(_id)}
+=======
+                          category={category}
+>>>>>>> Stashed changes
                           style={{
                             width: '24px',
                             height: '24px',
                             marginRight: '10px',
                           }}
                         ></StyledInnerSpan>
-                        <p>{_id}</p>
+                        <p>{category}</p>
                       </StyledItem>
                       <p>
-                        <span
-                          style={{
-                            color: type === 'income' ? '#24CCA7' : '#FF6596',
-                          }}
-                        >
-                          {totalSum}
+                        <span>
+                          {amount}
                         </span>
                       </p>
                     </li>
                   );
                 }
-                return null
-              })
-              }
+                return null;
+              })}
             </ul>
           </StyledTableBody>
           <StyledTableFooter>

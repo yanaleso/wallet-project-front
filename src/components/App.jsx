@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { refreshUser } from 'redux/auth/authOperation';
 import { getNextPage } from 'redux/transactions/transactionsSlice';
 import { getAllTransactions } from 'redux/transactions/transactionOperations';
@@ -34,8 +35,9 @@ export const App = () => {
   const { pageNum } = useSelector(state => state.transactions);
   const { transactions } = useSelector(state => state.transactions);
   const { hasNextPage } = useSelector(state => state.transactions);
-  const { isLoggedIn } = useSelector(state => state.auth);
-  const { isRefreshingUser } = useSelector(state => state.auth);
+  const { isLoggedIn, isError, isRefreshingUser } = useSelector(
+    state => state.auth
+  );
 
   const observer = useRef(null);
 
@@ -72,6 +74,10 @@ export const App = () => {
 
   if (transactions.length < 0) {
     return null;
+  }
+
+  if (isError) {
+    Notify.failure(isError);
   }
 
   return isRefreshingUser ? (

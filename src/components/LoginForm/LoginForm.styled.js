@@ -51,6 +51,7 @@ export const Input = styled(Field)`
   font-size: ${p => p.theme.fontSizes.m};
   line-height: 1.5;
   color: ${p => p.theme.colors.primaryText};
+  background-color: transparent;
 
   &:focus {
     outline: none;

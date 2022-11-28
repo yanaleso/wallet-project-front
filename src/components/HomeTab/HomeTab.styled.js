@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledTableHeader = styled.div`
-  background-color: #ffffff;
+  background-color: ${p => p.theme.colors.primaryBg};
   font-weight: 700;
   font-size: 18px;
   line-height: 1.5;
@@ -48,7 +48,7 @@ export const StyledTable = styled.div`
   @media (max-width: 1279px) {
     width: 704px;
   }
-  
+
   @media (min-width: 1280px) {
     width: 715px;
   }
@@ -89,7 +89,7 @@ export const StyledTableBody = styled.ul`
       &:nth-child(3) {
         width: 20%;
       }
-      span{
+      span {
         display: block;
         max-width: 106px;
       }
@@ -142,4 +142,8 @@ export const StyledWrap = styled.div`
       margin-bottom: 8px;
     }
   }
+`;
+
+export const CategoryName = styled.p`
+  ${p => p.theme.colors.primaryText}
 `;

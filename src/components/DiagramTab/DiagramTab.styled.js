@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { dayTheme } from '../../theme';
 import { Field } from 'formik';
 
 export const StyledFilters = styled.div`
@@ -44,10 +43,10 @@ export const StyledFilters = styled.div`
 `;
 
 export const CheckBoxLabel = styled.label`
-  background-color: #ffffff;
+  background-color: ${p => p.theme.colors.primaryBg};
   position: relative;
   height: 50px;
-  border: 1px solid #000000;
+  border: 1px solid ${p => p.theme.colors.primaryText};
   border-radius: 30px;
   margin-bottom: 20px;
   @media screen and (max-width: 767px) {
@@ -68,7 +67,7 @@ export const CheckBox = styled(Field)`
 `;
 
 export const StyledTableHeader = styled.div`
-  background-color: #ffffff;
+  background-color: ${p => p.theme.colors.primaryBg};
   font-weight: 700;
   font-size: 18px;
   line-height: 1.5;
@@ -121,7 +120,7 @@ export const StyledTable = styled.div`
 export const StyledTableBody = styled.ul`
   margin: 0;
   padding: 0 20px;
-  font-size: ${dayTheme.fontSizes.s};
+  font-size: ${p=> p.theme.fontSizes.s};
   line-height: 1.5;
   li {
     align-items: center;
@@ -153,7 +152,7 @@ export const StyledTableBody = styled.ul`
       }
       &:nth-child(5) {
         width: 10%;
-        font-weight: ${dayTheme.fontWeights.bold};
+        font-weight: ${p=> p.theme.fontWeights.bold};
         display: flex;
         justify-content: flex-end;
       }
@@ -223,10 +222,9 @@ export const StyledItem = styled.div`
   justify-content: flex-start;
 `;
 export const StyledInnerSpan = styled.div`
-display: block;
+  display: block;
   width: '24px';
   height: '24px';
   margin-right: '10px';
   background-color: ${p => p.category};
-                      
 `;

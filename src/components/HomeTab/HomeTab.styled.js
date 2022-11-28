@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledTableHeader = styled.div`
-  background-color: #ffffff;
+  background-color: ${p => p.theme.colors.primaryBg};
   font-weight: 700;
   font-size: 18px;
   line-height: 1.5;

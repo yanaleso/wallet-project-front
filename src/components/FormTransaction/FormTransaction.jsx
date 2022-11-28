@@ -3,6 +3,7 @@ import Select from 'react-select';
 import { Formik } from 'formik';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
+import { toast } from 'react-toastify';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Plus } from '../../images/plus.svg';
@@ -46,6 +47,7 @@ import { addNewTransaction, getAllTransactions } from 'redux/transactions/transa
 import { Box } from 'components/Box';
 
 const FormTransaction = () => {
+  const currentDate = moment().format('DD.MM.YYYY');
   const dispatch = useDispatch();
   const { pageNum } = useSelector(state => state.transactions);
 
@@ -56,8 +58,6 @@ const FormTransaction = () => {
     typeOperation: false,
     date: new Date().toString(),
   };
-
-  const currentDate = moment().format('DD.MM.YYYY');
 
   const onChangeType = value => {
     switch (value) {
@@ -89,11 +89,10 @@ const FormTransaction = () => {
 
     await dispatch(resetTransactions());
 
-    if (pageNum === 1) {
-      await dispatch(getAllTransactions(1));
-    }
-
+    if (pageNum === 1) await dispatch(getAllTransactions(1));
+    
     dispatch(toggleModalAdd(false));
+    toast.success("Successful transaction");
   };
 
   return (
@@ -137,8 +136,7 @@ const FormTransaction = () => {
                   placeholder="Select a category"
                   onChange={data => setFieldValue('category', data?.label)}
                   styles={selectStyles}
-                />
-              )}
+                />)}
 
               <DateWrapper>
                 <LabelSum>
@@ -153,21 +151,15 @@ const FormTransaction = () => {
 
                 <IconWrapper>
                   <Datetime
-                    renderInput={props => <DatetimeInput {...props} />}
                     name="date"
                     closeOnSelect
-                    initialValue={currentDate}
-                    dateFormat="DD.MM.YYYY"
                     timeFormat={false}
-                    onChange={e =>
-                      setFieldValue('date', new Date(e).toString())
-                    }
+                    dateFormat="DD.MM.YYYY"
+                    initialValue={currentDate}
                     isValidDate={checksFutureDate}
-                    inputProps={{
-                      onKeyDown: e => {
-                        e.preventDefault();
-                      },
-                    }}
+                    inputProps={{ onKeyDown: e => e.preventDefault() }}
+                    onChange={e =>  setFieldValue('date', new Date(e).toString())}
+                    renderInput={props => <DatetimeInput {...props} />}
                   />
 
                   <Calendar />

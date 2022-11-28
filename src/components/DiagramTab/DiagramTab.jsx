@@ -28,7 +28,6 @@ const DiagramTab = () => {
 
   const res = useSelector(selectAllStatistic);
   const data = res.statistic;
-console.log('data', data);
   const screenWidth = window.screen.width;
 
   const incomeTotal = data

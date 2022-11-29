@@ -46,14 +46,14 @@ const Chart = () => {
   };
 
   const data = {
-    labels: chartCategories.length > 1 ? chartCategories : emptyDiagramLable,
+    labels: chartCategories.length > 0 ? chartCategories : emptyDiagramLable,
     datasets: [
       {
         label: '# of Votes',
-        data: sum.length > 1 ? sum : emptyData,
+        data: sum.length > 0 ? sum : emptyData,
         text: 'summ',
         backgroundColor:
-          colors.length > 1 ? colors : ['rgba(255, 99, 132, 0.2)'],
+          colors.length > 0 ? colors : ['rgba(255, 99, 132, 0.2)'],
         borderWidth: 0,
       },
     ],

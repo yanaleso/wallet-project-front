@@ -58,7 +58,7 @@ const Table = ({ _id, type, totalSum }) => {
         {error && <b>{error}</b>} */}
       {isMobie ? (
         <StyledTable>
-          <div>
+          <Formik>
             <StyledFilters>
               <Select
                 name="month"
@@ -145,7 +145,7 @@ const Table = ({ _id, type, totalSum }) => {
                 }}
               />
             </StyledFilters>
-          </div>
+          </Formik>
           <StyledTableHeader>
             <p>Category</p>
             <p>Sum</p>
@@ -197,7 +197,7 @@ const Table = ({ _id, type, totalSum }) => {
         </StyledTable>
       ) : (
         <StyledTable>
-          <div>
+          <Formik>
             <StyledFilters>
               <Select
                 name="month"
@@ -276,7 +276,7 @@ const Table = ({ _id, type, totalSum }) => {
                 }}
               />
             </StyledFilters>
-          </div>
+          </Formik>
           <StyledTableHeader>
             <p>Category</p>
             <p>Sum</p>

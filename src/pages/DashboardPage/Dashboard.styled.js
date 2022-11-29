@@ -3,9 +3,6 @@ import styled from 'styled-components';
 export const Section = styled.section`
   background-color: ${p => p.theme.colors.loginPageBg};
   @media screen and (min-width: 768px) {
-    /* position: fixed;
-    width: 100vw;
-    height: 100vh; */
     background-image: ${p => p.theme.colors.gradient}, url(${p => p.bgImg});
     background-repeat: no-repeat;
     background-position: center;
@@ -63,16 +60,4 @@ export const Separator = styled.div`
   border: ${p => p.theme.borders.normal} #e7e5f2;
   box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
     1px 0px 0px rgba(255, 255, 255, 0.6);
-`;
-
-export const DesktopWrapper = styled.div`
-  ${'' /* display: flex; */}
-  ${'' /* padding-top: 46px; */}
-`;
-
-export const StatisticWrapper = styled.div`
-  ${
-    '' /* display: flex;
-  justify-content: space-between; */
-  }
 `;

@@ -5,7 +5,7 @@ const categoryList = {
   Auto: '#6E78E8',
   Children: '#81E1FF',
   Development: '#FD9498',
-  Education: '#C5BAFF',
+  Education: '#24CCA7',
   'Other expenses': '#00AD84',
 };
 

@@ -19,7 +19,7 @@ import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
 import { getCategoryColor } from 'helpers/getCategoryColor';
 import { getStatistic } from 'redux/statistic/statisticOperation';
 
-const Table = ({ _id, type, totalSum }) => {
+const Table = () => {
   const [month, setMonth] = useState(null);
   const [year, setYear] = useState(null);
 

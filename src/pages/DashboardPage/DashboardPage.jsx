@@ -14,10 +14,8 @@ import {
   Container,
   Wrapper,
   TabletWrapper,
-  DesktopWrapper,
   Separator,
   SideBar,
-  StatisticWrapper,
 } from './Dashboard.styled';
 import { useState } from 'react';
 
@@ -61,11 +59,11 @@ const DashboardPage = () => {
                   </TabletWrapper>
                   <Currency />
                 </Wrapper>
-                <StatisticWrapper>
+                <div>
                   <Suspense fallback={null}>
                     <Outlet />
                   </Suspense>
-                </StatisticWrapper>
+                </div>
               </Container>
             </Blur>
           ) : null}
@@ -79,11 +77,11 @@ const DashboardPage = () => {
                     <Currency />
                   </SideBar>
                   <Separator />
-                  <DesktopWrapper>
+                  <div>
                     <Suspense fallback={null}>
                       <Outlet />
                     </Suspense>
-                  </DesktopWrapper>
+                  </div>
                 </Wrapper>
               </Container>
             </Blur>

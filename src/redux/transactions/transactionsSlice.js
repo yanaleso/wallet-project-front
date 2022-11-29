@@ -34,9 +34,11 @@ const transactionsSlice = createSlice({
       state.error = null;
       state.isLoading = true;
     });
+
     builder.addCase(addNewTransaction.fulfilled, (state, _) => {
       state.isLoading = false;
     });
+    
     builder.addCase(addNewTransaction.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
@@ -46,6 +48,7 @@ const transactionsSlice = createSlice({
       state.error = null;
       state.isLoading = true;
     });
+
     builder.addCase(getAllTransactions.fulfilled, (state, action) => {
       state.isLoading = false;
       state.transactions = [...state.transactions, ...action.payload.transactions];

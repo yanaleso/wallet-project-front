@@ -3,6 +3,7 @@ import Select from 'react-select';
 import { Formik } from 'formik';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
+import { toast } from 'react-toastify';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactComponent as Plus } from '../../images/plus.svg';
@@ -49,6 +50,8 @@ const FormTransaction = () => {
   const dispatch = useDispatch();
   const { pageNum } = useSelector(state => state.transactions);
 
+ 
+
   const initialValues = {
     comment: '',
     amount: '',
@@ -85,15 +88,18 @@ const FormTransaction = () => {
       typeOperation,
     };
 
-    await dispatch(addNewTransaction(transaction));
+    
 
+    await dispatch(addNewTransaction(transaction));
+    
     await dispatch(resetTransactions());
 
-    if (pageNum === 1) {
-      await dispatch(getAllTransactions(1));
-    }
+    if (pageNum === 1) await dispatch(getAllTransactions(1));
 
     dispatch(toggleModalAdd(false));
+
+    toast.success("Successful transaction")
+    
   };
 
   return (
@@ -137,8 +143,7 @@ const FormTransaction = () => {
                   placeholder="Select a category"
                   onChange={data => setFieldValue('category', data?.label)}
                   styles={selectStyles}
-                />
-              )}
+                />)}
 
               <DateWrapper>
                 <LabelSum>
@@ -153,21 +158,15 @@ const FormTransaction = () => {
 
                 <IconWrapper>
                   <Datetime
-                    renderInput={props => <DatetimeInput {...props} />}
                     name="date"
                     closeOnSelect
                     initialValue={currentDate}
                     dateFormat="DD.MM.YYYY"
                     timeFormat={false}
-                    onChange={e =>
-                      setFieldValue('date', new Date(e).toString())
-                    }
                     isValidDate={checksFutureDate}
-                    inputProps={{
-                      onKeyDown: e => {
-                        e.preventDefault();
-                      },
-                    }}
+                    onChange={e =>setFieldValue('date', new Date(e).toString())}
+                    inputProps={{onKeyDown: e => e.preventDefault()}}
+                    renderInput={props => <DatetimeInput {...props} />}
                   />
 
                   <Calendar />

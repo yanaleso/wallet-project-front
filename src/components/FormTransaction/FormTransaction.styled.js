@@ -178,6 +178,13 @@ export const ButtonAdd = styled.button`
   border: none;
   margin-bottom: ${p => p.theme.space[4]}px;
   background-color: ${p => p.theme.colors.primaryBgBtn};
+
+  &:hover {
+    background-color: ${p => p.theme.colors.hoverBgBtn};
+    border: 1px solid ${p => p.theme.colors.primaryBgBtn};
+  }
+
+  transition: border 300ms linear;
 `;
 
 export const ButtonCancel = styled.button`
@@ -194,6 +201,13 @@ export const ButtonCancel = styled.button`
 
   color: ${p => p.theme.colors.secondaryBtn};
   border: 1px solid ${p => p.theme.colors.secondaryBtn};
+
+  &:hover {
+    color: ${p => p.theme.colors.primaryBgBtn};
+    border: 1px solid ${p => p.theme.colors.primaryBgBtn};
+  }
+
+  transition: all 300ms linear;
 `;
 
 export const ErrorAmount = styled(ErrorMessage)`

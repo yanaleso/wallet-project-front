@@ -16,4 +16,11 @@ export const Button = styled.button`
   background-color: #24cca7;
   cursor: pointer;
   z-index: 6;
+
+  &:hover {
+    background-color: ${p => p.theme.colors.hoverBgBtn};
+    border: 1px solid ${p => p.theme.colors.primaryBgBtn};
+  }
+
+  transition: border 300ms linear;
 `;

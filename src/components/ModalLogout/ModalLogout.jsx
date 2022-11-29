@@ -10,9 +10,11 @@ import {
 import { enablePageScroll } from 'scroll-lock';
 import { useEffect } from 'react';
 import { userLogout } from '../../redux/auth/authOperation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Spinner from 'components/Spinner';
 
 const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
+  const { isLoading } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,6 +45,7 @@ const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
   return (
     <Overlay onClick={disableScrollOn} opened={openExitModal}>
       <Modal onClick={e => e.stopPropagation()} opened={openExitModal}>
+        {isLoading && <Spinner />}
         <ModalTitle>Are you definitely want to log out?</ModalTitle>
         <Wrapper>
           <WrapperItem>

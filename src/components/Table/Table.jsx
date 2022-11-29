@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   StyledTable,
   StyledTableHeader,
@@ -17,15 +16,20 @@ import { years } from 'helpers/yearList';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
 
-// import { useEffect } from 'react';
 import { getCategoryColor } from 'helpers/getCategoryColor';
-// import { getStatistic } from 'redux/statistic/statisticOperation'
+import { getStatistic } from 'redux/statistic/statisticOperation';
 
 const Table = ({ _id, type, totalSum }) => {
+  const [month, setMonth] = useState(null);
+  const [year, setYear] = useState(null);
+
+  const dispatch = useDispatch();
+
   const isMobie = useMedia('(max-width: 767px)');
 
   const res = useSelector(selectAllStatistic);
   const data = res.statistic;
+ 
   const incomeTotal = data
     .filter(data => data.type === 'income')
     .reduce((total, data) => total + Number(data.totalSum), 0);
@@ -34,23 +38,9 @@ const Table = ({ _id, type, totalSum }) => {
     .filter(data => data.type !== 'income')
     .reduce((total, data) => total + Number(data.totalSum), 0);
 
-  const [month, setMonth] = useState(null);
-  const [year, setYear] = useState(null);
-  const [filteredData, setFilteredData] = useState([]);
-  console.log(month, year);
-
-  const getTransactionsByTime = async (month, year) => {
-    const res = axios
-      .get(
-        `https://wallet-project.onrender.com/api/transactions/statistics?month=${month}&year=${year}`
-      )
-      .then(res => setFilteredData(res.data));
-    return res.data;
-  };
-
-  if (month && year) {
-    getTransactionsByTime(month.value - 1, year.value);
-  }
+    useEffect(() => {
+      dispatch(getStatistic({month, year}));
+    }, [dispatch, month, year]);
 
   return (
     <>
@@ -64,7 +54,7 @@ const Table = ({ _id, type, totalSum }) => {
                 name="month"
                 options={months}
                 selected={month}
-                onChange={setMonth}
+                onChange={(e)=>setMonth(e?.value)}
                 isClearable
                 isSearchable
                 placeholder={<div>Month</div>}
@@ -106,7 +96,7 @@ const Table = ({ _id, type, totalSum }) => {
                 name="year"
                 options={years}
                 selected={year}
-                onChange={setYear}
+                onChange={(e)=>setYear(e?.value)}
                 isClearable
                 isSearchable
                 placeholder={<div>Year</div>}
@@ -202,7 +192,7 @@ const Table = ({ _id, type, totalSum }) => {
                 name="month"
                 options={months}
                 selected={month}
-                onChange={setMonth}
+                onChange={(e)=>setMonth(e?.value)}
                 isClearable
                 isSearchable
                 placeholder={<div>Month</div>}
@@ -240,7 +230,7 @@ const Table = ({ _id, type, totalSum }) => {
                 name="year"
                 options={years}
                 selected={year}
-                onChange={setYear}
+                onChange={(e)=>setYear(e?.value)}
                 isClearable
                 isSearchable
                 placeholder={<div>Year</div>}
@@ -325,7 +315,8 @@ const Table = ({ _id, type, totalSum }) => {
             </li>
           </StyledTableFooter>
         </StyledTable>
-      )}
+      )
+      }
     </>
   );
 };

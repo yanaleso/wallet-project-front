@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { refreshUser } from 'redux/auth/authOperation';
 import { getNextPage } from 'redux/transactions/transactionsSlice';
 import { getAllTransactions } from 'redux/transactions/transactionOperations';
@@ -31,54 +32,39 @@ export const App = () => {
 
   const dispatch = useDispatch();
   const isDarkTheme = useSelector(store => store.theme.isNightTheme);
-  const { isModalAddOpen } = useSelector(state => state.transactions);
-  const { pageNum } = useSelector(state => state.transactions);
-  const { transactions } = useSelector(state => state.transactions);
-  const { hasNextPage } = useSelector(state => state.transactions);
-  const { isLoggedIn, isError, isRefreshingUser } = useSelector(
-    state => state.auth
-  );
+  const { isLoggedIn, isError, isRefreshingUser } = useSelector(state => state.auth);
+  const { transactions, isModalAddOpen, hasNextPage, pageNum } = useSelector(state => state.transactions);
 
   const observer = useRef(null);
 
-  const lastElement = useCallback(
-    item => {
-      const options = {
-        rootMargin: '5px',
-        threshold: 1,
-      };
+  const lastElement = useCallback(item => {
 
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && hasNextPage) {
-          observer.current.unobserve(entries[0].target);
-          dispatch(getNextPage());
-        }
-      }, options);
-
-      if (item) {
-        observer.current.observe(item);
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasNextPage) {
+        observer.current.unobserve(entries[0].target);
+        dispatch(getNextPage());
       }
+      }, { rootMargin: '5px',threshold: 1});
+
+      if (item)  observer.current.observe(item);
+      
     },
     [dispatch, hasNextPage]
   );
 
   useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(getAllTransactions(pageNum));
-    }
+    if (isLoggedIn) dispatch(getAllTransactions(pageNum));
   }, [dispatch, isLoggedIn, pageNum]);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  if (transactions.length < 0) {
-    return null;
-  }
+  if (transactions.length < 0) return null;
+  
 
-  if (isError) {
-    // Notify.failure(isError);
-  }
+  if (isError)  toast.error(isError)
+  
 
   return isRefreshingUser ? (
     <Spinner />
@@ -92,16 +78,14 @@ export const App = () => {
           element={
             <PublicRoute restricted navigateTo="/home">
               <LoginPage />
-            </PublicRoute>
-          }
+            </PublicRoute>}
         />
         <Route
           path="/register"
           element={
             <PublicRoute restricted navigateTo="/home">
               <LoginPage />
-            </PublicRoute>
-          }
+            </PublicRoute>}
         />
 
         <Route path="/" element={<DashboardPage />}>
@@ -111,80 +95,28 @@ export const App = () => {
               <PrivateRoute>
                 <HomeTab data={transactions} ref={lastElement} />
                 <ButtonAddTransactions />
-              </PrivateRoute>
-            }
+              </PrivateRoute>}
           />
           <Route
             path="statistic"
             element={
               <PrivateRoute>
                 <DiagramTab />
-              </PrivateRoute>
-            }
+              </PrivateRoute>}
           />
 
           <Route
             path="currency"
             element={
               <PrivateRoute>
-                {isMobie ? (
-                  <Currency />
-                ) : (
-                  <div>
-                    <HomeTab
-                      data={[
-                        {
-                          id: 1,
-                          date: '04.01.2022',
-                          type: '+',
-                          category: 'Other',
-                          comment: 'Gift for you',
-                          sum: '300.00',
-                          balance: '6900.00',
-                        },
-                        {
-                          id: 2,
-                          date: '07.01.2022',
-                          type: '-',
-                          category: 'Car',
-                          comment: 'Repair',
-                          sum: '700.00',
-                          balance: '6200.00',
-                        },
-                        {
-                          id: 3,
-                          date: '02.01.2022',
-                          type: '+',
-                          category: 'Wages',
-                          comment: 'Wages',
-                          sum: '3000.00',
-                          balance: '9200.00',
-                        },
-                        {
-                          id: 4,
-                          date: '08.11.2022',
-                          type: '-',
-                          category: 'Other',
-                          comment: 'Sashas Birthday',
-                          sum: '1000.00',
-                          balance: '8200.00',
-                        },
-                        {
-                          id: 5,
-                          date: '01.01.2022',
-                          type: '-',
-                          category: 'Shopping',
-                          comment: 'Silpo',
-                          sum: '250.00',
-                          balance: '7950.00',
-                        },
-                      ]}
-                    />
+                {isMobie 
+                ? <Currency />
+                : <div>
+                    <HomeTab />
                     <ButtonAddTransactions />
                   </div>
-                )}
-              </PrivateRoute>
-            }
+                }
+              </PrivateRoute>}
           ></Route>
         </Route>
         <Route path="/*" element={<NotFoundPage />} />
@@ -195,6 +127,7 @@ export const App = () => {
           <FormTransaction />
         </ModalAddTransaction>
       )}
+      <ToastContainer autoClose={2500} theme="colored"/>
     </ThemeProvider>
   );
 };

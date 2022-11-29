@@ -67,7 +67,6 @@ export const StyledTableBody = styled.ul`
   li {
     align-items: center;
     height: 52px;
-    /* padding: 8px 0 ; */
     &:not(:last-child) {
       border-bottom: 1px solid #dcdcdf;
     }

@@ -31,15 +31,7 @@ const HomeTab = forwardRef(({ data }, ref) => {
                   <HomeTabMobItem
                     ref={ref}
                     key={_id}
-                    transaction={{
-                      _id,
-                      date,
-                      typeOperation,
-                      category,
-                      comment,
-                      amount,
-                      itemBalance,
-                    }}
+                    transaction={{_id, date, typeOperation, category, comment, amount, itemBalance }}
                   />
                 );
               }
@@ -47,18 +39,9 @@ const HomeTab = forwardRef(({ data }, ref) => {
               return (
                 <HomeTabMobItem
                   key={_id}
-                  transaction={{
-                    _id,
-                    date,
-                    typeOperation,
-                    category,
-                    comment,
-                    amount,
-                    itemBalance,
-                  }}
+                  transaction={{ _id, date, typeOperation, category, comment, amount, itemBalance }}
                 />
-              );
-            }
+              )}
           )}
         </StyledWrap>
       ) : (
@@ -73,46 +56,25 @@ const HomeTab = forwardRef(({ data }, ref) => {
           </StyledTableHeader>
 
           <StyledTableBody>
-            {data.map(
-              (
-                { _id, date, typeOperation, category, comment, amount },
-                idx
-              ) => {
-                const itemBalance = balances[idx];
+            {data.map(({ _id, date, typeOperation, category, comment, amount }, idx ) => {
+              const itemBalance = balances[idx];
 
-                if (data.length === idx + 1) {
-                  return (
-                    <HomeTabItem
-                      key={_id}
-                      ref={ref}
-                      transaction={{
-                        _id,
-                        date,
-                        typeOperation,
-                        category,
-                        comment,
-                        amount,
-                        itemBalance,
-                      }}
-                    />
-                  );
-                }
-
+              if (data.length === idx + 1) {
                 return (
                   <HomeTabItem
                     key={_id}
-                    transaction={{
-                      _id,
-                      date,
-                      typeOperation,
-                      category,
-                      comment,
-                      amount,
-                      itemBalance,
-                    }}
+                    ref={ref}
+                    transaction={{ _id, date, typeOperation, category, comment, amount, itemBalance }}
                   />
-                );
+                )
               }
+
+              return (
+                <HomeTabItem
+                  key={_id}
+                  transaction={{ _id, date, typeOperation, category, comment, amount, itemBalance }}
+                />
+              )}
             )}
           </StyledTableBody>
         </StyledTable>

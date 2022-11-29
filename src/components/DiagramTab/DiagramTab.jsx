@@ -1,8 +1,7 @@
 import { useMedia } from 'react-use';
 import Chart from '../Chart';
 import Table from '../Table';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
+import {  useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import {
   StyledStatisticWraper,
@@ -14,17 +13,12 @@ import {
 import { getStatistic } from 'redux/statistic/statisticOperation';
 
 const DiagramTab = () => {
-  const isMobie = useMedia('(max-width: 767px)');
-
   const dispatch = useDispatch();
+  const isMobie = useMedia('(max-width: 767px)');
 
   useEffect(() => {
     dispatch(getStatistic());
   }, [dispatch]);
-
-  const res = useSelector(selectAllStatistic);
-  const data = res.statistic;
-  console.log('data', data);
 
   return (
     <div>

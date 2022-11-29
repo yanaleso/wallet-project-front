@@ -49,7 +49,7 @@ export const ModalTitle = styled.h2`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-style: normal;
+  font-style:  normal;
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.l};
   line-height: 1.2;

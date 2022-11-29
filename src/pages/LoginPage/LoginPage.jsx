@@ -12,6 +12,8 @@ import {
 } from './LoginPage.styled';
 import frame from '../../images/frame.png';
 import frameBig from '../../images/frameBig.png';
+import frameReg from '../../images/frameReg.png';
+import frameRegBig from '../../images/frameRegBig.png';
 
 import { useMedia } from 'react-use';
 import { useLocation } from 'react-router-dom';
@@ -41,7 +43,10 @@ const LoginPage = () => {
           <Container>
             <Wrapper>
               <ImageContainer>
-                <Frame src={frame} alt="customer orders goods" />
+                <Frame
+                  src={location.pathname === '/login' ? frame : frameReg}
+                  alt="customer orders goods"
+                />
                 <Text>Finance App</Text>
               </ImageContainer>
               <FormContainer>
@@ -59,7 +64,12 @@ const LoginPage = () => {
             <Container>
               <Wrapper>
                 <ImageContainer>
-                  <Frame src={frameBig} alt="customer orders goods" />
+                  <Frame
+                    src={
+                      location.pathname === '/login' ? frameBig : frameRegBig
+                    }
+                    alt="customer orders goods"
+                  />
                   <Text>Finance App</Text>
                 </ImageContainer>
 

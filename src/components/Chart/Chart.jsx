@@ -57,10 +57,10 @@ const Chart = () => {
 
   return (
     <div>
-      <div style={{ maxWidth: '280px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '336px', margin: '0 auto' }}>
         <Doughnut
-          width={288}
-          height={288}
+          width={336}
+          height={336}
           data={data}
           options={{
             cutout: '70%',

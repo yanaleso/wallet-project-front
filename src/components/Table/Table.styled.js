@@ -25,6 +25,11 @@ export const StyledFilters = styled.div`
     display: flex;
     justify-content: space-between;
   }
+  @media (min-width: 768px) {
+    padding: 0 0 15px 0;
+    display: flex;
+    justify-content: space-between;
+  }
   @media (min-width: 1024px) {
     display: flex;
     justify-content: space-between;
@@ -67,12 +72,12 @@ export const CheckBoxLabel = styled.label`
   border: 1px solid ${p => p.theme.colors.primaryText};
   border-radius: 30px;
   margin-bottom: 20px;
-
+  width: 280px;
   @media screen and (max-width: 767px) {
-    width: 280px;
+    width: 160px;
   }
   @media screen and (min-width: 768px) {
-    width: 181px;
+    width: 160px;
   }
   @media screen and (min-width: 1280px) {
     width: 181px;
@@ -140,9 +145,10 @@ export const StyledTableHeader = styled.div`
 
 export const StyledTable = styled.div`
   margin: 0 auto;
-  max-width: 395px;
+  max-width: 336px;
   @media (min-width: 768px) {
-    width: 395px;
+    margin: 0 20px;
+    width: 336px;
   }
   @media (min-width: 1024px) {
     margin: 0 16px 0 32px;

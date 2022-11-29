@@ -1,19 +1,31 @@
 import styled from 'styled-components';
-import { dayTheme } from '../../theme';
 import { Field } from 'formik';
 
 export const StyledStatisticWraper = styled.div`
   display: flex;
   justify-content: flex-start;
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }
+  @media (min-width: 1024px) {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 export const StyledFilters = styled.div`
   font-weight: 700;
   font-size: 18px;
   line-height: 1.5;
-  padding: 15px 0;
+  padding: 0;
   border-radius: 30px;
   @media (min-width: 768px) {
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  @media (min-width: 1024px) {
     display: flex;
     justify-content: space-between;
   }
@@ -49,12 +61,13 @@ export const StyledFilters = styled.div`
 `;
 
 export const CheckBoxLabel = styled.label`
-  background-color: #ffffff;
+  background-color: ${p => p.theme.colors.primaryBg};
   position: relative;
   height: 50px;
-  border: 1px solid #000000;
+  border: 1px solid ${p => p.theme.colors.primaryText};
   border-radius: 30px;
   margin-bottom: 20px;
+
   @media screen and (max-width: 767px) {
     width: 280px;
   }
@@ -73,13 +86,24 @@ export const CheckBox = styled(Field)`
 `;
 
 export const StyledTableHeader = styled.div`
-  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 20px;
+  background-color: ${p => p.theme.colors.primaryBg};
   font-weight: 700;
   font-size: 18px;
   line-height: 1.5;
-  padding: 15px 20px;
   border-radius: 30px;
+  height: 58px;
+  color: ${p => p.theme.colors.primaryText};
   @media (min-width: 768px) {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  @media (min-width: 1024px) {
     display: flex;
     justify-content: space-between;
   }
@@ -115,11 +139,13 @@ export const StyledTableHeader = styled.div`
 `;
 
 export const StyledTable = styled.div`
-  margin: 0 16px 0 32px;
-  @media (max-width: 1279px) {
+  margin: 0 auto;
+  max-width: 395px;
+  @media (min-width: 768px) {
     width: 395px;
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1024px) {
+    margin: 0 16px 0 32px;
     width: 395px;
   }
 `;
@@ -127,18 +153,14 @@ export const StyledTable = styled.div`
 export const StyledTableBody = styled.ul`
   margin: 0;
   padding: 0 20px;
-  font-size: ${dayTheme.fontSizes.s};
+  font-size: ${p => p.theme.fontSizes.s};
   line-height: 1.5;
   li {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 52px;
-
     border-bottom: 1px solid #dcdcdf;
-
-    @media (min-width: 768px) {
-      display: flex;
-      justify-content: space-between;
-    }
   }
   li > p {
     margin: 0;
@@ -159,7 +181,7 @@ export const StyledTableBody = styled.ul`
       }
       &:nth-child(5) {
         width: 10%;
-        font-weight: ${dayTheme.fontWeights.bold};
+        font-weight: ${p => p.theme.fontWeights.bold};
         display: flex;
         justify-content: flex-end;
       }
@@ -188,6 +210,9 @@ export const StyledTableFooter = styled.ul`
     font-weight: 400;
     font-size: 18px;
     line-height: 1.5;
+  }
+  li > p {
+    color: ${p => p.theme.colors.primaryText};
   }
 `;
 
@@ -226,7 +251,8 @@ export const StyledWrap = styled.div`
 
 export const StyledItem = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  color: ${p => p.theme.colors.primaryText};
 `;
 export const StyledInnerSpan = styled.div`
   display: block;

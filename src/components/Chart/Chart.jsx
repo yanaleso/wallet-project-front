@@ -28,6 +28,9 @@ const Chart = () => {
 
   const colors = expenseResults.map(item => getCategoryColor(item._id));
 
+  const emptyDiagramLable = ['empty'];
+  const emptyData = ['100'];
+
   const drawInnerText = chart => {
     const ctx = chart.ctx;
     ctx.restore();
@@ -43,13 +46,14 @@ const Chart = () => {
   };
 
   const data = {
-    labels: chartCategories,
+    labels: chartCategories.length > 1 ? chartCategories : emptyDiagramLable,
     datasets: [
       {
         label: '# of Votes',
-        data: sum,
+        data: sum.length > 1 ? sum : emptyData,
         text: 'summ',
-        backgroundColor: colors,
+        backgroundColor:
+          colors.length > 1 ? colors : ['rgba(255, 99, 132, 0.2)'],
         borderWidth: 0,
       },
     ],

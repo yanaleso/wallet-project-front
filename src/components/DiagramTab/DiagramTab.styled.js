@@ -9,10 +9,19 @@ export const StyledStatisticWraper = styled.div`
 `;
 export const StyledChartWraper = styled.div`
   margin-bottom: 32px;
+  @media (min-width: 768px) {
+    width: 336px;
+  }
+  @media (min-width: 1024px) {
+    width: 288px;
+  }
 `;
 export const StyledContentWraper = styled.div`
   display: flex;
   justify-content: flex-start;
+  @media (min-width: 768px) {
+    justify-content: space-between;
+  }
 `;
 export const StyledTitle = styled.h2`
   font-family: 'Circe-Regular';

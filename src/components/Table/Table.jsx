@@ -121,7 +121,7 @@ const Table = ({ _id, type, totalSum }) => {
                     marginTop: '0px',
                     marginRight: 'auto',
                     marginLeft: 'auto',
-                    width: '280px',
+                    maxWidth: '280px',
                     height: '50px',
                     backgroundColor: 'transparent',
                   }),
@@ -150,7 +150,6 @@ const Table = ({ _id, type, totalSum }) => {
             <p>Category</p>
             <p>Sum</p>
           </StyledTableHeader>
-
           <StyledTableBody>
             <ul>
               {data.map(({ _id, type, totalSum }) => {
@@ -214,7 +213,7 @@ const Table = ({ _id, type, totalSum }) => {
                       ? 'hsl(0, 0%, 70%)'
                       : '#000000',
                     borderRadius: '30px',
-                    width: '181px',
+                    width: '160px',
                     height: '50px',
                     backgroundColor: 'transparent',
                   }),
@@ -252,7 +251,7 @@ const Table = ({ _id, type, totalSum }) => {
                       ? 'hsl(0, 0%, 70%)'
                       : '#000000',
                     borderRadius: '30px',
-                    width: '181px',
+                    width: '160px',
                     height: '50px',
                     backgroundColor: 'transparent',
                   }),

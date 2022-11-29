@@ -81,7 +81,7 @@ export const App = () => {
   }
 
   return isRefreshingUser ? (
-      <Spinner/>
+    <Spinner />
   ) : (
     <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
       <Routes>

@@ -1,3 +1,5 @@
+import axios from 'axios';
+import {useState} from 'react';
 import {
   StyledTable,
   StyledTableHeader,
@@ -20,6 +22,21 @@ import { getCategoryColor } from 'helpers/getCategoryColor';
 // import { getStatistic } from 'redux/statistic/statisticOperation'
 
 const Table = ({ _id, type, totalSum }) => {
+  const [month, setMonth] = useState(null)
+  const [year, setYear] = useState(null)
+  const [filteredData, setFilteredData] = useState([])
+  console.log(month, year);
+
+  const getTransactionsByTime= async (month,year)=>{
+    const res = axios.get(`https://wallet-project.onrender.com/api/transactions/statistics?month=${month}&year=${year}`)
+    .then(res => setFilteredData(res.data));
+    return res.data;
+  }
+
+    if(month && year){
+    getTransactionsByTime(month.value-1, year.value);
+    }
+
   const isMobie = useMedia('(max-width: 767px)');
 
   const res = useSelector(selectAllStatistic);
@@ -178,7 +195,9 @@ const Table = ({ _id, type, totalSum }) => {
               <Select
                 name="month"
                 options={months}
-                isClearable
+                selected={month}
+              onChange={setMonth}
+              isClearable
                 isSearchable
                 placeholder={<div>Month</div>}
                 styles={{
@@ -191,7 +210,8 @@ const Table = ({ _id, type, totalSum }) => {
                     width: '181px',
                     height: '50px',
                     backgroundColor: 'transparent',
-                  }),
+                    background: 'transparent',
+                }),
                   indicatorSeparator: (baseStyles, state) => ({
                     ...baseStyles,
                     display: 'none',
@@ -214,7 +234,9 @@ const Table = ({ _id, type, totalSum }) => {
               <Select
                 name="year"
                 options={years}
-                isClearable
+                selected={year}
+              onChange={setYear}
+              isClearable
                 isSearchable
                 placeholder={<div>Year</div>}
                 styles={{
@@ -227,7 +249,8 @@ const Table = ({ _id, type, totalSum }) => {
                     width: '181px',
                     height: '50px',
                     backgroundColor: 'transparent',
-                  }),
+                    background: 'transparent',
+                }),
                   indicatorSeparator: (baseStyles, state) => ({
                     ...baseStyles,
                     display: 'none',

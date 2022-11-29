@@ -1,10 +1,11 @@
 import { Formik, ErrorMessage } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userRegistration } from 'redux/auth/authOperation';
 import { useState } from 'react';
 import { HiEyeOff, HiEye } from 'react-icons/hi';
 import schema from 'helpers';
 import Logo from 'components/Logo';
+import Spinner from 'components/Spinner';
 import { ReactComponent as EmailIcon } from 'images/email.svg';
 import { ReactComponent as PasswordIcon } from 'images/password.svg';
 import { ReactComponent as UserIcon } from 'images/user.svg';
@@ -30,6 +31,7 @@ const initialValues = {
 const RegisterForm = () => {
   const [isHideFirstPass, setIsHideFirstPass] = useState(true);
   const [isHideSecondPass, setIsHideSecondPass] = useState(true);
+  const { isLoading } = useSelector(state => state.auth);
 
   const dispatch = useDispatch();
   const handleSubmit = (
@@ -42,6 +44,7 @@ const RegisterForm = () => {
 
   return (
     <FormWrap>
+      {isLoading && <Spinner />}
       <LogoWrap>
         <Logo />
       </LogoWrap>

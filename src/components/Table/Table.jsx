@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import {
   StyledTable,
@@ -17,17 +16,12 @@ import { years } from 'helpers/yearList';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
 
-// import { useEffect } from 'react';
 import { getCategoryColor } from 'helpers/getCategoryColor';
 import { getStatistic } from 'redux/statistic/statisticOperation';
-// import { getStatistic } from 'redux/statistic/statisticOperation'
-
 
 const Table = ({ _id, type, totalSum }) => {
   const [month, setMonth] = useState(null);
   const [year, setYear] = useState(null);
-  const [filteredData, setFilteredData] = useState([]);
-  console.log(month, year);
 
   const dispatch = useDispatch();
 
@@ -35,8 +29,6 @@ const Table = ({ _id, type, totalSum }) => {
 
   const res = useSelector(selectAllStatistic);
   const data = res.statistic;
-  // console.log(data);
-
  
   const incomeTotal = data
     .filter(data => data.type === 'income')
@@ -49,8 +41,6 @@ const Table = ({ _id, type, totalSum }) => {
     useEffect(() => {
       dispatch(getStatistic({month, year}));
     }, [dispatch, month, year]);
-
- 
 
   return (
     <>

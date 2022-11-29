@@ -16,7 +16,6 @@ import { months } from 'helpers/monthList';
 import { years } from 'helpers/yearList';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllStatistic } from 'redux/statistic/statisticSelectors';
-import { useMedia } from 'react-use';
 
 // import { useEffect } from 'react';
 import { getCategoryColor } from 'helpers/getCategoryColor';
@@ -64,6 +63,8 @@ const Table = ({ _id, type, totalSum }) => {
               <Select
                 name="month"
                 options={months}
+                selected={month}
+                onChange={setMonth}
                 isClearable
                 isSearchable
                 placeholder={<div>Month</div>}
@@ -104,6 +105,8 @@ const Table = ({ _id, type, totalSum }) => {
               <Select
                 name="year"
                 options={years}
+                selected={year}
+                onChange={setYear}
                 isClearable
                 isSearchable
                 placeholder={<div>Year</div>}

@@ -4,6 +4,7 @@ export const selectStyles = {
     border: 'none',
     outline: 'none',
     borderBottom: '1px solid #bdbdbd',
+    backgroundColor: 'transparent',
   }),
   option: (baseStyles, state) => ({
     ...baseStyles,

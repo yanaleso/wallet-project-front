@@ -9,7 +9,7 @@ const ThemeToggle = () => {
   return (
     <>
       <input
-        checked={isDarkTheme}
+        checked={!isDarkTheme}
         onChange={() => dispatch(changeTheme())}
         type="checkbox"
         id="toggle"

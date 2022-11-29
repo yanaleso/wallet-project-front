@@ -6,7 +6,7 @@ export const Section = styled.section`
     /* position: fixed;
     width: 100vw;
     height: 100vh; */
-    background-image: url(${p => p.bgImg});
+    background-image: ${p => p.theme.colors.gradient}, url(${p => p.bgImg});
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -59,7 +59,6 @@ export const SideBar = styled.div`
 `;
 
 export const Separator = styled.div`
-  height: calc(100vh - 80px);
   margin: 0 69px;
   border: ${p => p.theme.borders.normal} #e7e5f2;
   box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05),
@@ -67,11 +66,13 @@ export const Separator = styled.div`
 `;
 
 export const DesktopWrapper = styled.div`
-  display: flex;
-  padding-top: 46px;
+  ${'' /* display: flex; */}
+  ${'' /* padding-top: 46px; */}
 `;
 
 export const StatisticWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+  ${
+    '' /* display: flex;
+  justify-content: space-between; */
+  }
 `;

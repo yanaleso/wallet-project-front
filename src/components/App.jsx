@@ -6,12 +6,11 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { refreshUser } from 'redux/auth/authOperation';
 import { getNextPage } from 'redux/transactions/transactionsSlice';
 import { getAllTransactions } from 'redux/transactions/transactionOperations';
 
-import Chart from './Chart';
 import HomeTab from './HomeTab';
 import Currency from './Currency';
 import DiagramTab from './DiagramTab';
@@ -78,11 +77,11 @@ export const App = () => {
   }
 
   if (isError) {
-    Notify.failure(isError);
+    // Notify.failure(isError);
   }
 
   return isRefreshingUser ? (
-      <Spinner/>
+    <Spinner />
   ) : (
     <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
       <Routes>
@@ -119,45 +118,6 @@ export const App = () => {
             path="statistic"
             element={
               <PrivateRoute>
-                <Chart
-                  data={[
-                    {
-                      id: 1,
-                      type: '+',
-                      category: 'Other',
-                      sum: '300.00',
-                      balance: '6900.00',
-                    },
-                    {
-                      id: 2,
-                      type: '-',
-                      category: 'Car',
-                      sum: '700.00',
-                      balance: '6200.00',
-                    },
-                    {
-                      id: 3,
-                      type: '+',
-                      category: 'Wages',
-                      sum: '3000.00',
-                      balance: '9200.00',
-                    },
-                    {
-                      id: 4,
-                      type: '-',
-                      category: 'Other',
-                      sum: '1000.00',
-                      balance: '8200.00',
-                    },
-                    {
-                      id: 5,
-                      type: '-',
-                      category: 'Shopping',
-                      sum: '250.00',
-                      balance: '7950.00',
-                    },
-                  ]}
-                />
                 <DiagramTab />
               </PrivateRoute>
             }

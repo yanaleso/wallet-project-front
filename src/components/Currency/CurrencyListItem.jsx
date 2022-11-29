@@ -1,4 +1,4 @@
-import { CurrencyItem } from './Currency.styled';
+import { CurrencyItem, Text } from './Currency.styled';
 
 const CurrencyListItem = ({ arrow }) => {
   return (
@@ -6,9 +6,9 @@ const CurrencyListItem = ({ arrow }) => {
       {arrow
         ? arrow.map(({ currencyCodeA, rateBuy, rateSell }) => (
             <CurrencyItem key={currencyCodeA}>
-              <p>{currencyCodeA === 840 ? 'USD' : 'EUR'}</p>
-              <p>{Number(rateBuy).toFixed(2)}</p>
-              <p>{Number(rateSell).toFixed(2)}</p>
+              <Text>{currencyCodeA === 840 ? 'USD' : 'EUR'}</Text>
+              <Text>{Number(rateBuy).toFixed(2)}</Text>
+              <Text>{Number(rateSell).toFixed(2)}</Text>
             </CurrencyItem>
           ))
         : null}

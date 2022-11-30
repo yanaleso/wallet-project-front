@@ -45,12 +45,13 @@ import { transactionShema } from 'helpers/formAddTransaction/transactionShema';
 import { checksFutureDate } from 'helpers/formAddTransaction/checksFutureDate';
 import { addNewTransaction, getAllTransactions } from 'redux/transactions/transactionOperations';
 import { Box } from 'components/Box';
+import { useState } from 'react';
 
 const FormTransaction = () => {
   const dispatch = useDispatch();
   const { pageNum } = useSelector(state => state.transactions);
 
- 
+  const [isNextOperations, setIsNextOperations] = useState(true)
 
   const initialValues = {
     comment: '',
@@ -79,7 +80,7 @@ const FormTransaction = () => {
     dispatch(toggleModalAdd(false));
   };
 
-  const onSubmitFormTransaction = async values => {
+  const onSubmitFormTransaction = async (values, {resetForm}) => {
     const typeOperation = onChangeType(values.typeOperation);
 
     const transaction = {
@@ -88,17 +89,21 @@ const FormTransaction = () => {
       typeOperation,
     };
 
-    
+    if (isNextOperations) {
+      setIsNextOperations(false)
+      
+      await dispatch(addNewTransaction(transaction));
+      resetForm()
+      
+      await dispatch(resetTransactions());
 
-    await dispatch(addNewTransaction(transaction));
-    
-    await dispatch(resetTransactions());
+      if (pageNum === 1) await dispatch(getAllTransactions(1));
 
-    if (pageNum === 1) await dispatch(getAllTransactions(1));
+      dispatch(toggleModalAdd(false));
 
-    dispatch(toggleModalAdd(false));
+      toast.success("Successful transaction")
+    }
 
-    toast.success("Successful transaction")
     
   };
 

@@ -2,10 +2,15 @@ import moment from 'moment';
 import { forwardRef } from 'react';
 import { StyledList, CategoryName } from './HomeTab.styled';
 import { getSymbolType } from 'helpers/formAddTransaction/getSymbolType';
+import { sendMsg } from 'helpers/formAddTransaction/sendMessage';
+
 
 const HomeTabItem = forwardRef(({ transaction }, ref) => {
   const { date, typeOperation, category, comment, amount, itemBalance } = transaction;
   const currenrDate = moment(new Date(date)).format('DD.MM.YYYY');
+
+  const isLongAmount = String(amount).length > 9 ? "Amount" : ""
+  const isLongBalance = String(itemBalance).length > 10 ? "Balance" : ""
 
   const bodyTransaction = (
     <>
@@ -15,10 +20,15 @@ const HomeTabItem = forwardRef(({ transaction }, ref) => {
         <span>{category}</span>
       </CategoryName>
       <CategoryName>{comment}</CategoryName>
-      <p style={{ color: typeOperation === 'income' ? '#24CCA7' : '#FF6596' }}>
-        {amount}
+      <p 
+        onClick={() => sendMsg(isLongAmount, amount)} 
+        style={{ color: typeOperation === 'income' ? '#24CCA7' : '#FF6596' }}>
+        {isLongAmount ? "Click" : amount}
       </p>
-      <CategoryName>{itemBalance}</CategoryName>
+      <CategoryName 
+        onClick={() => sendMsg(isLongBalance, itemBalance)} 
+      >{isLongBalance ? "Click" : itemBalance}
+      </CategoryName>
     </>
   );
 
@@ -33,7 +43,13 @@ const HomeTabMobItem = forwardRef(({ transaction }, ref ) => {
   const { date, typeOperation, category, comment, amount, itemBalance } = transaction;
   const currenrDate = moment(new Date(date)).format('DD.MM.YYYY');
 
-  const bodyTransaction = <span>{itemBalance}</span>
+  const isLongAmount = String(amount).length > 9 ? "Amount" : ""
+  const isLongBalance = String(itemBalance).length > 10 ? "Balance" : ""
+
+  const bodyTransaction = 
+  <span onClick={() => sendMsg(isLongBalance, itemBalance)}>
+    {isLongBalance ? "Click" : itemBalance}
+  </span>
     
   const content = ref 
   ? <li ref={ref}>Balance {bodyTransaction}</li>
@@ -46,8 +62,10 @@ const HomeTabMobItem = forwardRef(({ transaction }, ref ) => {
       <li>Category <span>{category}</span></li>
       <li>Comment <span>{comment}</span></li>
       <li> Sum
-        <span style={{ color: typeOperation === 'income' ? '#24CCA7' : '#FF6596' }}>
-          {amount}
+        <span
+          onClick={() => sendMsg(isLongAmount, amount)}
+          style={{ color: typeOperation === 'income' ? '#24CCA7' : '#FF6596' }}>
+          {isLongAmount ? "Click" : amount}
         </span>
       </li>
       {content}

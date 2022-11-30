@@ -14,17 +14,11 @@ export const List = styled.ul`
 export const Link = styled(NavLink)`
   display: flex;
   gap: 23px;
-  color: ${p => p.theme.colors.primaryText};
-
-  svg {
-    color: ${p => p.theme.colors.navIconBg};
-    &.active {
-      color: ${p => p.theme.colors.navIconBgActive};
-    }
-  }
-
   padding: 11px 5px;
+
+  color: ${p => p.theme.colors.navIconBg};
   &.active {
+    color: ${p => p.theme.colors.navIconBgActive};
     font-weight: ${p => p.theme.fontWeights.bold};
   }
 `;
@@ -44,6 +38,10 @@ export const LinkMob = styled(NavLink)`
   }
 `;
 
+export const LinkText = styled.p`
+  color: ${p => p.theme.colors.primaryText};
+`;
+
 export const HomeSvg = styled(Home)`
   fill: currentColor;
 
@@ -55,6 +53,7 @@ export const HomeSvg = styled(Home)`
 
 export const StatisticSvg = styled(Statistic)`
   fill: currentColor;
+
   @media (min-width: 768px) {
     width: 18px;
     height: 18px;
@@ -63,8 +62,4 @@ export const StatisticSvg = styled(Statistic)`
 
 export const CurrencySvg = styled(Currency)`
   fill: currentColor;
-`;
-
-export const LinkText = styled.p`
-  color: ${p => p.theme.colors.primaryText};
 `;

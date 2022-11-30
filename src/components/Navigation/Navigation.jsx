@@ -16,9 +16,15 @@ const Navigation = () => {
     <div>
       {isMobie ? (
         <ListMob>
-          <LinkMob to="/home"> <HomeSvg /></LinkMob>
-          <LinkMob to="/statistic"> <StatisticSvg /></LinkMob>
-          <LinkMob to="/currency"><CurrencySvg /></LinkMob>
+          <LinkMob to="/home">
+            <HomeSvg />
+          </LinkMob>
+          <LinkMob to="/statistic">
+            <StatisticSvg />
+          </LinkMob>
+          <LinkMob to="/currency">
+            <CurrencySvg />
+          </LinkMob>
         </ListMob>
       ) : (
         <List>

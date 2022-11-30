@@ -41,7 +41,6 @@ export const PrivatTableList = styled.ul`
     padding-right: 20px;
   }
   @media (min-width: 1280px) {
-    justify-content: space-between;
     padding-left: 45px;
     padding-right: 64px;
 
@@ -70,6 +69,7 @@ export const CurrencyItem = styled.li`
   width: 100%;
 
   margin-bottom: 12px;
+
   @media (min-width: 1280px) {
     padding-bottom: 24px;
   }
@@ -91,6 +91,31 @@ export const ImageVektor = styled.img`
   }
 `;
 
+export const TextTitle = styled.p`
+  color: white;
+  @media (min-width: 768px) {
+    &:nth-child(2) {
+      margin-right: 35px;
+    }
+  }
+  @media (min-width: 1280px) {
+    &:nth-child(2) {
+      margin-right: 15px;
+    }
+  }
+`;
+
 export const Text = styled.p`
   color: #ffffff;
+  @media (max-width: 767px) {
+    &:nth-child(1) {
+      margin-left: 5px;
+    }
+    &:nth-child(2) {
+      margin-left: 20px;
+    }
+    &:nth-child(3) {
+      margin-right: 5px;
+    }
+  }
 `;

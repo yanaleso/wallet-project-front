@@ -198,6 +198,9 @@ export const StyledTableBody = styled.ul`
       }
     }
   }
+  li > p > span {
+    color: ${p => p.theme.colors.primaryText};
+  }
 `;
 
 export const StyledTableFooter = styled.ul`

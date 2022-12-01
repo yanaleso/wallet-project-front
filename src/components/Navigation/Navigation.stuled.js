@@ -18,8 +18,10 @@ export const List = styled.ul`
 
 export const Link = styled(NavLink)`
   display: flex;
+  height: 27px;
   gap: 23px;
 
+  align-items: center;
   color: ${p => p.theme.colors.navIconBg};
 
   &.active {

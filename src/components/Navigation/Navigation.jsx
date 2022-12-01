@@ -7,7 +7,7 @@ import {
   StatisticSvg,
   CurrencySvg,
   LinkText,
-} from './Navigation.stuled';
+} from './Navigation.styled';
 import { useMedia } from 'react-use';
 
 const Navigation = () => {

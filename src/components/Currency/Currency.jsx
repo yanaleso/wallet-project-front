@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Spinner from 'components/Spinner';
 import CurrencyListItem from './CurrencyListItem';
+import { toast } from 'react-toastify';
 
 const getApiMono = async () => {
   const res = await axios
@@ -20,7 +21,7 @@ const getApiMono = async () => {
       localStorage.setItem('date', JSON.stringify(+date));
       return res;
     })
-    .catch(error => console.log(error.message));
+    .catch(error => error);
   return res.data;
 };
 
@@ -62,7 +63,7 @@ const Currency = () => {
         const newArrow = data.slice(0, 2);
         setArrow(newArrow);
       } catch (error) {
-        console.log(error);
+        toast.error('Bank request error');
       }
     };
 

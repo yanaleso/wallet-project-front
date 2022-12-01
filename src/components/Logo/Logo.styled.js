@@ -5,8 +5,6 @@ export const LogoBox = styled.div`
   font-family: ${p => p.theme.fonts.headingBold};
   font-size: ${p => p.theme.fontSizes.l};
   font-weight: ${p => p.theme.fontWeights.bold};
-  display: flex;
-  align-items: center;
 
   @media (max-width: 768px) {
     font-size: 23px;
@@ -23,4 +21,13 @@ export const LogoWallet = styled.img`
 
 export const LogoLink = styled(NavLink)`
   color: ${p => p.theme.colors.primaryText};
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: ${p => p.theme.colors.secondaryBtn};
+  }
+  &:focus {
+    color: ${p => p.theme.colors.secondaryBtn};
+  }
 `;

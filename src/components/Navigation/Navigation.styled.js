@@ -7,16 +7,23 @@ import { ReactComponent as Currency } from '../../images/currency.svg';
 export const List = styled.ul`
   display: flex;
   flex-direction: column;
+  gap: 12px;
 
   font-size: ${p => p.theme.fontSizes.m};
+
+  @media (min-width: 1280px) {
+    margin-bottom: 28px;
+  }
 `;
 
 export const Link = styled(NavLink)`
   display: flex;
+  height: 27px;
   gap: 23px;
-  padding: 11px 5px;
 
+  align-items: center;
   color: ${p => p.theme.colors.navIconBg};
+
   &.active {
     color: ${p => p.theme.colors.navIconBgActive};
     font-weight: ${p => p.theme.fontWeights.bold};
@@ -40,6 +47,11 @@ export const LinkMob = styled(NavLink)`
 
 export const LinkText = styled.p`
   color: ${p => p.theme.colors.primaryText};
+
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const HomeSvg = styled(Home)`

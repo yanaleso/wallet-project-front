@@ -46,7 +46,7 @@ const ModalLogout = ({ openExitModal, setIsOpenExitModal }) => {
     <Overlay onClick={disableScrollOn} opened={openExitModal}>
       <Modal onClick={e => e.stopPropagation()} opened={openExitModal}>
         {isLoading && <Spinner />}
-        <ModalTitle>Are you definitely want to log out?</ModalTitle>
+        <ModalTitle>Are you sure you want to sign out?</ModalTitle>
         <Wrapper>
           <WrapperItem>
             <Exit onClick={LogOut}>Exit </Exit>

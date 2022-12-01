@@ -52,6 +52,13 @@ export const ButtonExit = styled.button`
     margin-left: 12px;
     border-left: 1px solid #bdbdbd;
   }
+
+  &:hover {
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.15)
+  }
+  &:focus {
+     box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.15)
+  }
 `;
 
 export const Text = styled.span`

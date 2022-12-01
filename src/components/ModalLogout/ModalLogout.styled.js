@@ -49,7 +49,7 @@ export const ModalTitle = styled.h2`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-style:  normal;
+  font-style: normal;
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.l};
   line-height: 1.2;
@@ -93,8 +93,20 @@ export const WrapperItem = styled.li`
 export const Exit = styled.button`
   background-color: ${p => p.theme.colors.expense};
   margin-bottom: 20px;
+
+  :hover,
+  :focus {
+    background-color: ${p => p.theme.colors.secondaryBtn};
+    color: ${p => p.theme.colors.primaryBtn};
+  }
 `;
 
 export const Stay = styled.button`
-  background-color: ${p => p.theme.colors.primaryBgBtn}; ;
+  background-color: ${p => p.theme.colors.primaryBgBtn};
+
+  :hover,
+  :focus {
+    background-color: ${p => p.theme.colors.secondaryBtn};
+    color: ${p => p.theme.colors.primaryBtn};
+  }
 `;

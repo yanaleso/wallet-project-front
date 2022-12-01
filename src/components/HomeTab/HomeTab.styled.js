@@ -57,7 +57,7 @@ export const StyledTable = styled.div`
 
 export const StyledTableBody = styled.ul`
   margin: 0;
-  padding: 0 20px;
+  padding: 0 15px 0 20px;
   font-size: ${p => p.theme.fontSizes.m};
   line-height: 1.5;
 

@@ -1,9 +1,6 @@
-import { useRef } from 'react';
-import { useEffect } from 'react';
-import { useCallback } from 'react';
+import { useRef, useEffect, useCallback, lazy, Suspense } from 'react';
 import { useMedia } from 'react-use';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
@@ -23,9 +20,9 @@ import FormTransaction from './FormTransaction/FormTransaction';
 import { nightTheme, dayTheme } from '../theme';
 import Spinner from './Spinner';
 
-import LoginPage from '../pages/LoginPage';
-import DashboardPage from '../pages/DashboardPage';
-import NotFoundPage from 'pages/NotFoundPage';
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const DashboardPage = lazy(() => import('../pages/DashboardPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 export const App = () => {
   const isMobie = useMedia('(max-width: 767px)');
@@ -70,64 +67,66 @@ export const App = () => {
     <Spinner />
   ) : (
     <ThemeProvider theme={isDarkTheme ? dayTheme : nightTheme}>
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
 
-        <Route
-          path="/login"
-          element={
-            <PublicRoute restricted navigateTo="/home">
-              <LoginPage />
-            </PublicRoute>}
-        />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute restricted navigateTo="/home">
-              <LoginPage />
-            </PublicRoute>}
-        />
-
-        <Route path="/" element={<DashboardPage />}>
           <Route
-            path="home"
+            path="/login"
             element={
-              <PrivateRoute>
-                <HomeTab data={transactions} ref={lastElement} />
-                <ButtonAddTransactions />
-              </PrivateRoute>}
+              <PublicRoute restricted navigateTo="/home">
+                <LoginPage />
+              </PublicRoute>}
           />
           <Route
-            path="statistic"
+            path="/register"
             element={
-              <PrivateRoute>
-                <DiagramTab />
-              </PrivateRoute>}
+              <PublicRoute restricted navigateTo="/home">
+                <LoginPage />
+              </PublicRoute>}
           />
 
-          <Route
-            path="currency"
-            element={
-              <PrivateRoute>
-                {isMobie 
-                ? <Currency />
-                : <div>
-                    <HomeTab />
-                    <ButtonAddTransactions />
-                  </div>
-                }
-              </PrivateRoute>}
-          ></Route>
-        </Route>
-        <Route path="/*" element={<NotFoundPage />} />
-      </Routes>
+          <Route path="/" element={<DashboardPage />}>
+            <Route
+              path="home"
+              element={
+                <PrivateRoute>
+                  <HomeTab data={transactions} ref={lastElement} />
+                  <ButtonAddTransactions />
+                </PrivateRoute>}
+            />
+            <Route
+              path="statistic"
+              element={
+                <PrivateRoute>
+                  <DiagramTab />
+                </PrivateRoute>}
+            />
+
+            <Route
+              path="currency"
+              element={
+                <PrivateRoute>
+                  {isMobie
+                    ? <Currency />
+                    : <div>
+                      <HomeTab />
+                      <ButtonAddTransactions />
+                    </div>
+                  }
+                </PrivateRoute>}
+            ></Route>
+          </Route>
+          <Route path="/*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
 
       {isModalAddOpen && (
         <ModalAddTransaction>
           <FormTransaction />
         </ModalAddTransaction>
       )}
-      <ToastContainer autoClose={2500} theme="colored"/>
+      <ToastContainer autoClose={2500} theme="colored" />
     </ThemeProvider>
   );
 };

@@ -114,6 +114,7 @@ export const StyledTableBody = styled.ul`
 export const StyledList = styled.ul`
   margin: 0;
   border-radius: 10px;
+  background-color: #ffffff;
   li {
     font-weight: 700;
     font-size: 18px;

@@ -29,7 +29,7 @@ const Table = () => {
 
   const res = useSelector(selectAllStatistic);
   const data = res.statistic;
- 
+
   const incomeTotal = data
     .filter(data => data.type === 'income')
     .reduce((total, data) => total + Number(data.totalSum), 0);
@@ -38,9 +38,9 @@ const Table = () => {
     .filter(data => data.type !== 'income')
     .reduce((total, data) => total + Number(data.totalSum), 0);
 
-    useEffect(() => {
-      dispatch(getStatistic({month, year}));
-    }, [dispatch, month, year]);
+  useEffect(() => {
+    dispatch(getStatistic({ month, year }));
+  }, [dispatch, month, year]);
 
   return (
     <>
@@ -54,7 +54,7 @@ const Table = () => {
                 name="month"
                 options={months}
                 selected={month}
-                onChange={(e)=>setMonth(e?.value)}
+                onChange={e => setMonth(e?.value)}
                 isClearable
                 isSearchable
                 placeholder={<div>Month</div>}
@@ -96,7 +96,7 @@ const Table = () => {
                 name="year"
                 options={years}
                 selected={year}
-                onChange={(e)=>setYear(e?.value)}
+                onChange={e => setYear(e?.value)}
                 isClearable
                 isSearchable
                 placeholder={<div>Year</div>}
@@ -158,13 +158,7 @@ const Table = () => {
                         <p>{_id}</p>
                       </StyledItem>
                       <p>
-                        <span
-                          style={{
-                            color: type === 'income' ? '#24CCA7' : '#FF6596',
-                          }}
-                        >
-                          {totalSum}
-                        </span>
+                        <span>{totalSum}</span>
                       </p>
                     </li>
                   );
@@ -192,7 +186,7 @@ const Table = () => {
                 name="month"
                 options={months}
                 selected={month}
-                onChange={(e)=>setMonth(e?.value)}
+                onChange={e => setMonth(e?.value)}
                 isClearable
                 isSearchable
                 placeholder={<div>Month</div>}
@@ -230,7 +224,7 @@ const Table = () => {
                 name="year"
                 options={years}
                 selected={year}
-                onChange={(e)=>setYear(e?.value)}
+                onChange={e => setYear(e?.value)}
                 isClearable
                 isSearchable
                 placeholder={<div>Year</div>}
@@ -289,13 +283,7 @@ const Table = () => {
                         <p>{_id}</p>
                       </StyledItem>
                       <p>
-                        <span
-                          style={{
-                            color: type === 'income' ? '#24CCA7' : '#FF6596',
-                          }}
-                        >
-                          {totalSum}
-                        </span>
+                        <span>{totalSum}</span>
                       </p>
                     </li>
                   );
@@ -315,8 +303,7 @@ const Table = () => {
             </li>
           </StyledTableFooter>
         </StyledTable>
-      )
-      }
+      )}
     </>
   );
 };
